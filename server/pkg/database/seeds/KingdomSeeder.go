@@ -1,7 +1,7 @@
 package seeds
 
 import (
-	entity "flonn-be/pkg/entity/classification"
+	"flonn-be/pkg/entity"
 
 	"gorm.io/gorm"
 )

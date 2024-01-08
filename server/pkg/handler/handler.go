@@ -1,6 +1,9 @@
 package handler
 
 import (
+	"flonn-be/pkg/helper"
+	"flonn-be/pkg/middleware"
+	"flonn-be/pkg/repository"
 	"fmt"
 	"os"
 
@@ -12,12 +15,16 @@ import (
 type handler struct {
 	http *gin.Engine
 	db   *gorm.DB
+	repo *repository.Repository
+	help *helper.Helper
 }
 
 func Init(db *gorm.DB) *handler {
 	rest := handler{
 		http: gin.New(),
 		db:   db,
+		repo: repository.Init(db),
+		help: helper.Init(),
 	}
 
 	// CORS
@@ -41,11 +48,13 @@ func (h *handler) Run() {
 }
 
 func (h *handler) registerRoutes() {
-	// api := h.http.Group("/api")
+	api := h.http.Group("/api")
 	// admin := h.http.Group("/admin")
 
-	// api.Use(JwtMiddleware())
-	// admin.Use(JwtMiddlewareAdmin())
+	api.Use(middleware.JwtMiddleware(h.help))
+	// admin.Use(middleware.JwtMiddlewareAdmin(h.help))
+
+	h.http.GET("/disaster", h.getAllDisaster)
 
 	// h.http.POST("/admin/login", h.adminLogin)
 	// admin.GET("verif/toko", h.getAllUnverifiedToko)

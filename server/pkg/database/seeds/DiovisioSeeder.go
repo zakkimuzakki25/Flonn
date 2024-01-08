@@ -1,7 +1,7 @@
 package seeds
 
 import (
-	entity "flonn-be/pkg/entity/classification"
+	"flonn-be/pkg/entity"
 
 	"gorm.io/gorm"
 )
@@ -16,42 +16,52 @@ func (s *seeder) seedDiovisio(sql *gorm.DB) error {
 		{
 			Name:            "Marchantiophyta",
 			Characteristics: "Lorem ipsum dolor sit amet#consectetur adipiscing elit#Sed sollicitudin libero id magna rhoncus#non pulvinar odio convallis",
+			KingdomID:       2,
 		},
 		{
 			Name:            "Anthocerotophyta",
 			Characteristics: "Lorem ipsum dolor sit amet#consectetur adipiscing elit#Sed sollicitudin libero id magna rhoncus#non pulvinar odio convallis",
+			KingdomID:       2,
 		},
 		{
 			Name:            "Bryophyta",
 			Characteristics: "Lorem ipsum dolor sit amet#consectetur adipiscing elit#Sed sollicitudin libero id magna rhoncus#non pulvinar odio convallis",
+			KingdomID:       2,
 		},
 		{
 			Name:            "Filicophyta",
 			Characteristics: "Lorem ipsum dolor sit amet#consectetur adipiscing elit#Sed sollicitudin libero id magna rhoncus#non pulvinar odio convallis",
+			KingdomID:       2,
 		},
 		{
 			Name:            "Sphenophyta",
 			Characteristics: "Lorem ipsum dolor sit amet#consectetur adipiscing elit#Sed sollicitudin libero id magna rhoncus#non pulvinar odio convallis",
+			KingdomID:       2,
 		},
 		{
 			Name:            "Cycadophyta",
 			Characteristics: "Lorem ipsum dolor sit amet#consectetur adipiscing elit#Sed sollicitudin libero id magna rhoncus#non pulvinar odio convallis",
+			KingdomID:       2,
 		},
 		{
 			Name:            "Ginkgophyta",
 			Characteristics: "Lorem ipsum dolor sit amet#consectetur adipiscing elit#Sed sollicitudin libero id magna rhoncus#non pulvinar odio convallis",
+			KingdomID:       2,
 		},
 		{
 			Name:            "Pinophyta",
 			Characteristics: "Lorem ipsum dolor sit amet#consectetur adipiscing elit#Sed sollicitudin libero id magna rhoncus#non pulvinar odio convallis",
+			KingdomID:       2,
 		},
 		{
 			Name:            "Gnetophyta",
 			Characteristics: "Lorem ipsum dolor sit amet#consectetur adipiscing elit#Sed sollicitudin libero id magna rhoncus#non pulvinar odio convallis",
+			KingdomID:       2,
 		},
 		{
 			Name:            "Magnoliophyta",
 			Characteristics: "Lorem ipsum dolor sit amet#consectetur adipiscing elit#Sed sollicitudin libero id magna rhoncus#non pulvinar odio convallis",
+			KingdomID:       2,
 		},
 	}
 

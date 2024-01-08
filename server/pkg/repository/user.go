@@ -1,6 +1,6 @@
 package repository
 
-import "database/sql"
+import "gorm.io/gorm"
 
 type UserInterface interface {
 }
@@ -8,6 +8,6 @@ type UserInterface interface {
 type user struct {
 }
 
-func userRepoInit(db sql.DB) UserInterface {
+func UserRepoInit(db *gorm.DB) UserInterface {
 	return nil
 }

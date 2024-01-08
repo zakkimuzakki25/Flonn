@@ -2,7 +2,8 @@ package main
 
 import (
 	configuration "flonn-be/pkg/config"
-	"flonn-be/pkg/entity"
+	"flonn-be/pkg/database/migrations"
+	"flonn-be/pkg/database/seeds"
 	"flonn-be/pkg/handler"
 	"fmt"
 	"log"
@@ -34,7 +35,14 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	database.AutoMigrate(entity.User{})
+	migrations.MigrateData(database)
+
+	// Seeding data
+	sdr := seeds.InitSeeder()
+	if err := sdr.Seed(database); err != nil {
+		fmt.Println(err)
+		panic("Gagal Seed Data")
+	}
 
 	handler := handler.Init(database)
 

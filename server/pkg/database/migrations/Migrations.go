@@ -6,6 +6,22 @@ import (
 	"gorm.io/gorm"
 )
 
-func migrateData(db *gorm.DB) {
-	db.AutoMigrate(entity.User{})
+func MigrateData(db *gorm.DB) {
+	db.AutoMigrate(
+		&entity.User{},
+		&entity.Volunteer{},
+		&entity.DisasterType{},
+		&entity.Disaster{},
+		&entity.Donation{},
+		&entity.Kingdom{},
+		&entity.Diovisio{},
+		&entity.Phylum{},
+		&entity.Classis{},
+		&entity.Ordo{},
+		&entity.Familia{},
+		&entity.Genus{},
+		&entity.Species{},
+		&entity.Biodiversity{},
+		&entity.BiodiversityCoordinate{},
+	)
 }
