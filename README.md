@@ -4,7 +4,7 @@ Flonn adalah platform web yang fokus pada kampanye lingkungan sosial di mana pen
 
 # Our Team: Pubek
 
--Naufal Afkaar (Hustler & PIC)
--Emilia Syah Putri (Hustler)
--Maritza Aliya Devi (Hipster)
--Muhammad Iqbal Muzakki (Hacker)
+- Naufal Afkaar (Hustler & PIC)
+- Emilia Syah Putri (Hustler)
+- Maritza Aliya Devi (Hipster)
+- Muhammad Iqbal Muzakki (Hacker)
