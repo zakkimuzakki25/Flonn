@@ -1,8 +1,8 @@
 # What is Flonn?
 
-Flonn adalah platform web yang fokus pada kampanye lingkungan sosial di mana pengguna dapat memantau dampak bencana alam, status konservasi biodiversitas, dan menyumbangkan sumber daya mereka untuk masa depan yang lebih baik.
+## Introduction
 
-# Introduction
+Flonn adalah platform web yang fokus pada kampanye lingkungan sosial di mana pengguna dapat memantau dampak bencana alam, status konservasi biodiversitas, dan menyumbangkan sumber daya mereka untuk masa depan yang lebih baik.
 
 ## Our Team: Pubek
 
@@ -11,7 +11,8 @@ Flonn adalah platform web yang fokus pada kampanye lingkungan sosial di mana pen
 - Maritza Aliya Devi (Hipster)
 - Muhammad Iqbal Muzakki (Hacker)
 
-# Slicing
+
+# Slicing result
 ## Home Page
 
 ![Alt text](image.png)
