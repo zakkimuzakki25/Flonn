@@ -54,7 +54,13 @@ func (h *handler) registerRoutes() {
 	api.Use(middleware.JwtMiddleware(h.help))
 	// admin.Use(middleware.JwtMiddlewareAdmin(h.help))
 
-	h.http.GET("/disaster", h.getAllDisaster)
+	h.http.GET("/disaster/all", h.getAllDisaster)
+	h.http.GET("/disaster/years", h.getDisasterYears)
+	h.http.GET("/disaster/filter", h.getDisastersByFilter)
+
+	h.http.GET("/disaster-type/:id", h.getDisasterTypeDetail)
+
+	h.http.GET("/biodiversity/filter", h.getBiodiversitiesByFilter)
 
 	// h.http.POST("/admin/login", h.adminLogin)
 	// admin.GET("verif/toko", h.getAllUnverifiedToko)

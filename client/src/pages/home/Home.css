@@ -1,0 +1,36 @@
+.banner-home {
+    background-image: url("../../assets/images/background/Home.jpg");
+    background-size: cover;
+    background-position: center -160px;
+}
+
+.banner-home-2 {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.pic-monitor {
+    background-image: url("../../assets/images/home/Monitor.jpg");
+    background-size: cover;
+    background-position: center -90px;
+}
+
+.pic-bio {
+    background-image: url("../../assets/images/home/Biodiversitas.jpg");
+    background-size: cover;
+    background-position: center 0px;
+}
+
+.pic-aksi {
+    background-image: url("../../assets/images/home/Aksi.jpg");
+    background-size: cover;
+    background-position: center -50px;
+}
+
+.link-home .arrow {
+    transition: padding-left 0.35s ease-out;
+    padding-left: 0;
+}
+
+.link-home:hover .arrow {
+    padding-left: 10px;
+}

@@ -3,6 +3,9 @@ package seeds
 import "gorm.io/gorm"
 
 type dataSeeder interface {
+	seedStatus(sql *gorm.DB) error
+	seedHabitat(sql *gorm.DB) error
+
 	seedKingdom(sql *gorm.DB) error
 	seedDiovisio(sql *gorm.DB) error
 	seedPhylum(sql *gorm.DB) error
@@ -11,6 +14,8 @@ type dataSeeder interface {
 	seedFamilia(sql *gorm.DB) error
 	seedGenus(sql *gorm.DB) error
 	seedSpecies(sql *gorm.DB) error
+
+	seedBiodiversity(sql *gorm.DB) error
 
 	seedDisasterType(sql *gorm.DB) error
 
@@ -26,6 +31,13 @@ func InitSeeder() dataSeeder {
 }
 
 func (s *seeder) Seed(sql *gorm.DB) error {
+	if err := s.seedStatus(sql); err != nil {
+		return err
+	}
+	if err := s.seedHabitat(sql); err != nil {
+		return err
+	}
+
 	if err := s.seedKingdom(sql); err != nil {
 		return err
 	}
@@ -48,6 +60,10 @@ func (s *seeder) Seed(sql *gorm.DB) error {
 		return err
 	}
 	if err := s.seedSpecies(sql); err != nil {
+		return err
+	}
+
+	if err := s.seedBiodiversity(sql); err != nil {
 		return err
 	}
 

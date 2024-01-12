@@ -44,3 +44,11 @@ func (h *Helper) BindParam(c *gin.Context, param interface{}) error {
 
 	return c.ShouldBindWith(param, binding.Query)
 }
+
+func (h *Helper) BindQuery(c *gin.Context, param interface{}) error {
+	if err := c.ShouldBindQuery(param); err != nil {
+		return err
+	}
+
+	return nil
+}

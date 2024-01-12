@@ -13,6 +13,8 @@ func MigrateData(db *gorm.DB) {
 		&entity.DisasterType{},
 		&entity.Disaster{},
 		&entity.Donation{},
+		&entity.Status{},
+		&entity.Habitat{},
 		&entity.Kingdom{},
 		&entity.Diovisio{},
 		&entity.Phylum{},

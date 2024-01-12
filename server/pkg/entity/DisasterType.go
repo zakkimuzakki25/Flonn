@@ -4,6 +4,6 @@ import "gorm.io/gorm"
 
 type DisasterType struct {
 	gorm.Model
-	Name     string `gorm:"type:VARCHAR(255);NOT NULL"`
+	Name     string `json:"name" gorm:"type:VARCHAR(255);NOT NULL"`
 	Disaster []Disaster
 }

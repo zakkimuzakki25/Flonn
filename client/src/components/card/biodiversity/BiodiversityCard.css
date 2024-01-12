@@ -1,0 +1,23 @@
+.bioCard .desc {
+    opacity: 0;
+    text-overflow: ellipsis;
+    transition: all 0.4s ease;
+}
+
+.bioCard:hover .desc {
+    opacity: 1;
+}
+
+.bioCard .pelajari {
+    width: 0px;
+    opacity: 0;
+    padding: 0px 20px 0px 10px;
+    writing-mode: vertical-lr;
+    transition: width 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+}
+
+.bioCard:hover .pelajari {
+    width: 75px;
+    opacity: 1;
+    padding: 0px 10px 0px 0px;
+}
