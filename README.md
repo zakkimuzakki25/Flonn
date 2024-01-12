@@ -1,7 +1,3 @@
-# Introduction
-
-Flonn adalah platform web yang fokus pada kampanye lingkungan sosial di mana pengguna dapat memantau dampak bencana alam, status konservasi biodiversitas, dan menyumbangkan sumber daya mereka untuk masa depan yang lebih baik.
-
 # Our Team: Pubek
 
 - Naufal Afkaar (Hustler & PIC)
@@ -9,6 +5,11 @@ Flonn adalah platform web yang fokus pada kampanye lingkungan sosial di mana pen
 - Maritza Aliya Devi (Hipster)
 - Muhammad Iqbal Muzakki (Hacker)
 
+# Introduction
+
+Flonn adalah platform web yang fokus pada kampanye lingkungan sosial di mana pengguna dapat memantau dampak bencana alam, status konservasi biodiversitas, dan menyumbangkan sumber daya mereka untuk masa depan yang lebih baik.
+
+# Description
 ## Home Page
 
 ![Alt text](image.png)
@@ -19,5 +20,4 @@ Flonn adalah platform web yang fokus pada kampanye lingkungan sosial di mana pen
 ![Alt text](image-4.png)
 
 ![Alt text](image-2.png)
-
 ![Alt text](image-3.png)
