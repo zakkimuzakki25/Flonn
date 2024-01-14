@@ -21,7 +21,7 @@ func (s *seeder) seedOrdo(sql *gorm.DB) error {
 		{
 			Name:            "Strigiformes",
 			Characteristics: "Lorem ipsum dolor sit amet#consectetur adipiscing elit#Sed sollicitudin libero id magna rhoncus#non pulvinar odio convallis",
-			ClassisID:       1,
+			ClassisID:       2,
 		},
 		{
 			Name:            "Artiodactyla",

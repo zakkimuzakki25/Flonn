@@ -21,7 +21,7 @@ func (s *seeder) seedFamilia(sql *gorm.DB) error {
 		{
 			Name:            "Canidae",
 			Characteristics: "Lorem ipsum dolor sit amet#consectetur adipiscing elit#Sed sollicitudin libero id magna rhoncus#non pulvinar odio convallis",
-			OrdoID:          1,
+			OrdoID:          2,
 		},
 		{
 			Name:            "Ursidae",

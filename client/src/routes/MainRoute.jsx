@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import Home from "../pages/home/Home";
 import Biodiversitas from "../pages/biodiversitas/Biodiversitas";
 import Disaster from "../pages/disaster/Disaster";
+import BiodiversityDetail from "../pages/biodiversitas/BiodiversityDetail";
+import Aksi from "../pages/aksi/Aksi";
 
 function AutoScroll() {
   const { pathname } = useLocation();
@@ -22,6 +24,8 @@ const MainRoute = () => {
         <Route path="/" element={<Home />} />
         <Route path="/monitor" element={<Disaster />} />
         <Route path="/biodiversitas" element={<Biodiversitas />} />
+        <Route path="/aksi" element={<Aksi />} />
+        <Route path="/biodiversitas/:id" element={<BiodiversityDetail />} />
       </Routes>
     </>
   );

@@ -60,5 +60,13 @@ func (h *handler) registerRoutes() {
 
 	h.http.GET("/disaster-type/:id", h.getDisasterTypeDetail)
 
+	h.http.GET("/biodiversity/all", h.getAllBiodiversity)
+	h.http.GET("/biodiversity/:id", h.getBiodiversityByID)
 	h.http.GET("/biodiversity/filter", h.getBiodiversitiesByFilter)
+
+	h.http.GET("/kingdom/all", h.getAllKingdom)
+
+	h.http.GET("/habitat/all", h.getAllHabitat)
+
+	h.http.GET("/status/all", h.getAllStatus)
 }

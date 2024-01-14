@@ -7,6 +7,9 @@ type Repository struct {
 	Disaster     DisasterInterface
 	DisasterType DisasterTypeInterface
 	Biodiversity BiodiversityInterface
+	Kingdom      KingdomInterface
+	Habitat      HabitatInterface
+	Status       StatusInterface
 }
 
 func Init(db *gorm.DB) *Repository {
@@ -15,5 +18,8 @@ func Init(db *gorm.DB) *Repository {
 		Disaster:     DisasterRepoInit(db),
 		DisasterType: DisasterTypeRepoInit(db),
 		Biodiversity: BiodiversityRepoInit(db),
+		Kingdom:      KingdomRepoInit(db),
+		Habitat:      HabitatRepoInit(db),
+		Status:       StatusRepoInit(db),
 	}
 }

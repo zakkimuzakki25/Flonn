@@ -21,7 +21,7 @@ func (s *seeder) seedSpecies(sql *gorm.DB) error {
 		{
 			Name:            "Vulpes vulpes",
 			Characteristics: "Lorem ipsum dolor sit amet#consectetur adipiscing elit#Sed sollicitudin libero id magna rhoncus#non pulvinar odio convallis",
-			GenusID:         1,
+			GenusID:         2,
 		},
 		{
 			Name:            "Ursus arctos",
