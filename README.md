@@ -1,6 +1,6 @@
 # What is Flonn?
 
-Flonn adalah platform web yang fokus pada kampanye lingkungan sosial di mana pengguna dapat memantau dampak bencana alam, status konservasi biodiversitas, dan menyumbangkan sumber daya mereka untuk masa depan yang lebih baik.
+Flonn is a web platform that focus on social environment campaign where user can monitor natural disaster impact, biodiversity conservation status, and contribute their resources for the better future.
 
 # Our Team: Pubek
 Hello, we are from Brawijaya University
