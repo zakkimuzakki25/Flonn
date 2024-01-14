@@ -40,6 +40,8 @@ const FilterBiodiversity = ({ handleChange }) => {
   }
 
   useEffect(() => {
+    // console.log("api key firebases", import.meta.env.VITE_FIREBASE_API_KEY)
+    // console.log("api key maps", import.meta.env.VITE_HERE_MAPS_KEY)
     getList()
   }, []);
 

@@ -41,7 +41,7 @@ To run Flonn locally, you need to follow these steps:
 
     ```env
     VITE_HERE_MAPS_KEY="ktOIeu7N3XvEfSxgyyR6FuDCbXIuwwrVh1683u6JRvk"
-    FIREBASE_API_KEY="(the key)"
+    VITE_FIREBASE_API_KEY="(the key)"
     ```
 
 5. Run the React development server:
