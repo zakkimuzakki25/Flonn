@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/Footer";
 import "./Home.css";
-import Fade from "react-reveal/Slide";
 
 const Home = () => {
   return (
@@ -12,19 +11,16 @@ const Home = () => {
       <Navbar />
       <div className="w-full h-fit lg:pt-28 banner-home">
         <div className="w-full h-full lg:px-24 lg:py-24 banner-home-2">
-          <Fade left>
             <h1
               style={{ lineHeight: "1.2" }}
               className="dl text-white lg:w-100"
             >
               ADA BERBAGAI CARA UNTUK MENUNJUKKAN KEPEDULIAN TERHADAP LINGKUNGAN
             </h1>
-          </Fade>
         </div>
       </div>
 
       <div className="bot bg-default">
-        <Fade bottom>
           <div className="flex flex-col w-full justify-center items-center gap-0 lg:pt-28 lg:pb-16">
             <h2 className="dl text-white">INTRODUCING.</h2>
             <h1 className="h1 text-oldGreen relative lg:-top-12">FLONN.</h1>
@@ -33,10 +29,8 @@ const Home = () => {
               kepedulian lingkungan.
             </p>
           </div>
-        </Fade>
 
         {/* content 1*/}
-        <Fade left>
           <div className="flex flex-col bg-oldGreen w-full rounded-t-homeContent shadow-y-axis">
             <div className="flex flex-row gap-40 py-24 items-center lg:px-40">
               <div className="flex w-1/2">
@@ -78,7 +72,6 @@ const Home = () => {
             </div>
 
             {/* content 2*/}
-            <Fade right>
               <div className="flex flex-col bg-viridian w-full rounded-t-homeContent shadow-y-axis">
                 <div className="flex flex-row-reverse gap-40 py-24 items-center lg:px-40">
                   <div className="flex w-1/2">
@@ -123,7 +116,6 @@ const Home = () => {
                 </div>
 
                 {/* content 3*/}
-                <Fade bottom>
                   <div className="flex flex-col bg-cambridgeBlue w-full rounded-t-homeContent shadow-y-axis">
                     <div className="flex flex-row gap-40 py-24 items-center lg:px-40">
                       <div className="flex w-1/2">
@@ -168,11 +160,8 @@ const Home = () => {
                       </div>
                     </div>
                   </div>
-                </Fade>
               </div>
-            </Fade>
           </div>
-        </Fade>
       </div>
       <Footer />
     </div>

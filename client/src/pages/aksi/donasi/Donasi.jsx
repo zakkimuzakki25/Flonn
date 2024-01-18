@@ -52,10 +52,10 @@ const Donasi = () => {
             tepat sasaran.
           </p>
           <Link
-            // to={"/"}
+            to={"/donasi/detail"}
             className="link-home ds flex flex-row gap-2 bg-jasmine w-fit rounded-2xl uppercase lg:py-2 lg:px-4 text-onyx lg:mt-5"
           >
-            Donasi Sekarang
+            Selengkapnya
           </Link>
         </div>
       </div>
