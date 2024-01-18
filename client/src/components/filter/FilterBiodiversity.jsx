@@ -2,25 +2,65 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import SearchBar from "../bar/SearchBar";
 import DropDownRound from "../bar/DropdownRound";
+import { Base } from "../../api/Api";
 
 const FilterBiodiversity = ({ handleChange }) => {
   const [nama, setNama] = useState("");
-  const [kingdomID, setKingdomID] = useState("");
-  const [habitatID, setHabitatID] = useState("");
-  const [statusID, setStatusID] = useState("");
+  const [kingdom, setKingdom] = useState("");
+  const [habitat, setHabitat] = useState("");
+  const [status, setStatus] = useState("");
+  const [kingdomList, setKingdomList] = useState([]);
+  const [habitatList, setHabitatList] = useState([]);
+  const [statusList, setStatusList] = useState([]);
+
+  const getList = () => {
+    Base.get("/kingdom/all")
+      .then((res) => {
+        setKingdomList(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    Base.get("/habitat/all")
+      .then((res) => {
+        setHabitatList(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    Base.get("/status/all")
+      .then((res) => {
+        setStatusList(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   useEffect(() => {
-    handleChange(nama, kingdomID, habitatID, statusID);
+    // console.log("api key firebases", import.meta.env.VITE_FIREBASE_API_KEY)
+    // console.log("api key maps", import.meta.env.VITE_HERE_MAPS_KEY)
+    getList()
+  }, []);
+
+  useEffect(() => {
+    handleChange(nama, kingdom, habitat, status);
+    // console.log("kingdom id = ", kingdom)
+    // console.log("habitat id = ", habitat)
+    // console.log("status id = ", status)
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nama, kingdomID, habitatID, statusID]);
+  }, [nama, kingdom, habitat, status]);
 
   return (
     <div className="lg:px-20 lg:py-16 flex flex-col justify-center self-center items-center bg-white w-fit rounded-50 lg:gap-5 relative -top-28">
       <div className="search-bio">
         <SearchBar
           holder={"Search"}
-          handleChange={(e) => {
-            setNama(e.target.value);
+          handleSubmit={(searchKey) => {
+            setNama(searchKey);
           }}
         />
       </div>
@@ -29,9 +69,12 @@ const FilterBiodiversity = ({ handleChange }) => {
         <div className="w-44">
           <DropDownRound
             holder={"Kingdom"}
+            options={kingdomList}
             handleChange={(e) => {
               if (e.target.value != "") {
-                setKingdomID(e.target.value.split("#")[0]);
+                setKingdom(e.target.value.split("#")[1]);
+              } else {
+                setKingdom("")
               }
             }}
           />
@@ -39,9 +82,12 @@ const FilterBiodiversity = ({ handleChange }) => {
         <div className="w-44">
           <DropDownRound
             holder={"Habitat"}
+            options={habitatList}
             handleChange={(e) => {
               if (e.target.value != "") {
-                setHabitatID(e.target.value.split("#")[0]);
+                setHabitat(e.target.value.split("#")[1]);
+              } else {
+                setHabitat("")
               }
             }}
           />
@@ -49,9 +95,12 @@ const FilterBiodiversity = ({ handleChange }) => {
         <div className="w-64">
           <DropDownRound
             holder={"Status Konservasi"}
+            options={statusList}
             handleChange={(e) => {
               if (e.target.value != "") {
-                setStatusID(e.target.value.split("#")[0]);
+                setStatus(e.target.value.split("#")[1]);
+              } else {
+                setStatus("")
               }
             }}
           />

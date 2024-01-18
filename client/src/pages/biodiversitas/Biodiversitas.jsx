@@ -4,17 +4,16 @@ import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/Footer";
 import BiodiversityCard from "../../components/card/biodiversity/BiodiversityCard";
 import "./Biodiversitas.css";
-import gambarGajah from "../../assets/images/biodiversitas/gajah.jpg";
 import { Base } from "../../api/Api";
 import FilterBiodiversity from "../../components/filter/FilterBiodiversity";
 
 const Biodiversitas = () => {
   const [data, setData] = useState([]);
 
-  const filterHandle = (nama, kingdomID, habitatID, statusID) => {
-    Base.get(`biodiversity/filter?name=${nama}&kingdom_id=${kingdomID}&habitat_id=${habitatID}&status_id=${statusID}`)
+  const filterHandle = (nama, kingdom, habitat, status) => {
+    Base.get(`biodiversity/filter?name=${nama}&kingdom=${kingdom}&habitat=${habitat}&status=${status}`)
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
         setData(res.data.data);
         // window.location.reload()
       })
@@ -52,10 +51,9 @@ const Biodiversitas = () => {
               nama={bio.name}
               namaLatin={bio.latin_name}
               deskripsi={bio.description}
-              kingdom={bio.kingdom_id}
-              habitat={bio.habitat_id}
-              status={bio.status_id}
-              gambar={bio.gambar}
+              kingdom={bio.kingdom}
+              habitat={bio.habitat}
+              status={bio.status}
             />
           ))}
         </div>

@@ -36,9 +36,9 @@
     font-family: "Bebas Neue", sans-serif;
   }
 
-  .dml {
+  .dmi {
     font-size: 45px;
-    font-family: "Bebas Neue", sans-serif;
+    font-family: "Barlow", sans-serif;
     font-style: italic;
     font-weight: 500;
   }
@@ -70,5 +70,13 @@
   .headl {
     font-size: 32px;
     font-family: "Barlow", sans-serif;
+  }
+
+  .imghover {
+    transition: all 300ms ease;
+  }
+
+  .imghover:hover {
+    transform: scale(1.25);
   }
 }

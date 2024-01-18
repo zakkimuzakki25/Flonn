@@ -9,7 +9,7 @@ import (
 type DisasterInterface interface {
 	Create(disaster *entity.Disaster) error
 	GetByID(id int) (*entity.Disaster, error)
-	GetAll() ([]*entity.Disaster, error)
+	GetAll() ([]*entity.DisasterResponse, error)
 	Update(disaster *entity.Disaster) error
 	Delete(id int) error
 }
@@ -37,12 +37,43 @@ func (d *disaster) GetByID(id int) (*entity.Disaster, error) {
 	return disaster, nil
 }
 
-func (d *disaster) GetAll() ([]*entity.Disaster, error) {
+func (d *disaster) GetAll() ([]*entity.DisasterResponse, error) {
 	var disasters []*entity.Disaster
-	if err := d.db.Find(&disasters).Error; err != nil {
+	if err := d.db.
+		Order("date desc").
+		Find(&disasters).Error; err != nil {
 		return nil, err
 	}
-	return disasters, nil
+
+	var disasterResp []*entity.DisasterResponse
+	for _, disaster := range disasters {
+		disasterType := &entity.DisasterType{}
+		if err := d.db.First(disasterType, disaster.DisasterTypeID).Error; err != nil {
+			return nil, err
+		}
+
+		response := &entity.DisasterResponse{
+			ID:             int(disaster.ID),
+			DisasterType:   disasterType.Name,
+			Location:       disaster.Location,
+			Province:       disaster.Province,
+			Photo:          disaster.Photo,
+			Description:    disaster.Description,
+			Date:           disaster.Date,
+			MonetaryLoss:   disaster.MonetaryLoss,
+			BuildingDamage: disaster.BuildingDamage,
+			Deaths:         disaster.Deaths,
+			Injured:        disaster.Injured,
+			Missing:        disaster.Missing,
+			Evacuated:      disaster.Evacuated,
+			Latitude:       disaster.Latitude,
+			Longitude:      disaster.Longitude,
+		}
+
+		disasterResp = append(disasterResp, response)
+	}
+
+	return disasterResp, nil
 }
 
 func (d *disaster) Update(disaster *entity.Disaster) error {

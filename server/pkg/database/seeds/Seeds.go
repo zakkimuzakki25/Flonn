@@ -4,6 +4,7 @@ import "gorm.io/gorm"
 
 type dataSeeder interface {
 	seedStatus(sql *gorm.DB) error
+	seedMerch(sql *gorm.DB) error
 	seedHabitat(sql *gorm.DB) error
 
 	seedKingdom(sql *gorm.DB) error
@@ -20,6 +21,7 @@ type dataSeeder interface {
 	seedDisasterType(sql *gorm.DB) error
 
 	seedDummyDisaster(sql *gorm.DB) error
+	seedDummyOpenDonation(sql *gorm.DB) error
 
 	Seed(sql *gorm.DB) error
 }
@@ -32,6 +34,9 @@ func InitSeeder() dataSeeder {
 
 func (s *seeder) Seed(sql *gorm.DB) error {
 	if err := s.seedStatus(sql); err != nil {
+		return err
+	}
+	if err := s.seedMerch(sql); err != nil {
 		return err
 	}
 	if err := s.seedHabitat(sql); err != nil {
@@ -72,6 +77,9 @@ func (s *seeder) Seed(sql *gorm.DB) error {
 	}
 
 	if err := s.seedDummyDisaster(sql); err != nil {
+		return err
+	}
+	if err := s.seedDummyOpenDonation(sql); err != nil {
 		return err
 	}
 

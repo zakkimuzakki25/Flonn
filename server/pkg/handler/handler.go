@@ -54,31 +54,27 @@ func (h *handler) registerRoutes() {
 	api.Use(middleware.JwtMiddleware(h.help))
 	// admin.Use(middleware.JwtMiddlewareAdmin(h.help))
 
+	h.http.POST("/user/register", h.userRegister)
+	h.http.POST("/user/auth/google", h.userAuthWithGoogle)
+	h.http.POST("/user/login", h.userLogin)
+	h.http.POST("/admin/login", h.adminLogin)
+
+	api.GET("/navbar", h.getUserProfile)
+
 	h.http.GET("/disaster/all", h.getAllDisaster)
 	h.http.GET("/disaster/years", h.getDisasterYears)
 	h.http.GET("/disaster/filter", h.getDisastersByFilter)
-
+	h.http.GET("/disaster/donation", h.getLatestDisasters)
 	h.http.GET("/disaster-type/:id", h.getDisasterTypeDetail)
 
+	h.http.GET("/biodiversity/all", h.getAllBiodiversity)
+	h.http.GET("/biodiversity/:id", h.getBiodiversityByID)
 	h.http.GET("/biodiversity/filter", h.getBiodiversitiesByFilter)
+	h.http.GET("/kingdom/all", h.getAllKingdom)
+	h.http.GET("/habitat/all", h.getAllHabitat)
+	h.http.GET("/status/all", h.getAllStatus)
 
-	// h.http.POST("/admin/login", h.adminLogin)
-	// admin.GET("verif/toko", h.getAllUnverifiedToko)
-	// admin.GET("verif/produk", h.getAllUnverifiedProduct)
-	// admin.PUT("verif/toko/:id", h.setVerifToko)
-	// admin.PUT("verif/produk/:id", h.setVerifProduk)
+	h.http.GET("/merch", h.getAllMerch)
 
-	// h.http.POST("/user/register", h.userRegister)
-	// h.http.POST("/user/login", h.userLogin)
-
-	// api.GET("/profile", h.userGetProfile)
-	// api.GET("/navbar", h.userGetNavbar)
-	// api.GET("/user/profile", h.userGetProfile)
-	// api.PUT("/user/profile/update", h.userUpdateProfile)
-	// api.PUT("/user/profile/update/photo", h.userUpdatePhotoProfile)
-	// api.GET("/user/toko", h.getMyToko)
-	// api.POST("/user/toko/regis", h.tokoRegistrasi)
-	// api.POST("/user/toko/create-product", h.createProduct)
-
-	// api.GET("/product/:category", h.getProductByCategory)
+	api.GET("/od/all", h.getAllOpenDonation)
 }

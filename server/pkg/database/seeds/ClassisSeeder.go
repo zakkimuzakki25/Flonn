@@ -22,8 +22,8 @@ func (s *seeder) seedClassis(sql *gorm.DB) error {
 		{
 			Name:            "Aves",
 			Characteristics: "Lorem ipsum dolor sit amet#consectetur adipiscing elit#Sed sollicitudin libero id magna rhoncus#non pulvinar odio convallis",
-			KingdomID:       1,
-			PhylumID:        8,
+			KingdomID:       2,
+			DiovisioID:      8,
 		},
 		{
 			Name:            "Reptilia",

@@ -28,9 +28,11 @@ func (s *seeder) seedDummyDisaster(sql *gorm.DB) error {
 			Evacuated:      30,
 			Latitude:       -8.6500,
 			Longitude:      115.2167,
+			Photo:          "https://firebasestorage.googleapis.com/v0/b/flonn-pubek.appspot.com/o/disaster%2FGempa%20Bumi.jpg?alt=media&token=7cc0892f-f83a-4856-bb7e-cd2993a783a5",
 		},
 		{
 			DisasterTypeID: 2,
+			Photo:          "https://firebasestorage.googleapis.com/v0/b/flonn-pubek.appspot.com/o/disaster%2FTanah%20Longsor.jpg?alt=media&token=e1960500-18f6-4679-a970-d7ad6394ac4e",
 			Location:       "Bandung",
 			Province:       "Jawa Barat",
 			Description:    "Banjir terjadi di wilayah Bandung",
@@ -46,6 +48,7 @@ func (s *seeder) seedDummyDisaster(sql *gorm.DB) error {
 		},
 		{
 			DisasterTypeID: 3,
+			Photo:          "https://firebasestorage.googleapis.com/v0/b/flonn-pubek.appspot.com/o/disaster%2FTornado.jpg?alt=media&token=7e675d6e-4b50-4f11-bef3-ce8aacd45184",
 			Location:       "Surabaya",
 			Province:       "Jawa Timur",
 			Description:    "Kebakaran hebat melanda Surabaya",
@@ -61,6 +64,7 @@ func (s *seeder) seedDummyDisaster(sql *gorm.DB) error {
 		},
 		{
 			DisasterTypeID: 4,
+			Photo:          "https://firebasestorage.googleapis.com/v0/b/flonn-pubek.appspot.com/o/disaster%2FBadai.jpg?alt=media&token=c38e3142-d0a6-4cae-bfd3-438101908982",
 			Location:       "Medan",
 			Province:       "Sumatera Utara",
 			Description:    "Angin topan melanda Medan",
@@ -76,6 +80,7 @@ func (s *seeder) seedDummyDisaster(sql *gorm.DB) error {
 		},
 		{
 			DisasterTypeID: 5,
+			Photo:          "https://firebasestorage.googleapis.com/v0/b/flonn-pubek.appspot.com/o/disaster%2FBanjir.jpg?alt=media&token=31a32a97-474e-4ee3-a5c0-a3db302b9430",
 			Location:       "Pontianak",
 			Province:       "Kalimantan Barat",
 			Description:    "Tsunami terjadi di wilayah Pontianak",
@@ -91,6 +96,7 @@ func (s *seeder) seedDummyDisaster(sql *gorm.DB) error {
 		},
 		{
 			DisasterTypeID: 6,
+			Photo:          "https://firebasestorage.googleapis.com/v0/b/flonn-pubek.appspot.com/o/disaster%2FTsunami.jpg?alt=media&token=dc3faecd-e378-4a90-8947-b1427956a274",
 			Location:       "Makassar",
 			Province:       "Sulawesi Selatan",
 			Description:    "Longsor besar melanda Makassar",
@@ -106,6 +112,7 @@ func (s *seeder) seedDummyDisaster(sql *gorm.DB) error {
 		},
 		{
 			DisasterTypeID: 7,
+			Photo:          "https://firebasestorage.googleapis.com/v0/b/flonn-pubek.appspot.com/o/disaster%2FKebakaran%20Hutan.jpg?alt=media&token=411b8d64-be69-4f33-b57b-74c1287779fa",
 			Location:       "Padang",
 			Province:       "Sumatera Barat",
 			Description:    "Gelombang pasang tinggi melanda Padang",
@@ -121,6 +128,7 @@ func (s *seeder) seedDummyDisaster(sql *gorm.DB) error {
 		},
 		{
 			DisasterTypeID: 8,
+			Photo:          "https://firebasestorage.googleapis.com/v0/b/flonn-pubek.appspot.com/o/disaster%2FGunung%20Meletus.jpg?alt=media&token=c9c1f9fd-d1c3-4568-a887-0f4215e9f615",
 			Location:       "Manado",
 			Province:       "Sulawesi Utara",
 			Description:    "Gempa bumi dan tsunami terjadi di Manado",
@@ -148,9 +156,11 @@ func (s *seeder) seedDummyDisaster(sql *gorm.DB) error {
 			Evacuated:      25,
 			Latitude:       -6.9667,
 			Longitude:      110.4167,
+			Photo:          "https://firebasestorage.googleapis.com/v0/b/flonn-pubek.appspot.com/o/disaster%2FGempa%20Bumi.jpg?alt=media&token=7cc0892f-f83a-4856-bb7e-cd2993a783a5",
 		},
 		{
 			DisasterTypeID: 2,
+			Photo:          "https://firebasestorage.googleapis.com/v0/b/flonn-pubek.appspot.com/o/disaster%2FTanah%20Longsor.jpg?alt=media&token=e1960500-18f6-4679-a970-d7ad6394ac4e",
 			Location:       "Palembang",
 			Province:       "Sumatera Selatan",
 			Description:    "Banjir bandang melanda Palembang",
@@ -166,6 +176,7 @@ func (s *seeder) seedDummyDisaster(sql *gorm.DB) error {
 		},
 		{
 			DisasterTypeID: 4,
+			Photo:          "https://firebasestorage.googleapis.com/v0/b/flonn-pubek.appspot.com/o/disaster%2FBadai.jpg?alt=media&token=c38e3142-d0a6-4cae-bfd3-438101908982",
 			Location:       "Bululawang",
 			Province:       "Jawa Timur",
 			Description:    "Bencana tambahan di Kecamatan Bululawang, Malang",
@@ -178,6 +189,38 @@ func (s *seeder) seedDummyDisaster(sql *gorm.DB) error {
 			Evacuated:      10,
 			Latitude:       -8.0775,
 			Longitude:      112.6374,
+		},
+		{
+			DisasterTypeID: 1,
+			Location:       "Jakarta",
+			Province:       "DKI Jakarta",
+			Description:    "Bencana tambahan di wilayah Jakarta",
+			Date:           time.Date(2023, 11, 10, 15, 0, 0, 0, time.UTC),
+			MonetaryLoss:   20000.0,
+			BuildingDamage: 5,
+			Deaths:         3,
+			Injured:        10,
+			Missing:        1,
+			Evacuated:      18,
+			Latitude:       -6.2088,
+			Longitude:      106.8456,
+			Photo:          "https://firebasestorage.googleapis.com/v0/b/flonn-pubek.appspot.com/o/disaster%2FGempa%20Bumi.jpg?alt=media&token=7cc0892f-f83a-4856-bb7e-cd2993a783a5",
+		},
+		{
+			DisasterTypeID: 5,
+			Photo:          "https://firebasestorage.googleapis.com/v0/b/flonn-pubek.appspot.com/o/disaster%2FBanjir.jpg?alt=media&token=31a32a97-474e-4ee3-a5c0-a3db302b9430",
+			Location:       "Yogyakarta",
+			Province:       "DI Yogyakarta",
+			Description:    "Bencana tambahan di wilayah Yogyakarta",
+			Date:           time.Date(2023, 12, 5, 8, 0, 0, 0, time.UTC),
+			MonetaryLoss:   18000.0,
+			BuildingDamage: 4,
+			Deaths:         2,
+			Injured:        8,
+			Missing:        0,
+			Evacuated:      15,
+			Latitude:       -7.7975,
+			Longitude:      110.3689,
 		},
 	}
 

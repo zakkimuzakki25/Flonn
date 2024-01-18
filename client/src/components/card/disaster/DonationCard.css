@@ -1,0 +1,10 @@
+.donationCard .donation-label {
+    height: 10px;
+    opacity: 0;
+    transition: height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+}
+
+.donationCard:hover .donation-label {
+    height: 75px;
+    opacity: 1;
+}
