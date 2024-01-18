@@ -4,7 +4,7 @@ const Protected = () => {
   if (window.localStorage.getItem('token')) 
   return <Outlet />
   
-  return <Navigate to='/login' />
+  return <Navigate to='/masuk' />
 }
 
 export default Protected

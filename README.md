@@ -1,13 +1,13 @@
-# What is Flonn?
-
-Flonn is a web platform that focus on social environment campaign where user can monitor natural disaster impact, biodiversity conservation status, and contribute their resources for the better future.
-
 # Our Team: Pubek
 Hello, we are from Brawijaya University
 - Naufal Afkaar (Hustler & PIC)
 - Emilia Syah Putri (Hustler)
 - Maritza Aliya Devi (Hipster)
 - Muhammad Iqbal Muzakki (Hacker)
+
+# What is Flonn?
+
+Flonn is a web platform that focus on social environment campaign where user can monitor natural disaster impact, biodiversity conservation status, and contribute their resources for the better future.
 
 # How to run?
 
@@ -40,7 +40,7 @@ To run Flonn locally, you need to follow these steps:
 4. Create a `.env` file in the `client` directory and add the following:
 
     ```env
-    VITE_HERE_MAPS_KEY="ktOIeu7N3XvEfSxgyyR6FuDCbXIuwwrVh1683u6JRvk"
+    VITE_HERE_MAPS_KEY="(the key)"
     VITE_FIREBASE_API_KEY="(the key)"
     ```
 
@@ -69,11 +69,11 @@ To run Flonn locally, you need to follow these steps:
 
     ```env
     PORT=8080
-    DB_USERNAME=root
+    DB_USERNAME=
     DB_PASSWORD=
-    DB_DATABASE=flonn
-    DB_HOST=localhost
-    DB_PORT=3306
+    DB_DATABASE=flonnDatabase
+    DB_HOST=
+    DB_PORT=
     SECRET_KEY=yourkey
     ```
 

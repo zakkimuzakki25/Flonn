@@ -22,6 +22,7 @@ export default {
         viridian: '#5B8E7D',
         cambridgeBlue: '#83AFA0',
         peachYellow: '#F9E2AE',
+        white: '#F5F7F2',
       },
       backgroundImage: {
         disasterMap: 'linear-gradient(to bottom, rgba(58, 58, 58, 1) 5%, rgba(91, 142, 125, 1))',
