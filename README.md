@@ -95,21 +95,53 @@ Feel free to reach out if you encounter any issues during the setup!
 
 
 # Slicing result (Front-End)
+
+## Daftar Page
+
+![Alt text](./screenshoot/image-17.png)
+
+## Masuk Page
+
+![Alt text](./screenshoot/image-16.png)
+
 ## Home Page
 
 ![Alt text](./screenshoot/image.png)
-![Alt text](./screenshoot/image-5.png)
-![Alt text](./screenshoot/image-6.png)
+![Alt text](./screenshoot/image-1.png)
+![Alt text](./screenshoot/image-2.png)
 
 ## Biodiversity Page
 
-![Alt text](./screenshoot/image-1.png)
+![Alt text](./screenshoot/image-3.png)
 ![Alt text](./screenshoot/image-4.png)
 
 ## Monitor Page
 
-![Alt text](./screenshoot/image-2.png)
-![Alt text](./screenshoot/image-3.png)
+![Alt text](./screenshoot/image-5.png)
+![Alt text](./screenshoot/image-6.png)
+
+## Aksi Page
+
+![Alt text](./screenshoot/image-12.png)
+![Alt text](./screenshoot/image-13.png)
+
+### Aksi Kampanye
+
+![Alt text](./screenshoot/image-14.png)
+
+### Aksi Volunteer
+
+![Alt text](./screenshoot/image-15.png)
+
+### Aksi Donasi
+
+![Alt text](./screenshoot/image-18.png)
+![Alt text](./screenshoot/image-19.png)
+
+## Merch Page
+
+![Alt text](./screenshoot/image-20.png)
+![Alt text](./screenshoot/image-21.png)
 
 # API Response (Back-End)
 
