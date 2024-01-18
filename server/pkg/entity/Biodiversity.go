@@ -9,6 +9,7 @@ type Biodiversity struct {
 	Description     string `json:"description"`
 	Characteristics string `json:"characteristics"`
 	Behavior        string `json:"behavior"`
+	Photo           string `json:"photo"`
 	Coordinate      []BiodiversityCoordinate
 	StatusID        int
 	HabitatID       int
@@ -46,4 +47,5 @@ type BiodiversityResponse struct {
 	Ordo            string `json:"ordo"`
 	Genus           string `json:"genus"`
 	Species         string `json:"species"`
+	Photo           string `json:"photo"`
 }

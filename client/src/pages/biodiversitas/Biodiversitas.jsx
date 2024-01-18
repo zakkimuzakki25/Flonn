@@ -54,6 +54,7 @@ const Biodiversitas = () => {
               kingdom={bio.kingdom}
               habitat={bio.habitat}
               status={bio.status}
+              photo={bio.photo}
             />
           ))}
         </div>

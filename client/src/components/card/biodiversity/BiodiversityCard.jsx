@@ -7,12 +7,13 @@ import { storage } from '../../../firebase/Firebase'
 import LoadingPic from '../../helper/LoadingPic'
 
 // eslint-disable-next-line react/prop-types
-const BiodiversityCard = ({nama, deskripsi, id, namaLatin, kingdom, habitat, status}) => {
+const BiodiversityCard = ({nama, deskripsi, id, namaLatin, kingdom, habitat, status, photo}) => {
     const [image, setImage] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const spaceRef = ref(storage, `biodiversity/${nama}2.jpg`);
+        // eslint-disable-next-line react/prop-types
+        const spaceRef = ref(storage, photo.split("<>")[1]);
 
         getDownloadURL(spaceRef)
             .then((url) => {

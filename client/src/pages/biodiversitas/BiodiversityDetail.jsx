@@ -39,7 +39,7 @@ const BiodiversityDetail = () => {
         const imagePromises = Array.from({ length: 3 }, async (_, index) => {
           const imageRef = ref(
             storage,
-            `biodiversity/${data.name + (index + 1)}.jpg`
+            data.photo.split("<>")[index]
           );
           try {
             const url = await getDownloadURL(imageRef);
@@ -60,7 +60,7 @@ const BiodiversityDetail = () => {
     };
 
     fetchImages();
-  }, [data.name]);
+  }, [data.photo]);
 
   return (
     <div className="bg-onyx">
