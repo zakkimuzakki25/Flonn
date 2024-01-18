@@ -2,26 +2,43 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from "react-router-dom";
 import { DataNavbar } from '../../data/DataNavbar';
-import logo from "../../../public/logo.png"
+import logo from "../../assets/logo/logo.png"
+import { BaseAPI } from '../../api/Api';
+import { DefaultPhotoProfile } from '../../data/DefaultData';
 
 const Navbar = () => {
   const loc = useLocation();
 
   const [isHidden, setIsHidden] = useState(false)
-  const [username, setUsername] = useState('')
-  const [profilePhoto, setProfilePhoto] = useState('')
+  const [photo, setPhoto] = useState('')
+  const [firstname, setFirstname] = useState('')
   const token = window.localStorage.getItem('token')
 
-  // useEffect(() => {
-  //   if (token) {
-  //     getDataUser()
-  //   }
-  //   console.log("keynav = " + Skey)
-  //   if (typeof Skey === 'string') {
-  //     setSearchKey(Skey)
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [token])
+  useEffect(() => {
+    if (token) {
+      getDataUser()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token])
+
+  const getDataUser = async () => {
+    // console.log(`Bearer ${token}`)
+    BaseAPI.get('navbar', {
+        headers: { Authorization: `Bearer ${token}` },
+      }).then((res) => {
+        console.log("data", res.data.data)
+        const pic = res.data.data.photo
+        if (pic == "") {
+          setPhoto(DefaultPhotoProfile)
+        } else {
+          setPhoto(pic)
+        }
+        setFirstname(res.data.data.firstname)
+      }, (err) => {
+        console.log(err.response.data)
+        window.localStorage.setItem('token', '')
+      })
+  }
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -68,9 +85,13 @@ const Navbar = () => {
               );
             })}
             
-            {username ? (
-              <>
-              </>
+            {firstname ? (
+                <Link
+                  to="/profile"
+                  className={`lg:w-14 lg:h-14 rounded-full overflow-hidden self-center`}
+                >
+                  <img src={photo} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+                </Link>
             ) : (
               <>
                 <div className="flex flex-row gap-6 items-center">

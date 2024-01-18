@@ -10,5 +10,9 @@ export const DataNavbar = [
     {
       "name": "Aksi",
       "path": "/aksi"
+    },
+    {
+      "name": "Merch",
+      "path": "/merch"
     }
   ]

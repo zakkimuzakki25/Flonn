@@ -8,13 +8,12 @@ import (
 
 func MigrateData(db *gorm.DB) {
 	db.AutoMigrate(
-		&entity.User{},
-		&entity.Volunteer{},
+		&entity.Status{},
+		&entity.Merch{},
+		&entity.Habitat{},
 		&entity.DisasterType{},
 		&entity.Disaster{},
-		&entity.Donation{},
-		&entity.Status{},
-		&entity.Habitat{},
+		&entity.OpenDonation{},
 		&entity.Kingdom{},
 		&entity.Diovisio{},
 		&entity.Phylum{},
@@ -23,7 +22,10 @@ func MigrateData(db *gorm.DB) {
 		&entity.Familia{},
 		&entity.Genus{},
 		&entity.Species{},
+		&entity.User{},
+		&entity.Volunteer{},
 		&entity.Biodiversity{},
 		&entity.BiodiversityCoordinate{},
+		&entity.Donation{},
 	)
 }

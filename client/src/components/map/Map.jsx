@@ -39,29 +39,29 @@ const Map = ({ apikey, data, filterHandle }) => {
       try {
         let icon;
   
-        switch (item.DisasterTypeID) {
-          case 1:
+        switch (item.disaster_type) {
+          case "Gempa Bumi":
             icon = iconGempaBumi;
             break;
-          case 2:
+          case "Tanah Longsor":
             icon = iconTanahLongsor;
             break;
-          case 3:
+          case "Tornado":
             icon = iconTornado;
             break;
-          case 4:
+          case "Badai":
             icon = iconBadai;
             break;
-          case 5:
+          case "Banjir":
             icon = iconBanjir;
             break;
-          case 6:
+          case "Tsunami":
             icon = iconTsunami;
             break;
-          case 7:
+          case "Kebakaran Hutan":
             icon = iconKebakaranHutan;
             break;
-          case 8:
+          case "Gunung Meletus":
             icon = iconGunungMeletus;
             break;
           default:
@@ -144,7 +144,6 @@ const Map = ({ apikey, data, filterHandle }) => {
   function getDataYears() {
     Base.get("disaster/years")
     .then(r => {
-      console.log("Data Years:", r.data.data);
       setYears(r.data.data)
   })
   .catch(error => {
@@ -205,9 +204,6 @@ const Map = ({ apikey, data, filterHandle }) => {
           item.latitude,
           item.longitude
         );
-        
-        console.log("Lokasi = ", item.location)
-        console.log("jarak = ", distance)
 
         if (distance < 20) {
           alert("Sedang terjadi bencana di sekitarmu!");

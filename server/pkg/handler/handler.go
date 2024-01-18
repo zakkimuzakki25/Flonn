@@ -54,19 +54,27 @@ func (h *handler) registerRoutes() {
 	api.Use(middleware.JwtMiddleware(h.help))
 	// admin.Use(middleware.JwtMiddlewareAdmin(h.help))
 
+	h.http.POST("/user/register", h.userRegister)
+	h.http.POST("/user/auth/google", h.userAuthWithGoogle)
+	h.http.POST("/user/login", h.userLogin)
+	h.http.POST("/admin/login", h.adminLogin)
+
+	api.GET("/navbar", h.getUserProfile)
+
 	h.http.GET("/disaster/all", h.getAllDisaster)
 	h.http.GET("/disaster/years", h.getDisasterYears)
 	h.http.GET("/disaster/filter", h.getDisastersByFilter)
-
+	h.http.GET("/disaster/donation", h.getLatestDisasters)
 	h.http.GET("/disaster-type/:id", h.getDisasterTypeDetail)
 
 	h.http.GET("/biodiversity/all", h.getAllBiodiversity)
 	h.http.GET("/biodiversity/:id", h.getBiodiversityByID)
 	h.http.GET("/biodiversity/filter", h.getBiodiversitiesByFilter)
-
 	h.http.GET("/kingdom/all", h.getAllKingdom)
-
 	h.http.GET("/habitat/all", h.getAllHabitat)
-
 	h.http.GET("/status/all", h.getAllStatus)
+
+	h.http.GET("/merch", h.getAllMerch)
+
+	api.GET("/od/all", h.getAllOpenDonation)
 }

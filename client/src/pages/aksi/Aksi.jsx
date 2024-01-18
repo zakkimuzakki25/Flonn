@@ -6,6 +6,7 @@ import imageKampanye from "../../assets/images/aksi/Kampanye.jpg"
 import imageVolunteer from "../../assets/images/aksi/Volunteer.jpg"
 import imageDonasi from "../../assets/images/aksi/Donasi.jpg"
 import "./Aksi.css";
+import { Link } from "react-router-dom";
 
 const Aksi = () => {
   return (
@@ -28,7 +29,7 @@ const Aksi = () => {
       <div className="flex flex-col lg:px-40 lg:py-20 lg:gap-20">
         {/* 1 */}
         <div className="flex flex-row lg:h-100">
-          <div className="flex flex-col bg-oldGreen w-full lg:px-20 lg:py-16 rounded-l-3xl lg:gap-3 justify-center shadow-default">
+          <Link to={"/aksi/kampanye"} className="flex flex-col bg-oldGreen w-full lg:px-20 lg:py-16 rounded-l-3xl lg:gap-3 justify-center shadow-default">
             <div className="flex flex-col gap-3 w-fit">
               <h2
                 style={{ lineHeight: "1.1" }}
@@ -43,17 +44,17 @@ const Aksi = () => {
               dapatkan informasi terbaru mengenai kampanye lingkungan yang
               sedang berjalan.
             </p>
-          </div>
+          </Link>
 
           <div className="flex">
-            <div style={{backgroundImage: `url(${imageKampanye})`, backgroundSize: "cover"}} className="w-455 h-full bg-black rounded-tr-full overflow-hidden shadow-default">
+            <Link to={"/aksi/kampanye"} style={{backgroundImage: `url(${imageKampanye})`, backgroundSize: "cover"}} className="w-455 h-full bg-black rounded-tr-full overflow-hidden shadow-default">
                 <div className="flex banner-2-linear w-full h-full"/>
-            </div>
+            </Link>
           </div>
         </div>
         {/* 2 */}
         <div className="flex flex-row-reverse lg:h-100">
-          <div className="flex flex-col bg-viridian w-full lg:px-20 lg:py-16 rounded-r-3xl lg:gap-3 justify-center items-end shadow-default">
+          <Link to={"/volunteer"}  className="flex flex-col bg-viridian w-full lg:px-20 lg:py-16 rounded-r-3xl lg:gap-3 justify-center items-end shadow-default">
             <div className="flex flex-col gap-3 w-fit">
               <h2
                 style={{ lineHeight: "1.1" }}
@@ -66,17 +67,17 @@ const Aksi = () => {
             <p style={{ lineHeight: "1.2" }} className="headm text-white">
             Lorem ipsum.. isi apa ya ini
             </p>
-          </div>
+          </Link>
 
           <div className="flex">
-            <div style={{backgroundImage: `url(${imageVolunteer})`, backgroundSize: "cover"}} className="w-455 h-full bg-black rounded-tl-full overflow-hidden shadow-default">
+            <Link to={"/volunteer"} style={{backgroundImage: `url(${imageVolunteer})`, backgroundSize: "cover"}} className="w-455 h-full bg-black rounded-tl-full overflow-hidden shadow-default">
                 <div className="flex banner-2-linear w-full h-full"/>
-            </div>
+            </Link>
           </div>
         </div>
         {/* 3 */}
         <div className="flex flex-row lg:h-100">
-          <div className="flex flex-col bg-cambridgeBlue w-full lg:px-20 lg:py-16 rounded-l-3xl lg:gap-3 justify-center shadow-default">
+          <Link to={"/aksi/donasi"}  className="flex flex-col bg-cambridgeBlue w-full lg:px-20 lg:py-16 rounded-l-3xl lg:gap-3 justify-center shadow-default">
             <div className="flex flex-col gap-3 w-fit">
               <h2
                 style={{ lineHeight: "1.1" }}
@@ -89,12 +90,12 @@ const Aksi = () => {
             <p style={{ lineHeight: "1.2" }} className="headm text-white">
                 ini juga isi apa otakku buntu tolong
             </p>
-          </div>
+          </Link>
 
           <div className="flex">
-            <div style={{backgroundImage: `url(${imageDonasi})`, backgroundSize: "cover"}} className="w-455 h-full bg-black rounded-tr-full overflow-hidden shadow-default">
+            <Link to={"/aksi/donasi"} style={{backgroundImage: `url(${imageDonasi})`, backgroundSize: "cover"}} className="w-455 h-full bg-black rounded-tr-full overflow-hidden shadow-default">
                 <div className="flex banner-2-linear w-full h-full"/>
-            </div>
+            </Link>
           </div>
         </div>
 

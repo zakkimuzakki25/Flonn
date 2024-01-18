@@ -10,6 +10,8 @@ type Repository struct {
 	Kingdom      KingdomInterface
 	Habitat      HabitatInterface
 	Status       StatusInterface
+	OpenDonation OpenDonationInterface
+	Merch        MerchInterface
 }
 
 func Init(db *gorm.DB) *Repository {
@@ -21,5 +23,7 @@ func Init(db *gorm.DB) *Repository {
 		Kingdom:      KingdomRepoInit(db),
 		Habitat:      HabitatRepoInit(db),
 		Status:       StatusRepoInit(db),
+		OpenDonation: OpenDonationRepoInit(db),
+		Merch:        MerchRepoInit(db),
 	}
 }

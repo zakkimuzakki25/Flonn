@@ -1,0 +1,1 @@
+export const DefaultPhotoProfile = "https://i.pinimg.com/originals/32/97/1d/32971d1eb9ceda27d7bcf86396e3a476.jpg"

@@ -4,7 +4,9 @@ import "gorm.io/gorm"
 
 type Donation struct {
 	gorm.Model
-	UserID int
-	Amount float64 `gorm:"type:DOUBLE;NOT NULL"`
-	Status string  `gorm:"type:VARCHAR(255);NOT NULL"`
+	Amount         float64 `json:"amount"`
+	Photo          string  `json:"photo"`
+	Status         string  `json:"status" gorm:"type:VARCHAR(255), default:'diproses'"`
+	UserID         int
+	OpenDonationID int
 }

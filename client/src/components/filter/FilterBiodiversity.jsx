@@ -87,7 +87,7 @@ const FilterBiodiversity = ({ handleChange }) => {
               if (e.target.value != "") {
                 setHabitat(e.target.value.split("#")[1]);
               } else {
-                setKingdom("")
+                setHabitat("")
               }
             }}
           />
@@ -100,7 +100,7 @@ const FilterBiodiversity = ({ handleChange }) => {
               if (e.target.value != "") {
                 setStatus(e.target.value.split("#")[1]);
               } else {
-                setKingdom("")
+                setStatus("")
               }
             }}
           />

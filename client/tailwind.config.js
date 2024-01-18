@@ -7,9 +7,10 @@ export default {
   theme: {
     extend: {
       boxShadow: {
-        'y-axis': '0 -10px 30px rgba(0, 0, 0, 0.25)',
-        'x-axis': '10 0 30px 0 rgba(0, 0, 0, 0.25)',
-        'default': '0 0 10px 0 rgba(0, 0, 0, 0.25)',
+        'y-axis': '0px -10px 30px 0px rgba(0, 0, 0, 0.25)',
+        'x-axis': '10px 0px 30px 0px rgba(0, 0, 0, 0.25)',
+        '-x-axis': '-10px 0px 30px 0px rgba(0, 0, 0, 0.25)',
+        'default': '0px 0px 10px 0px rgba(0, 0, 0, 0.25)',
       },
       colors: {
         default: '#3A3A3A',
@@ -40,6 +41,7 @@ export default {
         105: '500px',
         550: '550px',
         600: '600px',
+        700: '700px',
       },
       height: {
         75: '75px',
@@ -51,6 +53,7 @@ export default {
         105: '500px',
         550: '550px',
         600: '600px',
+        700: '700px',
       }
     },
   },

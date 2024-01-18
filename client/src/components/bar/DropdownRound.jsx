@@ -31,7 +31,7 @@ const DropDownRound = ({
                 {holder}
             </p>
           </option>
-          <option value={``} className="bl">
+          <option value={""} className="bl">
               <p className="bl">Semua</p>
             </option>
           {options.map((option) => (
