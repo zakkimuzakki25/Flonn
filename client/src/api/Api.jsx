@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 const Base = axios.create({
-  baseURL: "http://localhost:8080/",
+  baseURL: import.meta.env.VITE_SERVER_URL,
 })
 
 const BaseAPI = axios.create({
-  baseURL: "http://localhost:8080/api/",
+  baseURL: import.meta.env.VITE_SERVER_URL + "api/",
 })
 
 export { Base, BaseAPI }

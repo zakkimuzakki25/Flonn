@@ -65,7 +65,7 @@ const Aksi = () => {
               <div className="lg:h-1.5 bg-jasmine"></div>
             </div>
             <p style={{ lineHeight: "1.2" }} className="headm text-white">
-            Lorem ipsum.. isi apa ya ini
+            Lakukan aksi nyata bersama demi masa depan yang lebih baik.
             </p>
           </Link>
 
@@ -88,7 +88,7 @@ const Aksi = () => {
               <div className="lg:h-1.5 bg-jasmine"></div>
             </div>
             <p style={{ lineHeight: "1.2" }} className="headm text-white">
-                ini juga isi apa otakku buntu tolong
+            Bantuan bisa datang dari mana saja selama ada niat baik.
             </p>
           </Link>
 
