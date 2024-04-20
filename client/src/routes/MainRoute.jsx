@@ -16,6 +16,8 @@ import Merch from "../pages/merch/Merch";
 import DonasiDetail from "../pages/info-detail/DonasiDetail";
 import VolunteerDetail from "../pages/info-detail/VolunteerDetail";
 import ZeroWasteDetail from "../pages/info-detail/ZeroWasteDetail";
+import Profile from "../pages/profile/Profile";
+import ProfileEdit from "../pages/profile/ProfileEdit";
 
 function AutoScroll() {
   const { pathname } = useLocation();
@@ -56,6 +58,8 @@ const MainRoute = () => {
           <Route path="/aksi/kampanye/zero-waste" element={<ZeroWasteDetail />} />
           <Route path="/aksi/donasi" element={<Donasi />} />
           <Route path="/donasi/detail" element={<DonasiDetail />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/edit" element={<ProfileEdit />} />
         </Route>
       </Routes>
     </>

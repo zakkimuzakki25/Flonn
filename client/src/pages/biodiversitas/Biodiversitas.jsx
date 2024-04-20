@@ -43,7 +43,7 @@ const Biodiversitas = () => {
         <FilterBiodiversity handleChange={filterHandle} />
 
         {/* bio list */}
-        <div className="flex flex-col lg:gap-14 lg:px-40 relative -top-14">
+        <div className="flex flex-wrap lg:gap-7 justify-center relative -top-14">
           {data.map((bio) => (
             <BiodiversityCard
               id={bio.id}

@@ -3,11 +3,11 @@ import background from "../../assets/images/background/AuthUser.jpg";
 import logo from "../../assets/logo/logo-white.png";
 import Input from "../../components/bar/Input";
 import { useState } from "react";
-import PrimerButton from "../../components/button/PrimerButton";
 import GoogleButton from "../../components/button/GoogleButton";
 import { Base } from "../../api/Api";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase/Firebase";
+import PrimerButton2 from "../../components/button/PrimerButton2";
 
 const Masuk = () => {
   const nav = useNavigate();
@@ -86,18 +86,16 @@ const Masuk = () => {
     <div className="w-screen h-screen overflow-hidden bg-default flex ">
       {/* left */}
       <div className="lg:w-full flex justify-center items-center">
-        <form onSubmit={submitHandle} className="bg-abu -shadow-x-axis lg:w-455 h-fit flex flex-col lg:gap-4 lg:py-12 lg:px-16 text-default rounded-xl justify-center items-center">
+        <form onSubmit={submitHandle} className="bg-white -shadow-x-axis lg:w-455 h-fit flex flex-col lg:gap-4 lg:py-12 lg:px-16 text-default rounded-xl justify-center items-center">
           <h1 className="dl text-5xl">MASUK</h1>
-          <div className="flex flex-col gap-3 w-full">
+          <div className="flex flex-col gap-0 w-full">
             <Input
-              textLabel="Email"
               type="email"
               id="email"
               holder="Masukkan email"
               handleChange={(e) => setEmail(e.target.value)}
             />
             <Input
-              textLabel="Password"
               type="password"
               id="password"
               holder="Masukkan password"
@@ -107,7 +105,7 @@ const Masuk = () => {
           {/* button */}
           <div className="flex flex-col gap-3 w-full">
             <p className="bl text-red-600">{message}</p>
-            <PrimerButton type={"submit"} name={"MASUK"} />
+            <PrimerButton2 type={"submit"} name={"MASUK"} />
             <div className="flex items-center gap-2 self-stretch">
               <div className="flex-grow h-0.5 bg-default mx-2"></div>
               <div className="tl text-default">atau</div>
@@ -135,13 +133,13 @@ const Masuk = () => {
           </Link>
           <div className="flex flex-col text-white">
             <Link to={"/"}>
-              <h1 className="ds lg:text-7xl">FLONN</h1>
+              <h1 className="dl">FLONN</h1>
             </Link>
-            <p className="flex flex-col">
-              belum punya akun?
+            <p className="flex tl flex-col -translate-y-3">
+              Belum memiliki akun?
               <Link
                 to={"/daftar"}
-                className="font-semibold italic hover:text-oldGreen"
+                className="text-onyx hover:text-oldGreen button bg-white py-0.5 px-3 rounded-full w-fit"
               >
                 DAFTAR
               </Link>

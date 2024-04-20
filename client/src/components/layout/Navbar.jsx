@@ -11,7 +11,6 @@ const Navbar = () => {
 
   const [isHidden, setIsHidden] = useState(false)
   const [photo, setPhoto] = useState('')
-  const [firstname, setFirstname] = useState('')
   const token = window.localStorage.getItem('token')
 
   useEffect(() => {
@@ -21,21 +20,20 @@ const Navbar = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token])
 
-  const getDataUser = async () => {
+  const getDataUser = () => {
     // console.log(`Bearer ${token}`)
     BaseAPI.get('navbar', {
         headers: { Authorization: `Bearer ${token}` },
       }).then((res) => {
-        console.log("data", res.data.data)
+        console.log("data", res)
         const pic = res.data.data.photo
         if (pic == "") {
           setPhoto(DefaultPhotoProfile)
         } else {
           setPhoto(pic)
         }
-        setFirstname(res.data.data.firstname)
       }, (err) => {
-        console.log(err.response.data)
+        console.log("error : ", err)
         window.localStorage.setItem('token', '')
       })
   }
@@ -85,7 +83,7 @@ const Navbar = () => {
               );
             })}
             
-            {firstname ? (
+            {token ? (
                 <Link
                   to="/profile"
                   className={`lg:w-14 lg:h-14 rounded-full overflow-hidden self-center`}
