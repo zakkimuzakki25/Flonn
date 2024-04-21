@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { getDownloadURL, ref } from "firebase/storage";
 import { storage } from "../../../firebase/Firebase";
 import LoadingPic from "../../helper/LoadingPic";
-import { Rating } from "@mui/material";
+// import { Rating } from "@mui/material";
 // import './MerchCard.css'
 
 // eslint-disable-next-line react/prop-types
@@ -67,7 +67,7 @@ const MerchCard = ({ title, id, photo, rate, floint, price }) => {
             </div>
             <div className="flex flex-row h-full w-full items-center justify-end gap-2 pr-2">
                 <p className="text-xl">{rate}</p>
-                <Rating name="read-only" value={rate} readOnly size="medium"/>
+                {/* <Rating name="read-only" value={rate} readOnly size="medium"/> */}
             </div>
           </div>
         </div>

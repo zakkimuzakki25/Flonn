@@ -4,165 +4,173 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/Footer";
 import "./Home.css";
+import PrimerButton3 from "../../components/button/PrimerButton3";
+import NextArrow from "../../assets/icon/NextArrow.svg";
+import PrevArrow from "../../assets/icon/PrevArrow.svg";
+import welcomeImg from "../../assets/images/home/Welcome.png";
+import merchImg from "../../assets/images/home/Merchandise.png";
+import monitorImg from "../../assets/images/home/Monitor.jpg";
+import biodiversitasImg from "../../assets/images/home/Biodiversitas.jpg";
+import { DataBannerHome } from "../../data/DataHomeBanner";
 
 const Home = () => {
+  const [indexBanner, setIndexBanner] = useState(0);
+  const [itemBanner, setItemBanner] = useState(DataBannerHome[indexBanner]);
+
+  const handleNext = () => {
+    setIndexBanner((prev) => (prev + 1) % DataBannerHome.length);
+  };
+
+  const handlePrev = () => {
+    setIndexBanner(
+      (prev) => (prev - 1 + DataBannerHome.length) % DataBannerHome.length
+    );
+  };
+
+  useEffect(() => {
+    setItemBanner(DataBannerHome[indexBanner]);
+  }, [indexBanner]);
+
   return (
     <div>
       <Navbar />
       <div className="w-full h-fit lg:pt-28 banner-home">
-        <div className="w-full h-full lg:px-24 lg:py-24 banner-home-2">
-            <h1
-              style={{ lineHeight: "1.2" }}
-              className="dl text-white lg:w-100"
-            >
-              ADA BERBAGAI CARA UNTUK MENUNJUKKAN KEPEDULIAN TERHADAP LINGKUNGAN
-            </h1>
+        <div className="w-full h-full lg:px-14 lg:py-24 gap-14 banner-home-2 flex flex-row items-center">
+          {/* left button */}
+          <button className="h-fit" onClick={handlePrev}>
+            <img src={PrevArrow} />
+          </button>
+
+          {/* content */}
+          <div className="flex flex-col w-full">
+            <div className="h-96 gap-5 flex flex-col">
+              <div className="w-700">
+                <p
+                  style={{ lineHeight: "1.2" }}
+                  className="dl text-white lg:w-455"
+                >
+                  {itemBanner.name}
+                </p>
+                <p style={{ lineHeight: "1.3" }} className="bl text-white">
+                  {itemBanner.description}
+                </p>
+              </div>
+              <div className="w-80">
+                <PrimerButton3 name={itemBanner.button} />
+              </div>
+            </div>
+            <div className="flex flex-row gap-3 pt-16">
+              {DataBannerHome.map((_, index) => (
+                <div
+                  className={`w-20 h-1 rounded-sm ${
+                    index == indexBanner ? "bg-white" : "bg-gray"
+                  }`}
+                  key={index}
+                ></div>
+              ))}
+            </div>
+          </div>
+
+          {/* next button */}
+          <button className="h-fit" onClick={handleNext}>
+            <img src={NextArrow} />
+          </button>
         </div>
       </div>
 
-      <div className="bot bg-default">
-          <div className="flex flex-col w-full justify-center items-center gap-0 lg:pt-28 lg:pb-16">
-            <h2 className="dl text-white">INTRODUCING.</h2>
-            <h1 className="h1 text-oldGreen relative lg:-top-12">FLONN.</h1>
-            <p className="headl text-white relative lg:-top-16">
-              Platform arsip biodiversitas, monitoring bencana, dan aksi
-              kepedulian lingkungan.
+      {/* welcome */}
+      <div className="w-full h-fit lg:px-40 lg:py-24 flex flex-row justify-center items-center gap-10">
+        <img src={welcomeImg} className="h-fit w-fit" />
+        <div className="flex flex-col">
+          <p style={{ lineHeight: "1.2" }} className="dl text-onyx">
+            SELAMAT DATANG DI
+          </p>
+          <p style={{ lineHeight: "1.2" }} className="dl text-oldGreen">
+            FLONN
+          </p>
+          <p className="bl text-onyx">
+            Tempat asik buat kamu yang pengen bantu bumi kita. Bersama-sama, kita bisa responsif terhadap bencana alam, bantu konservasi keanekaragaman hayati, dan sumbang sumber daya untuk perubahan masa depan yang lebih baik. Dapatkan informasi, ambil bagian, dan beraksi untuk hari esok yang lebih hijau. Di FLONN, setiap kontribusi yang kamu lakukan hari ini menanam benih harapan untuk generasi mendatang.
+          </p>
+        </div>
+      </div>
+
+      {/* info */}
+      <div className="relative flex flex-col w-full h-600 bg-white items-center">
+        <div className="w-full bg-white h-full"></div>
+
+        <div className="absolute w-fit h-fit flex flex-row gap-24">
+          {/* bencana */}
+          <div className="flex flex-col w-300 gap-5 items-center text-center">
+            <img
+              src={monitorImg}
+              className="rounded-full w-300 h-300 object-cover"
+            />
+            <div className="flex flex-col gap-2">
+              <p style={{ lineHeight: "1.2" }} className="ds text-white">
+                pastikan keamanan dengan monitor bencana
+              </p>
+              <p style={{ lineHeight: "1.2" }} className="bs text-white">
+                Cek rutin bencana alam yang terjadi di sekitarmu untuk mencegah hal-hal yang tidak diinginkan.
+              </p>
+            </div>
+            <Link
+              to={"/monitor"}
+              className="button text-onyx bg-jasmine py-2 px-4 shadow-s-default uppercase w-fit rounded-2xl"
+            >
+              cek
+            </Link>
+          </div>
+          {/* biodiversitas */}
+          <div className="flex flex-col w-300 gap-5 items-center text-center">
+            <img
+              src={biodiversitasImg}
+              className="rounded-full w-300 h-300 object-cover"
+            />
+            <div className="flex flex-col gap-2">
+              <p style={{ lineHeight: "1.2" }} className="ds text-white">
+                pelajari keragaman hayati di daerahmu!
+              </p>
+              <p style={{ lineHeight: "1.2" }} className="bs text-white">
+                Arsip biodiversitas yang lengkap untuk membantumu mempelajari keragaman hayati di daerahmu.
+              </p>
+            </div>
+            <Link
+              to={"/biodiversitas"}
+              className="button text-onyx bg-jasmine py-2 px-4 shadow-s-default uppercase w-fit rounded-2xl"
+            >
+              pelajari
+            </Link>
+          </div>
+        </div>
+
+        <div className="w-full bg-oldGreen rounded-t-50 h-455 shrink-0"></div>
+      </div>
+
+      {/* merch */}
+      <div className="w-full h-full lg:px-14 lg:py-24 bg-onyx banner-home-2 flex flex-row gap-7 items-center justify-center">
+        <div className="flex flex-col w-1/2 gap-5">
+          <div className="flex flex-row gap-3">
+            <div className="lg:w-1.5 bg-oldRose"></div>
+            <p
+              style={{ lineHeight: "1.1" }}
+              className="dl uppercase text-white"
+            >
+              tertarik dengan merchandise? 
             </p>
           </div>
-
-        {/* content 1*/}
-          <div className="flex flex-col bg-oldGreen w-full rounded-t-homeContent shadow-y-axis">
-            <div className="flex flex-row gap-40 py-24 items-center lg:px-40">
-              <div className="flex w-1/2">
-                <div className="pic-monitor rounded-full w-105 h-105 bg-black overflow-hidden"></div>
-              </div>
-
-              <div className="flex flex-col w-1/2 gap-5">
-                <div className="flex flex-row gap-3">
-                  <div className="lg:w-3 bg-jasmine"></div>
-                  <h2
-                    style={{ lineHeight: "1.1" }}
-                    className="dl uppercase text-white"
-                  >
-                    Bencana alam apa yang ada di sekitarmu?
-                  </h2>
-                </div>
-                <p style={{ lineHeight: "1.2" }} className="headm text-white">
-                  Lebih aware terhadap bencana alam yang terjadi di sekitarmu
-                  untuk mencegah hal-hal yang tidak diinginkan.
-                </p>
-                <Link
-                  to={"/monitor"}
-                  className="link-home ds flex flex-row gap-2 bg-jasmine w-fit rounded-2xl uppercase lg:py-2 lg:px-4 text-onyx"
-                >
-                  Intip
-                  <div className="flex flex-arrow">
-                    <div className="arrow">
-                      <div>&gt;</div>
-                    </div>
-                    <div className="arrow">
-                      <div>&gt;</div>
-                    </div>
-                    <div className="arrow">
-                      <div>&gt;</div>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            </div>
-
-            {/* content 2*/}
-              <div className="flex flex-col bg-viridian w-full rounded-t-homeContent shadow-y-axis">
-                <div className="flex flex-row-reverse gap-40 py-24 items-center lg:px-40">
-                  <div className="flex w-1/2">
-                    <div className="pic-bio rounded-full w-105 h-105 bg-black overflow-hidden"></div>
-                  </div>
-
-                  <div className="flex flex-col w-1/2 gap-5 items-end">
-                    <div className="flex flex-row-reverse gap-3">
-                      <div className="lg:w-3 z-10 bg-jasmine"></div>
-                      <h2
-                        style={{ lineHeight: "1.1" }}
-                        className="dl uppercase text-white text-right"
-                      >
-                        pelajari keragaman hayati di daerahmu!
-                      </h2>
-                    </div>
-                    <p
-                      style={{ lineHeight: "1.2" }}
-                      className="headm text-white text-right"
-                    >
-                      Arsip biodiversitas yang lengkap untuk membantumu
-                      mempelajari keragaman hayati di daerahmu.
-                    </p>
-                    <Link
-                      to={"/biodiversitas"}
-                      className="link-home ds flex flex-row gap-2 bg-jasmine w-fit rounded-2xl uppercase lg:py-2 lg:px-4 text-onyx"
-                    >
-                      Belajar
-                      <div className="flex flex-arrow">
-                        <div className="arrow">
-                          <div>&gt;</div>
-                        </div>
-                        <div className="arrow">
-                          <div>&gt;</div>
-                        </div>
-                        <div className="arrow">
-                          <div>&gt;</div>
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
-                </div>
-
-                {/* content 3*/}
-                  <div className="flex flex-col bg-cambridgeBlue w-full rounded-t-homeContent shadow-y-axis">
-                    <div className="flex flex-row gap-40 py-24 items-center lg:px-40">
-                      <div className="flex w-1/2">
-                        <div className="pic-aksi rounded-full w-105 h-105 bg-black overflow-hidden"></div>
-                      </div>
-
-                      <div className="flex flex-col w-1/2 gap-5">
-                        <div className="flex flex-row gap-3">
-                          <div className="lg:w-3 bg-jasmine"></div>
-                          <h2
-                            style={{ lineHeight: "1.1" }}
-                            className="dl uppercase text-white"
-                          >
-                            Lakukan aksi nyata untuk lingkungan!
-                          </h2>
-                        </div>
-                        <p
-                          style={{ lineHeight: "1.2" }}
-                          className="headm text-white"
-                        >
-                          Dapatkan update informasi terkini mengenai rekruitmen
-                          volunteer, donasi, hingga aksi kampanye sebagai aksi
-                          nyata peduli lingkungan.
-                        </p>
-                        <Link
-                          to={"/aksi"}
-                          className="link-home ds flex flex-row gap-2 bg-jasmine w-fit rounded-2xl uppercase lg:py-2 lg:px-4 text-onyx"
-                        >
-                          Mulai
-                          <div className="flex flex-arrow">
-                            <div className="arrow">
-                              <div>&gt;</div>
-                            </div>
-                            <div className="arrow">
-                              <div>&gt;</div>
-                            </div>
-                            <div className="arrow">
-                              <div>&gt;</div>
-                            </div>
-                          </div>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-          </div>
+          <p style={{ lineHeight: "1.2" }} className="bl text-white">
+            Intip koleksi FLONN yang keren dan sayang banget buat dilewatin! Semua item dari pakaian yang nyaman, aksesoris gaul, sampai kerajinan tangan yang autentik, semuanya dibuat dengan cinta untuk alam. Pilih favoritmu dan tunjukkan peduli kamu buat bumi kita. Ayo, wujudkan perubahan dengan gaya yang beda dan bakti yang nyata! 
+          </p>
+          <Link
+            to={"/merch"}
+            className="button flex flex-row gap-2 bg-jasmine w-fit rounded-2xl uppercase lg:py-2 lg:px-4 text-onyx self-end"
+          >
+            INTIP MERCHANDISE SEKARANG
+          </Link>
+        </div>
+        <img src={merchImg} className="w-fit h-fit object-cover" />
       </div>
+
       <Footer />
     </div>
   );

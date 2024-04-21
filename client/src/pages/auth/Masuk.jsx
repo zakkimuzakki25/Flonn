@@ -86,7 +86,7 @@ const Masuk = () => {
     <div className="w-screen h-screen overflow-hidden bg-default flex ">
       {/* left */}
       <div className="lg:w-full flex justify-center items-center">
-        <form onSubmit={submitHandle} className="bg-white -shadow-x-axis lg:w-455 h-fit flex flex-col lg:gap-4 lg:py-12 lg:px-16 text-default rounded-xl justify-center items-center">
+        <form onSubmit={submitHandle} className="bg-white -shadow-x-axis lg:w-100 h-fit flex flex-col lg:gap-4 lg:py-12 lg:px-12 text-default rounded-xl justify-center items-center">
           <h1 className="dl text-5xl">MASUK</h1>
           <div className="flex flex-col gap-0 w-full">
             <Input

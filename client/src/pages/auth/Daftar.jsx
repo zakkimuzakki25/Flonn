@@ -90,7 +90,7 @@ const Daftar = () => {
       <div className="lg:w-full flex justify-center items-center">
         <form
           onSubmit={submitHandle}
-          className="bg-white -shadow-x-axis lg:w-fit h-fit flex flex-col lg:gap-3 lg:py-14 lg:px-14 text-default rounded-xl"
+          className="bg-white -shadow-x-axis lg:w-fit h-fit flex flex-col lg:gap-3 lg:py-10 lg:px-12 text-default rounded-xl"
         >
           <h1 className="dl text-5xl self-center">DAFTAR</h1>
           <div className="flex flex-col gap-0 w-full">

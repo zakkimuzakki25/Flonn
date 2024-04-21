@@ -11,6 +11,7 @@ export default {
         'x-axis': '10px 0px 30px 0px rgba(0, 0, 0, 0.25)',
         '-x-axis': '-10px 0px 30px 0px rgba(0, 0, 0, 0.25)',
         's-default': '0px 0px 10px 0px rgba(0, 0, 0, 0.25)',
+        'loading': '0px 0px 50px 2px #ffffff',
       },
       colors: {
         default: '#3A3A3A',
@@ -23,6 +24,7 @@ export default {
         cambridgeBlue: '#83AFA0',
         peachYellow: '#F9E2AE',
         white: '#F5F7F2',
+        gray: '#6C6E6C',
       },
       backgroundImage: {
         disasterMap: 'linear-gradient(to bottom, rgba(58, 58, 58, 1) 5%, rgba(91, 142, 125, 1))',
@@ -55,7 +57,18 @@ export default {
         550: '550px',
         600: '600px',
         700: '700px',
-      }
+      },
+      animation: {
+        'grow': 'grow 1.75s ease-in-out infinite',
+      },
+      keyframes: {
+        'grow': {
+          '0%': { transform: 'scale(0.3)' },
+          '20%': { transform: 'scale(1)' },
+          '40%': { transform: 'scale(0.3)' },
+          '100%': { transform: 'scale(0.3)' },
+        },
+      },
     },
   },
   plugins: [],

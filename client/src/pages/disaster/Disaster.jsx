@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import Map from "../../components/map/Map";
+// import Map from "../../components/map/Map";
 import { Base } from "../../api/Api";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/Footer";
@@ -38,11 +38,11 @@ const Disaster = () => {
 
       <div className="flex flex-col gap-12 lg:px-40 lg:py-44 bg-disasterMap">
         <div className="flex items-center justify-center w-full h-80 rounded-3xl overflow-hidden">
-          <Map
+          {/* <Map
             apikey={import.meta.env.VITE_HERE_MAPS_KEY}
             data={data}
             filterHandle={filterHandle}
-          />
+          /> */}
         </div>
 
         <div className="flex flex-row gap-12 lg:h-105">
