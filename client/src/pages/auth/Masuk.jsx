@@ -4,7 +4,7 @@ import logo from "../../assets/logo/logo-white.png";
 import Input from "../../components/bar/Input";
 import { useState } from "react";
 import GoogleButton from "../../components/button/GoogleButton";
-import { Base } from "../../api/Api";
+import { Base } from "../../api/API";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase/Firebase";
 import PrimerButton2 from "../../components/button/PrimerButton2";

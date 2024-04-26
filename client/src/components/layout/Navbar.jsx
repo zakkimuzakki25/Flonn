@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from "react-router-dom";
 import { DataNavbar } from '../../data/DataNavbar';
 import logo from "../../assets/logo/logo.png"
-import { BaseAPI } from '../../api/Api';
+import { BaseAPI } from '../../api/API';
 import { DefaultPhotoProfile } from '../../data/DefaultData';
 
 const Navbar = () => {
@@ -86,7 +86,7 @@ const Navbar = () => {
             {token ? (
                 <Link
                   to="/profile"
-                  className={`lg:w-14 lg:h-14 rounded-full overflow-hidden self-center`}
+                  className={`w-14 h-14 rounded-full overflow-hidden self-center`}
                 >
                   <img src={photo} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
                 </Link>

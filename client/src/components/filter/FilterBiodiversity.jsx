@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import SearchBar from "../bar/SearchBar";
 import DropDownRound from "../bar/DropdownRound";
-import { Base } from "../../api/Api";
+import { Base } from "../../api/API";
 
 const FilterBiodiversity = ({ handleChange }) => {
   const [nama, setNama] = useState("");

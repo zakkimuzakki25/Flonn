@@ -19,7 +19,7 @@ const Footer = () => {
   // }, [token])
 
   return (
-    <div className='flex flex-col px-40 w-full h-fit bg-white z-50 relative'>
+    <div className='flex flex-col px-40 w-full h-fit bg-white z-40 relative'>
         <div className="flex flex-row w-full py-14 gap-28">
 
           <Link className="flex items-center ">

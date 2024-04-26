@@ -13,7 +13,7 @@ const BiodiversityCard = ({nama, id, namaLatin, kingdom, habitat, status, photo}
 
     useEffect(() => {
         // eslint-disable-next-line react/prop-types
-        const spaceRef = ref(storage, photo.split("<>")[1]);
+        const spaceRef = ref(storage, photo.split("<>")[0]);
 
         getDownloadURL(spaceRef)
             .then((url) => {

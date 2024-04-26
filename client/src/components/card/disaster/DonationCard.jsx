@@ -7,7 +7,7 @@ import LoadingPic from "../../helper/LoadingPic";
 import './DonationCard.css'
 
 // eslint-disable-next-line react/prop-types
-const DonationCard = ({ title, deskripsi, id, photo }) => {
+const DonationCard = ({ title, id, photo }) => {
   const [image, setImage] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -27,8 +27,8 @@ const DonationCard = ({ title, deskripsi, id, photo }) => {
   }, [photo]);
   return (
     <Link
-      to={`/disaster/${id}`}
-      className="donationCard flex flex-col lg:w-300 lg:h-455 bg-oldGreen rounded-3xl overflow-hidden cursor-pointer"
+      to={`/aksi/donasi/${id}`}
+      className="donationCard flex flex-col lg:w-64 lg:h-96 bg-oldGreen rounded-3xl overflow-hidden cursor-pointer shadow-s-default"
     >
       <div className="flex flex-col bg-white rounded-3xl h-full z-10 shadow-default">
         <div className="overflow-hidden flex-shrink-0 lg:h-44 rounded-t-3xl">
@@ -41,17 +41,13 @@ const DonationCard = ({ title, deskripsi, id, photo }) => {
           )}
         </div>
 
-        <div className="putih flex flex-col w-full lg:h-52 justify-center items-center lg:p-5">
-          <h1 style={{ lineHeight: "1.1" }} className="ds text-center">
+        <div className="putih flex flex-col w-full lg:h-full items-center lg:p-5">
+          <p style={{ lineHeight: "1.1" }} className="tlb text-onyx text-center">
             {title}
-          </h1>
-          <div className="w-full h-1 bg-oldGreen lg:mt-1"></div>
-          <p
-            className="tl overflow-hidden lg:h-32 lg:my-2"
-          >
-            {deskripsi}
           </p>
         </div>
+
+        <p className="bs text-gray self-center py-4">20 Maret 2024</p>
       </div>
       <div className="donation-label pr-5 h-full uppercase ds text-onyx items-center flex self-center justify-center">
         Donasi

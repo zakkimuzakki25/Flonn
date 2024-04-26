@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 // import Map from "../../components/map/Map";
-import { Base } from "../../api/Api";
+import { Base } from "../../api/API";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/Footer";
 import KorbanCard from "../../components/card/disaster/KorbanCard";
@@ -25,12 +25,31 @@ const Disaster = () => {
       } else {
         setData([]);
       }
-      // console.log("Data = ");
+      console.log("Data Bencana = ");
       // console.log(dp);
     } catch (err) {
       console.error("Error in filterHandle:", err);
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await Base.get("/disaster/all");
+        const dp = res.data.data;
+        if (dp != null) {
+          setData(dp);
+        } else {
+          setData([]);
+        }
+        console.log("Data Bencana = ");
+        // console.log(dp);
+      } catch (err) {
+        console.error("Error in filterHandle:", err);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="flex flex-col min-w-full">

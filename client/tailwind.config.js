@@ -13,6 +13,9 @@ export default {
         's-default': '0px 0px 10px 0px rgba(0, 0, 0, 0.25)',
         'loading': '0px 0px 50px 2px #ffffff',
       },
+      dropShadow: {
+        's-default': '0 0 10px rgba(0, 0, 0, 0.25)'
+      },
       colors: {
         default: '#3A3A3A',
         onyx: '#3F403F',
@@ -20,6 +23,7 @@ export default {
         jasmine: '#FFDF85',
         oldRose: '#D28179',
         abu: '#DDDAD7',
+        "abu-0.75": 'rgba(245, 257, 252, 0.75)',
         viridian: '#5B8E7D',
         cambridgeBlue: '#83AFA0',
         peachYellow: '#F9E2AE',

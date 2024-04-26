@@ -11,7 +11,7 @@ import welcomeImg from "../../assets/images/home/Welcome.png";
 import merchImg from "../../assets/images/home/Merchandise.png";
 import monitorImg from "../../assets/images/home/Monitor.jpg";
 import biodiversitasImg from "../../assets/images/home/Biodiversitas.jpg";
-import { DataBannerHome } from "../../data/DataHomeBanner";
+import { DataBannerHome } from "../../data/DataBannerHome";
 
 const Home = () => {
   const [indexBanner, setIndexBanner] = useState(0);
@@ -34,7 +34,13 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <div className="w-full h-fit lg:pt-28 banner-home">
+      {/* banner */}
+      <div style={{
+        backgroundImage: `url(${itemBanner.background})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }} className="w-full h-fit lg:pt-28">
         <div className="w-full h-full lg:px-14 lg:py-24 gap-14 banner-home-2 flex flex-row items-center">
           {/* left button */}
           <button className="h-fit" onClick={handlePrev}>
@@ -43,7 +49,7 @@ const Home = () => {
 
           {/* content */}
           <div className="flex flex-col w-full">
-            <div className="h-96 gap-5 flex flex-col">
+            <div className="h-96 gap-5 flex flex-col justify-center">
               <div className="w-700">
                 <p
                   style={{ lineHeight: "1.2" }}

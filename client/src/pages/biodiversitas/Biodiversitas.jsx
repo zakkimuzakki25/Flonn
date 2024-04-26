@@ -4,7 +4,7 @@ import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/Footer";
 import BiodiversityCard from "../../components/card/biodiversity/BiodiversityCard";
 import "./Biodiversitas.css";
-import { Base } from "../../api/Api";
+import { Base } from "../../api/API";
 import FilterBiodiversity from "../../components/filter/FilterBiodiversity";
 
 const Biodiversitas = () => {
@@ -13,7 +13,7 @@ const Biodiversitas = () => {
   const filterHandle = (nama, kingdom, habitat, status) => {
     Base.get(`biodiversity/filter?name=${nama}&kingdom=${kingdom}&habitat=${habitat}&status=${status}`)
       .then((res) => {
-        console.log(res);
+        console.log("data hewan", res);
         setData(res.data.data);
         // window.location.reload()
       })

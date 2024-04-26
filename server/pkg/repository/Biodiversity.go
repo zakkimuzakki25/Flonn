@@ -33,7 +33,7 @@ func (d *biodiversity) Create(biodiversity *entity.Biodiversity) error {
 func (d *biodiversity) GetByID(id int) (*entity.BiodiversityResponse, error) {
 	biodiversityResponse := &entity.BiodiversityResponse{}
 	if err := d.db.Table("biodiversities").
-		Select("biodiversities.*, species.name as species, genus.name as genus, familia.name as familia, ordos.name as ordo, classes.name as classis, kingdoms.name as kingdom, phylums.name as phylum, diovisios.name as diovisio, statuses.name as status, habitats.name as habitat").
+		Select("biodiversities.*, species.name as species, genus.name as genus, familia.name as familia, ordos.name as ordo, classes.name as classis, kingdoms.name as kingdom, phylums.name as phylum, diovisios.name as diovisio, statuses.name as status, statuses.description as status_description, habitats.name as habitat, habitats.description as habitat_description").
 		Joins("JOIN statuses ON biodiversities.status_id = statuses.id").
 		Joins("JOIN habitats ON biodiversities.habitat_id = habitats.id").
 		Joins("JOIN species ON biodiversities.species_id = species.id").

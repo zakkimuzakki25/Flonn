@@ -2,18 +2,33 @@ import { useEffect, useState } from "react"
 import { storage } from "../../firebase/Firebase"
 import { getDownloadURL, ref } from "firebase/storage"
 import { Link, useParams } from "react-router-dom"
-import { Base } from "../../api/Api"
+import { Base } from "../../api/API"
 import Navbar from "../../components/layout/Navbar"
 import Footer from "../../components/layout/Footer"
 import LoadingPic from "../../components/helper/LoadingPic"
+// Status
 import iconStatus from "../../assets/icon/biodiversity/status/CR.svg"
-import iconHabitat from "../../assets/icon/biodiversity/habitat/Rainforest.svg"
+// habitat
+import iconRainforest from "../../assets/icon/biodiversity/habitat/Rainforest.svg"
+import iconCoral from "../../assets/icon/biodiversity/habitat/Coral.svg"
+import iconDessert from "../../assets/icon/biodiversity/habitat/Dessert.svg"
+import iconGrassland from "../../assets/icon/biodiversity/habitat/Grassland.svg"
+import iconLentic from "../../assets/icon/biodiversity/habitat/Lentic.svg"
+import iconLittoral from "../../assets/icon/biodiversity/habitat/Littoral.svg"
+import iconOceanic from "../../assets/icon/biodiversity/habitat/Oceanic.svg"
+import iconShrubland from "../../assets/icon/biodiversity/habitat/Shrubland.svg"
+import iconTaiga from "../../assets/icon/biodiversity/habitat/Taiga.svg"
+import iconTemperateRaindforest from "../../assets/icon/biodiversity/habitat/TemperateRaindforest.svg"
+import iconTundra from "../../assets/icon/biodiversity/habitat/Tundra.svg"
+
 import iconPopulasi from "../../assets/icon/biodiversity/Populasi.svg"
 import iconBeratBadan from "../../assets/icon/biodiversity/BeratBadan.svg"
 import iconUkuranTubuh from "../../assets/icon/biodiversity/UkuranTubuh.svg"
 import iconRentangUsia from "../../assets/icon/biodiversity/RentangUsia.svg"
 import iconDetail from "../../assets/icon/biodiversity/Detail.svg"
 import fmap from "./fMap.png"
+import TooltipRegular from "../../components/tooltips/TooltipRegular"
+import TooltipDisaster from "../../components/tooltips/TooltipDisaster"
 
 const BiodiversityDetail = () => {
   const [image, setImage] = useState({ url: "", isLoading: true })
@@ -62,12 +77,12 @@ const BiodiversityDetail = () => {
 
       <div className="flex flex-col w-full lg:mt-28">
         <div className="h-fit w-full flex flex-row px-40 py-2.5 gap-5">
-          <p className="bl text-white">Biodiversitas</p>
+          <Link to={'/biodiversitas'} className="bl text-white hover:text-cambridgeBlue">Biodiversitas</Link>
           <p className="bl text-white">&gt;</p>
           <p className="bl text-cambridgeBlue">{data.name}</p>
         </div>
         {image.isLoading ? (
-          <div className="w-full h-full justify-center items-center flex bg-default">
+          <div className="w-full h-550 justify-center items-center flex bg-default">
             <LoadingPic />
           </div>
         ) : (
@@ -83,9 +98,58 @@ const BiodiversityDetail = () => {
         <div className="flex flex-col gap-7 h-fit shrink-0 bg-white shadow-s-default px-10 py-8 rounded-2xl">
           {/* 2 icon */}
           <div className="flex flex-row gap-4 justify-center">
-            <img src={iconStatus} />
-            <img src={iconHabitat} />
+            <TooltipDisaster 
+              location={"Indian Ocean"}
+              coordinate={"8°22'22.7\"S. 113°08'33.7\"E"}
+              strength={4.5}
+              date={"2024-04-15"}
+              time={"00:30:49 UTC"}
+              info={"140 km from South East Indonesia<>Magnitude Type : ML<>Depth : 10 K"}
+              object={<img src={iconStatus} className="cursor-pointer w-12 h-12"/>}
+            />
+            <TooltipRegular 
+              title={data.status}
+              text={data.status_description}
+              object={<img src={iconStatus} className="cursor-pointer w-12 h-12"/>}
+            />
+            <TooltipRegular 
+              title={data.habitat}
+              text={data.habitat_description}
+              object={<img className="w-12 h-12"
+                src={
+                  (() => {
+                    switch (data.habitat) {
+                      case "Rainforest":
+                        return iconRainforest;
+                      case "Coral":
+                        return iconCoral;
+                      case "Dessert":
+                        return iconDessert;
+                      case "Grassland":
+                        return iconGrassland;
+                      case "Lentic":
+                        return iconLentic;
+                      case "Littoral":
+                        return iconLittoral;
+                      case "Oceanic":
+                        return iconOceanic;
+                      case "Shrubland":
+                        return iconShrubland;
+                      case "Taiga":
+                        return iconTaiga;
+                      case "Temperate Rainforest":
+                        return iconTemperateRaindforest;
+                      case "Tundra":
+                        return iconTundra;
+                      default:
+                        return null;
+                    }
+                  })()
+                }
+              />}
+            />
           </div>
+
           {/* populasi */}
           <div className="flex flex-row gap-2 items-center">
             <img src={iconPopulasi} />
@@ -135,9 +199,11 @@ const BiodiversityDetail = () => {
           {/* latin name */}
           <p style={{lineHeight: "1"}} className="dmi pb-5">{data.latin_name}</p>
           {/* desc */}
-          {data.description.split("<>").map((item, index) => (
-            <p className="bs" key={index}>{item}</p>
-          ))}
+          {data.description && (
+            data.description.split("<>").map((item, index) => (
+              <p className="bs" key={index}>{item}</p>
+            ))
+          )}
           {/* location */}
           <div className="flex flex-row gap-2 py-5">
             <div className="lg:w-1 bg-oldRose"></div>
@@ -202,7 +268,7 @@ const BiodiversityDetail = () => {
           </div>
         </div>
         {/* read more */}
-        <div className="flex flex-col gap-3">
+        <div className="hidden flex-col gap-3">
           <p className="ds uppercase">read more</p>
           <div className="flex flex-col gap-1">
             <Link className="bs hover:text-cambridgeBlue">Tiger | Species | WWF (worldwildlife.org)</Link>

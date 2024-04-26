@@ -4,7 +4,7 @@ import logo from "../../assets/logo/logo-white.png";
 import Input from "../../components/bar/Input";
 import { useState } from "react";
 import SecondButton from "../../components/button/SecondButton";
-import { Base } from "../../api/Api";
+import { Base } from "../../api/API";
 
 const AuthAdmin = () => {
   const nav = useNavigate();

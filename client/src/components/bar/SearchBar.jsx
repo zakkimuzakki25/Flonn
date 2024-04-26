@@ -3,7 +3,8 @@ import searchIcon from "../../assets/icon/Search.svg"
 
 /* eslint-disable react/prop-types */
 const SearchBar = ({
-  handleSubmit
+  handleSubmit,
+  holder
 }) => {
   const [searchKey, setSearchKey] = useState("");
 
@@ -29,8 +30,8 @@ const SearchBar = ({
           <input
             type="text"
             id="key"
-            placeholder={"Cari berdasarkan nama..."}
-            className="focus:outline-none w-full"
+            placeholder={holder}
+            className="focus:outline-none w-full bg-white"
             autoComplete="off"
             required
             onChange={(e) => setSearchKey(e.target.value)}

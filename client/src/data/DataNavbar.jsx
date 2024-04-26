@@ -1,5 +1,9 @@
 export const DataNavbar = [
     {
+      "name": "Toko",
+      "path": "/toko"
+    },
+    {
       "name": "Biodiversitas",
       "path": "/biodiversitas"
     },
@@ -11,8 +15,4 @@ export const DataNavbar = [
       "name": "Aksi",
       "path": "/aksi"
     },
-    {
-      "name": "Merch",
-      "path": "/merch"
-    }
   ]

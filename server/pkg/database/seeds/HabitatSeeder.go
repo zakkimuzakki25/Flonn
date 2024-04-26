@@ -14,44 +14,44 @@ func (s *seeder) seedHabitat(sql *gorm.DB) error {
 	}
 	objects = []entity.Habitat{
 		{
-			Name:        "Hutan Hujan",
-			Description: "Deskripsi Hutan Hujan#lorem ipsum dolor sit amet#consectetur adipiscing elit",
+			Name:        "Rainforest",
+			Description: "A dense forest rich in biodiversity, typically found in tropical regions with high rainfall throughout the year.",
 		},
 		{
-			Name:        "Hutan Suhu Sedang",
-			Description: "Deskripsi Hutan Suhu Sedang#lorem ipsum dolor sit amet#consectetur adipiscing elit",
+			Name:        "Temperate Forest",
+			Description: "A forest located in temperate zones, featuring a mix of deciduous and coniferous trees, with distinct seasons including a cold winter and a warm summer.",
 		},
 		{
 			Name:        "Taiga",
-			Description: "Deskripsi Taiga#lorem ipsum dolor sit amet#consectetur adipiscing elit",
+			Description: "A coniferous forest, also known as boreal forest, found in northern regions, dominated by evergreen trees such as spruce and pine.",
 		},
 		{
 			Name:        "Tundra",
-			Description: "Deskripsi Tundra#lorem ipsum dolor sit amet#consectetur adipiscing elit",
+			Description: "A vast, treeless plain in the arctic regions, characterized by permafrost, low temperatures, and limited vegetation like moss and lichen.",
 		},
 		{
-			Name:        "Semak-belukar",
-			Description: "Deskripsi Semak-belukar#lorem ipsum dolor sit amet#consectetur adipiscing elit",
+			Name:        "Shrubland",
+			Description: "An area covered with shrubs and low vegetation, often found in arid or semi-arid regions, with hot summers and mild winters.",
 		},
 		{
-			Name:        "Padang Pasir",
-			Description: "Deskripsi Padang Pasir#lorem ipsum dolor sit amet#consectetur adipiscing elit",
+			Name:        "Desert",
+			Description: "An arid region with minimal rainfall, sparse vegetation, and extreme temperature variations, often featuring sand dunes and rocky terrain.",
 		},
 		{
-			Name:        "Padang Rumput",
-			Description: "Deskripsi Padang Rumput#lorem ipsum dolor sit amet#consectetur adipiscing elit",
+			Name:        "Grassland",
+			Description: "An ecosystem dominated by grasses, with few trees or shrubs, commonly found in temperate and tropical regions, supporting a variety of herbivores.",
 		},
 		{
-			Name:        "Perairan Lentik",
-			Description: "Deskripsi Perairan Lentik#lorem ipsum dolor sit amet#consectetur adipiscing elit",
+			Name:        "Lentic Waters",
+			Description: "A body of standing or slow-moving water, such as a lake, pond, or marsh, where sedimentation is common.",
 		},
 		{
-			Name:        "Litoral",
-			Description: "Deskripsi Litoral#lorem ipsum dolor sit amet#consectetur adipiscing elit",
+			Name:        "Littoral Zone",
+			Description: "The coastal area of a body of water, such as a lake or ocean, where land meets water, often supporting diverse plant and animal life.",
 		},
 		{
-			Name:        "Perairan Lotik",
-			Description: "Deskripsi Perairan Lotik#lorem ipsum dolor sit amet#consectetur adipiscing elit",
+			Name:        "Lotic Waters",
+			Description: "Flowing or moving water bodies like rivers and streams, characterized by currents and supporting various aquatic organisms.",
 		},
 	}
 

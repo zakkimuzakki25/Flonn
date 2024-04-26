@@ -1,7 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Home from "../pages/home/Home";
-import Biodiversitas from "../pages/biodiversitas/Biodiversitas";
 import Disaster from "../pages/disaster/Disaster";
 import BiodiversityDetail from "../pages/biodiversitas/BiodiversityDetail";
 import Aksi from "../pages/aksi/Aksi";
@@ -13,11 +12,13 @@ import Kampanye from "../pages/aksi/kampanye/Kampanye";
 import Donasi from "../pages/aksi/donasi/Donasi";
 import Protected from "./Protected";
 import Merch from "../pages/merch/Merch";
-import DonasiDetail from "../pages/info-detail/DonasiDetail";
 import VolunteerDetail from "../pages/info-detail/VolunteerDetail";
 import ZeroWasteDetail from "../pages/info-detail/ZeroWasteDetail";
 import Profile from "../pages/profile/Profile";
 import ProfileEdit from "../pages/profile/ProfileEdit";
+import DonasiDetail from "../pages/aksi/donasi/DonasiDetail";
+import Biodiversitas from "../pages/biodiversitas/Biodiversitas";
+import DonasiPembayaran from "../pages/aksi/donasi/DonasiPembayaran";
 
 function AutoScroll() {
   const { pathname } = useLocation();
@@ -44,7 +45,7 @@ const MainRoute = () => {
         <Route path="/aksi" element={<Aksi />} />
         <Route path="/volunteer" element={<VolunteerDetail />} />
 
-        <Route path="/merch" element={<Merch />} />
+        <Route path="/toko" element={<Merch />} />
 
         {/* auth */}
         <Route element={<Auth />}>
@@ -57,7 +58,8 @@ const MainRoute = () => {
           <Route path="/aksi/kampanye" element={<Kampanye />} />
           <Route path="/aksi/kampanye/zero-waste" element={<ZeroWasteDetail />} />
           <Route path="/aksi/donasi" element={<Donasi />} />
-          <Route path="/donasi/detail" element={<DonasiDetail />} />
+          <Route path="/aksi/donasi/:id" element={<DonasiDetail />} />
+          <Route path="/aksi/donasi/:id/pembayaran" element={<DonasiPembayaran />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/edit" element={<ProfileEdit />} />
         </Route>

@@ -3,7 +3,9 @@ import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/Footer";
 import imageMerch from "../../assets/images/background/Merch.jpg";
 import MerchCard from "../../components/card/merch/MerchCard";
-import { Base } from "../../api/Api";
+import { Base } from "../../api/API";
+import DropDownRound from "../../components/bar/DropdownRound";
+import SearchBar from "../../components/bar/SearchBar";
 
 const Merch = () => {
   const [data, setData] = useState([]);
@@ -42,13 +44,13 @@ const Merch = () => {
         }}
         className="w-full h-fit lg:pt-28"
       >
-        <div className="w-full h-full lg:px-40 lg:py-40 banner-2 items-end flex flex-col text-right">
-          <h1 style={{ lineHeight: "1.25" }} className="dl text-white lg:w-455">
+        <div className="w-full h-full lg:px-40 lg:py-44 banner-home-2 items-start flex flex-col text-left">
+          <h1 style={{ lineHeight: "1.25" }} className="dl text-white lg:w-600">
             manfaatkan hobi belanjamu di sini
           </h1>
           <p
             style={{ lineHeight: "1.2" }}
-            className="headl text-white lg:w-455 lg:pb-2"
+            className="headl text-white lg:w-600 lg:pb-2"
           >
             Hasil profit penjualan akan didonasikan sebesar 20% untuk kegiatan
             konservasi dan restorasi akibat bencana.
@@ -56,22 +58,35 @@ const Merch = () => {
         </div>
       </div>
 
-      {/* filter */}
-      <div className="flex flex-col lg:px-40 lg:py-20">
-        <div className="flex flex-col w-full gap-0 lg:mb-20">
-          <h2 style={{ lineHeight: "1.3" }} className="dl text-white uppercase">
-            bantuan datang dari mana saja,
-          </h2>
-          <h2 style={{ lineHeight: "1.3" }} className="dl text-white uppercase">
-            mulai dari hal kecil
-          </h2>
+      {/* main */}
+      <div className="flex flex-col lg:px-40 lg:pb-20">
+        {/* filter */}
+        <div className="flex flex-row justify-between py-12">
+          <div className="w-72">
+            <SearchBar
+              holder={"Search"}
+            />
+          </div>
+
+          <div className="flex flex-row gap-5">
+            <div className="w-44">
+              <DropDownRound
+                holder={"Kategori"}
+              />
+            </div>
+            <div className="w-44">
+              <DropDownRound
+                holder={"Harga"}
+              />
+            </div>
+          </div>
         </div>
 
         {/* list merch */}
-        <div className="flex flex-wrap justify-between">
+        <div className="flex flex-wrap justify-between gap-y-10">
           {data.map((item, index) => {
             return (
-              <div key={index} className="lg:mb-20">
+              <div key={index}>
                 <MerchCard
                   floint={item.floint}
                   id={item.ID}
