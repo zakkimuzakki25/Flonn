@@ -98,15 +98,6 @@ const BiodiversityDetail = () => {
         <div className="flex flex-col gap-7 h-fit shrink-0 bg-white shadow-s-default px-10 py-8 rounded-2xl">
           {/* 2 icon */}
           <div className="flex flex-row gap-4 justify-center">
-            <TooltipDisaster 
-              location={"Indian Ocean"}
-              coordinate={"8°22'22.7\"S. 113°08'33.7\"E"}
-              strength={4.5}
-              date={"2024-04-15"}
-              time={"00:30:49 UTC"}
-              info={"140 km from South East Indonesia<>Magnitude Type : ML<>Depth : 10 K"}
-              object={<img src={iconStatus} className="cursor-pointer w-12 h-12"/>}
-            />
             <TooltipRegular 
               title={data.status}
               text={data.status_description}

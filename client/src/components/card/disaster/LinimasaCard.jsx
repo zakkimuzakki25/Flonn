@@ -62,11 +62,11 @@ const LinimasaCard = ({ data }) => {
           {isPopup && (
             <PopupDisaster
               photo={popup.photo}
-              title={"Banjir Kota Malang"}
+              title={popup.title}
               date={popup.date}
               location={popup.location}
               province={popup.province}
-              description={"Pada tanggal 20 Desember 2023, kawasan Lowokwaru, Kota Malang di Jawa Timur mengalami banjir yang parah. Tingginya intensitas hujan yang terjadi berjam-jam mengakibatkan meluapnya air sungai dan saluran drainase yang tidak mampu menampung aliran hujan. Akibatnya, sejumlah ruas jalan dan pemukiman warga tergenang, menyebabkan gangguan aktivitas dan kerugian materi. Tim SAR bersama warga berupaya keras untuk menolong yang terjebak banjir dan mengamankan harta benda. Kepada masyarakat yang ingin membantu, Sobat Flonn dapat berkontribusi melalui tombol donasi yang tersedia, dimana seluruh bantuan akan digunakan untuk pemulihan dan bantuan langsung kepada para korban banjir di Malang."}
+              description={popup.description}
               donation_id={popup.donation_id}
               setPopUp={setIsPopup}
             />

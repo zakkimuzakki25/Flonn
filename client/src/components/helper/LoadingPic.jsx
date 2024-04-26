@@ -3,7 +3,7 @@
 
 const LoadingPic = () => {
   return (
-    <div className="flex w-full h-full justify-center items-center bg-black-0.75 z-50">
+    <div className="flex w-full h-full justify-center items-center bg-black-0.75 z-40">
         <ul className="flex flex-row lg:gap-3">
             <li style={{
                 animationDelay: '200ms',

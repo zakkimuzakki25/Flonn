@@ -7,6 +7,7 @@ import Footer from "../../components/layout/Footer";
 import KorbanCard from "../../components/card/disaster/KorbanCard";
 import RingkasanCard from "../../components/card/disaster/RingksanCard";
 import LinimasaCard from "../../components/card/disaster/LinimasaCard";
+import Map from "../../components/map/Map";
 
 const Disaster = () => {
   const [data, setData] = useState([]);
@@ -43,7 +44,7 @@ const Disaster = () => {
           setData([]);
         }
         console.log("Data Bencana = ");
-        // console.log(dp);
+        console.log(dp);
       } catch (err) {
         console.error("Error in filterHandle:", err);
       }
@@ -62,6 +63,11 @@ const Disaster = () => {
             data={data}
             filterHandle={filterHandle}
           /> */}
+          <Map
+            apikey={import.meta.env.VITE_MAPS_KEY}
+            data={data}
+            filterHandle={filterHandle}
+          />
         </div>
 
         <div className="flex flex-row gap-12 lg:h-105">

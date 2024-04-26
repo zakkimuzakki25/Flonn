@@ -1,9 +1,11 @@
 import iconDate from "../../assets/icon/linimasa/Date.svg"
 import iconLocation from "../../assets/icon/linimasa/Location.svg"
 import PrimerButton from "../button/PrimerButton";
+import LoadingPic from "../helper/LoadingPic";
 
 // eslint-disable-next-line react/prop-types
 const PopupDisaster = ({photo, title, date, location, province, description, donation_id, setPopUp }) => {
+
     const formatDate = (dateString) => {
         const options = { year: "numeric", month: "long", day: "numeric" };
         const formattedDate = new Date(dateString).toLocaleDateString(
@@ -23,8 +25,12 @@ const PopupDisaster = ({photo, title, date, location, province, description, don
 
   return (
     <div className="fixed w-screen h-screen top-0 left-0 flex justify-center items-center bg-black bg-opacity-50 z-50 px-40" onClick={handleOuterClick}>
-        <div className='flex flex-row rounded-50 p-10 gap-10 bg-white items-center' onClick={handleInnerClick}>
-            <img src={photo} className="h-80 w-80 object-cover" />
+        <div className='flex flex-row rounded-50 p-10 gap-10 bg-white' onClick={handleInnerClick}>
+            <div className="w-80 h-80 relative self-center">
+                <LoadingPic >
+                </LoadingPic>
+                <img src={photo} alt="" className="w-80 h-80 z-50 rounded-3xl absolute top-0" />
+            </div>
 
             <div className="flex flex-col text-onyx">
                 <p className="ds">{title}</p>
@@ -45,7 +51,7 @@ const PopupDisaster = ({photo, title, date, location, province, description, don
 
                 <div className="flex flex-col">
                     <p className="blb">Keterangan</p>
-                    <p className="bs">{description}</p>
+                    <p className="bs min-w-96">{description}</p>
                 </div>
 
                 {donation_id && (
