@@ -16,35 +16,35 @@ func (s *seeder) seedStatus(sql *gorm.DB) error {
 	objects = []entity.Status{
 		{
 			Name:        "LC",
-			Description: "Least Concern - Species with a low risk of extinction and widely distributed in their natural habitats.",
+			Description: "Least Concern (Risiko Rendah) - tidak memenuhi kriteria untuk kategori yang lebih terancam.",
 		},
 		{
 			Name:        "NT",
-			Description: "Near Threatened - Species that are close to qualifying for a threatened category in the near future.",
+			Description: "Near Threatened (Hampir Terancam) - mungkin akan diklasifikasikan sebagai terancam dalam waktu dekat.",
 		},
 		{
 			Name:        "VU",
-			Description: "Vulnerable - Species with a high risk of becoming endangered in the wild due to a variety of factors.",
+			Description: "Vulnerable (Rentan) - menghadapi risiko tinggi kepunahan di alam liar.",
 		},
 		{
 			Name:        "EN",
-			Description: "Endangered - Species with a very high risk of extinction in the wild, facing significant threats to their survival.",
+			Description: "Endangered (Terancam) - menghadapi risiko sangat tinggi kepunahan di alam liar.",
 		},
 		{
 			Name:        "CR",
-			Description: "Critically Endangered - Species facing an extremely high risk of extinction in the wild, requiring urgent conservation measures.",
+			Description: "Critically Endangered (Kritis) - menghadapi risiko tinggi kepunahan di alam liar dalam waktu dekat.",
 		},
 		{
 			Name:        "EW",
-			Description: "Extinct in the Wild - Species no longer found in their natural habitats, but still existing in captivity or cultivation.",
+			Description: "Extinct in the Wild (Punah di Alam Liar) - hanya tersisa di penangkaran atau sebagai populasi naturalisasi di luar jangkauan aslinya.",
 		},
 		{
 			Name:        "EX",
-			Description: "Extinct - Species that no longer exist anywhere on Earth, with no known surviving individuals.",
+			Description: "Extinct (Punah) - tidak ada lagi individu yang diketahui hidup.",
 		},
 		{
 			Name:        "DD",
-			Description: "Data Deficient - Species for which there is insufficient information to assess their risk of extinction.",
+			Description: "Data Deficient (Kekurangan Data) - tidak ada informasi yang cukup untuk membuat penilaian langsung tentang risiko kepunahan.",
 		},
 	}
 

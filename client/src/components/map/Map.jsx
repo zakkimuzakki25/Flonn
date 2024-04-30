@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useCallback, useEffect, useState } from "react";
 import { Fragment } from "react";
@@ -195,12 +196,12 @@ const Map = ({ apikey, data, filterHandle }) => {
                 {activeMarker === list.id ? (
                     <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
                       <TooltipDisaster 
-                        location={"Indian Ocean"}
-                        coordinate={"8°22'22.7\"S. 113°08'33.7\"E"}
-                        strength={4.5}
-                        date={"2024-04-15"}
-                        time={"00:30:49 UTC"}
-                        info={"140 km from South East Indonesia<>Magnitude Type : ML<>Depth : 10 K"}
+                        location={list.location}
+                        coordinate={list.longitude + "," + list.latitude}
+                        strength={list.strength}
+                        date={list.date.split("T")[0]}
+                        time={list.date.split("T")[1]}
+                        info={list.more_info}
                     />
                     </InfoWindowF>
                   ) : null}

@@ -22,6 +22,8 @@ type Disaster struct {
 	Evacuated      int       `json:"evacuated" gorm:"type:INTEGER;default:null"`
 	Latitude       float64   `json:"latitude"`
 	Longitude      float64   `json:"longitude"`
+	Strength       float64   `json:"strength"`
+	MoreInfo       string    `json:"more_info"`
 }
 
 // models
@@ -46,4 +48,6 @@ type DisasterResponse struct {
 	Evacuated      int       `json:"evacuated" gorm:"type:INTEGER;default:null"`
 	Latitude       float64   `json:"latitude"`
 	Longitude      float64   `json:"longitude"`
+	Strength       float64   `json:"strength"`
+	MoreInfo       string    `json:"more_info"`
 }

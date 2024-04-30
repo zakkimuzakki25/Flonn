@@ -28,7 +28,6 @@ import iconRentangUsia from "../../assets/icon/biodiversity/RentangUsia.svg"
 import iconDetail from "../../assets/icon/biodiversity/Detail.svg"
 import fmap from "./fMap.png"
 import TooltipRegular from "../../components/tooltips/TooltipRegular"
-import TooltipDisaster from "../../components/tooltips/TooltipDisaster"
 
 const BiodiversityDetail = () => {
   const [image, setImage] = useState({ url: "", isLoading: true })
@@ -110,25 +109,25 @@ const BiodiversityDetail = () => {
                 src={
                   (() => {
                     switch (data.habitat) {
-                      case "Rainforest":
+                      case "Hutan Hujan":
                         return iconRainforest;
                       case "Coral":
                         return iconCoral;
-                      case "Dessert":
+                      case "Gurun":
                         return iconDessert;
-                      case "Grassland":
+                      case "Padang Rumput":
                         return iconGrassland;
-                      case "Lentic":
+                      case "Perairan Lentik":
                         return iconLentic;
-                      case "Littoral":
+                      case "Zona Litoral":
                         return iconLittoral;
                       case "Oceanic":
                         return iconOceanic;
-                      case "Shrubland":
+                      case "Semak Belukar":
                         return iconShrubland;
                       case "Taiga":
                         return iconTaiga;
-                      case "Temperate Rainforest":
+                      case "Hutan Beriklim Sedang":
                         return iconTemperateRaindforest;
                       case "Tundra":
                         return iconTundra;

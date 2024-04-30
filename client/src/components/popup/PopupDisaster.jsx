@@ -29,7 +29,7 @@ const PopupDisaster = ({photo, title, date, location, province, description, don
             <div className="w-80 h-80 relative self-center">
                 <LoadingPic >
                 </LoadingPic>
-                <img src={photo} alt="" className="w-80 h-80 z-50 rounded-3xl absolute top-0" />
+                <img src={photo} alt="" className="w-80 h-80 z-50 object-cover rounded-3xl absolute top-0" />
             </div>
 
             <div className="flex flex-col text-onyx">

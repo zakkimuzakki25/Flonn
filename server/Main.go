@@ -21,7 +21,8 @@ func main() {
 	}
 
 	dbParams := fmt.Sprintf(
-		"%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		// "%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		"%s:%s@tcp(%s:%s)/%s",
 		config.GetEnvVar("DB_USERNAME"),
 		config.GetEnvVar("DB_PASSWORD"),
 		config.GetEnvVar("DB_HOST"),

@@ -11,7 +11,7 @@ const TooltipDisaster = ({location, coordinate, date, time, info, strength}) => 
                         <p className="tl">{location}</p>
                         <p className="bs text-nowrap">{coordinate}</p>
                     </div>
-                    {strength && (
+                    {strength != 0 && (
                         <div className="bg-oldRose h-10 w-10 rounded-full flex justify-center items-center text-white">{strength}</div>
                     )}
                 </div>
@@ -23,7 +23,7 @@ const TooltipDisaster = ({location, coordinate, date, time, info, strength}) => 
                     </div>
                     {
                     // eslint-disable-next-line react/prop-types
-                    info.split('<>').map((item, index) => (
+                    info && info.split('<>').map((item, index) => (
                         <p key={index} className="bs">{item}</p>
                     ))}
                 </div>

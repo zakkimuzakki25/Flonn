@@ -14,44 +14,44 @@ func (s *seeder) seedHabitat(sql *gorm.DB) error {
 	}
 	objects = []entity.Habitat{
 		{
-			Name:        "Rainforest",
-			Description: "A dense forest rich in biodiversity, typically found in tropical regions with high rainfall throughout the year.",
+			Name:        "Hutan Hujan",
+			Description: "Hutan lebat yang kaya akan keanekaragaman hayati, biasanya ditemukan di daerah tropis dengan curah hujan tinggi sepanjang tahun.",
 		},
 		{
-			Name:        "Temperate Forest",
-			Description: "A forest located in temperate zones, featuring a mix of deciduous and coniferous trees, with distinct seasons including a cold winter and a warm summer.",
+			Name:        "Hutan Beriklim Sedang",
+			Description: "Hutan yang terletak di daerah beriklim sedang, dengan campuran pohon gugur dan sejenis pohon jarum, dengan musim yang berbeda termasuk musim dingin dan musim panas yang hangat.",
 		},
 		{
 			Name:        "Taiga",
-			Description: "A coniferous forest, also known as boreal forest, found in northern regions, dominated by evergreen trees such as spruce and pine.",
+			Description: "Hutan jenis konifera, juga dikenal sebagai hutan boreal, ditemukan di wilayah utara, didominasi oleh pohon cemara seperti pohon cemara dan pinus.",
 		},
 		{
 			Name:        "Tundra",
-			Description: "A vast, treeless plain in the arctic regions, characterized by permafrost, low temperatures, and limited vegetation like moss and lichen.",
+			Description: "Dataran luas tanpa pepohonan di daerah kutub utara, yang ditandai dengan lapisan es, suhu rendah, dan vegetasi terbatas seperti lumut dan lumut.",
 		},
 		{
-			Name:        "Shrubland",
-			Description: "An area covered with shrubs and low vegetation, often found in arid or semi-arid regions, with hot summers and mild winters.",
+			Name:        "Semak Belukar",
+			Description: "Area yang ditutupi semak belukar dan vegetasi rendah, sering ditemukan di daerah kering atau semi-kering, dengan musim panas yang terik dan musim dingin yang sejuk.",
 		},
 		{
-			Name:        "Desert",
-			Description: "An arid region with minimal rainfall, sparse vegetation, and extreme temperature variations, often featuring sand dunes and rocky terrain.",
+			Name:        "Gurun",
+			Description: "Wilayah gersang dengan curah hujan yang minim, vegetasi yang jarang, dan variasi suhu yang ekstrem, sering kali memiliki bukit pasir dan medan berbatu.",
 		},
 		{
-			Name:        "Grassland",
-			Description: "An ecosystem dominated by grasses, with few trees or shrubs, commonly found in temperate and tropical regions, supporting a variety of herbivores.",
+			Name:        "Padang Rumput",
+			Description: "Ekosistem yang didominasi oleh rerumputan, dengan sedikit pohon atau semak, umumnya ditemukan di daerah beriklim sedang dan tropis, yang mendukung berbagai herbivora.",
 		},
 		{
-			Name:        "Lentic Waters",
-			Description: "A body of standing or slow-moving water, such as a lake, pond, or marsh, where sedimentation is common.",
+			Name:        "Perairan Lentik",
+			Description: "Badan air yang tergenang atau bergerak lambat, seperti danau, kolam, atau rawa, di mana sedimentasi biasa terjadi.",
 		},
 		{
-			Name:        "Littoral Zone",
-			Description: "The coastal area of a body of water, such as a lake or ocean, where land meets water, often supporting diverse plant and animal life.",
+			Name:        "Zona Litoral",
+			Description: "Wilayah pesisir dari suatu perairan, seperti danau atau lautan, tempat bertemunya daratan dan air, yang sering kali mendukung kehidupan tumbuhan dan hewan yang beragam.",
 		},
 		{
-			Name:        "Lotic Waters",
-			Description: "Flowing or moving water bodies like rivers and streams, characterized by currents and supporting various aquatic organisms.",
+			Name:        "Perairan Lotik",
+			Description: "Badan air yang mengalir atau bergerak seperti sungai dan anak sungai, yang ditandai dengan arus dan mendukung berbagai organisme air.",
 		},
 	}
 

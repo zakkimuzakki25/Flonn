@@ -68,6 +68,8 @@ func (d *disaster) GetAll() ([]*entity.DisasterResponse, error) {
 			Evacuated:      disaster.Evacuated,
 			Latitude:       disaster.Latitude,
 			Longitude:      disaster.Longitude,
+			MoreInfo:       disaster.MoreInfo,
+			Strength:       disaster.Strength,
 		}
 
 		disasterResp = append(disasterResp, response)
