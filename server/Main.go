@@ -15,7 +15,7 @@ import (
 
 func main() {
 	config := configuration.Init()
-	err := config.LoadEnvironment(".env")
+	err := config.LoadEnvironment("./.env")
 	if err != nil {
 		log.Fatalln("Gagal load .env")
 	}
