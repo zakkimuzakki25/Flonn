@@ -12,7 +12,6 @@ func (s *seeder) seedMerch(sql *gorm.DB) error {
 	if err := sql.First(&objects).Error; err != gorm.ErrRecordNotFound {
 		return err
 	}
-
 	objects = []entity.Merch{
 		{
 			Title:       "FLONNTEER T-Shirt",

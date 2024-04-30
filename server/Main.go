@@ -21,12 +21,13 @@ func main() {
 	}
 
 	dbParams := fmt.Sprintf(
-		// "%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		"%s:%s@tcp(%s:%s)/%s",
+		"%s:%s@unix(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		// "%s:%s@tcp(%s:%s)/%s",
 		config.GetEnvVar("DB_USERNAME"),
 		config.GetEnvVar("DB_PASSWORD"),
-		config.GetEnvVar("DB_HOST"),
-		config.GetEnvVar("DB_PORT"),
+		// config.GetEnvVar("DB_HOST"),
+		// config.GetEnvVar("DB_PORT"),
+		config.GetEnvVar("INSTANCE_UNIX_SOCKET"),
 		config.GetEnvVar("DB_DATABASE"),
 	)
 	database, err := gorm.Open(mysql.Open(dbParams), &gorm.Config{
