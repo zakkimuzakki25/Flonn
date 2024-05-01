@@ -20,6 +20,7 @@ func main() {
 	dbParams := ""
 	if err != nil {
 		// log.("Gagal load .env")
+		fmt.Println("Gagal load .env")
 		dbParams = fmt.Sprintf(
 			"%s:%s@unix(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 			"root",
