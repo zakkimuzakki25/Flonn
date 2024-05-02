@@ -12,7 +12,7 @@ type Disaster struct {
 	Location       string    `json:"location" gorm:"type:VARCHAR(255);NOT NULL"`
 	Province       string    `json:"province" gorm:"type:VARCHAR(100)"`
 	Photo          string    `json:"photo"`
-	Description    string    `json:"description" gorm:"type:VARCHAR(255);default:null"`
+	Description    string    `json:"description" gorm:"default:null"`
 	Date           time.Time `json:"date"`
 	MonetaryLoss   float64   `json:"monetary_loss" gorm:"type:DOUBLE;default:null"`
 	BuildingDamage int       `json:"building_damage" gorm:"type:INTEGER;default:null"`
