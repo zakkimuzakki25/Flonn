@@ -1,0 +1,7 @@
+runtime: go122
+
+env_variables:
+  DB_USERNAME: 'root'
+  DB_PASSWORD: 'flonnpubek123'
+  DB_NAME: 'flonn'
+  INSTANCE_UNIX_SOCKET: '/cloudsql/flonn-420213:asia-southeast2:flonndb'

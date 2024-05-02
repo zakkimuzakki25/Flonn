@@ -15,32 +15,22 @@ import (
 
 func main() {
 	config := configuration.Init()
-	err := config.LoadEnvironment("./.env")
-
-	dbParams := ""
+	err := config.LoadEnvironment(".env")
 	if err != nil {
-		// log.("Gagal load .env")
-		fmt.Println("Gagal load .env")
-		dbParams = fmt.Sprintf(
-			"%s:%s@unix(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-			"root",
-			"flonnpubek123",
-			"/cloudsql/flonn-420213:asia-southeast2:flonn",
-			"flonn",
-		)
-	} else {
-		dbParams = fmt.Sprintf(
-			// "%s:%s@unix(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-			"%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-			// "%s:%s@tcp(%s:%s)/%s",
-			config.GetEnvVar("DB_USERNAME"),
-			config.GetEnvVar("DB_PASSWORD"),
-			config.GetEnvVar("DB_HOST"),
-			config.GetEnvVar("DB_PORT"),
-			// config.GetEnvVar("INSTANCE_UNIX_SOCKET"),
-			config.GetEnvVar("DB_DATABASE"),
-		)
+		log.Fatal("Error loading .env file")
 	}
+
+	dbParams := fmt.Sprintf(
+		"%s:%s@unix(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		// "%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		// "%s:%s@tcp(%s:%s)/%s",
+		config.GetEnvVar("DB_USERNAME"),
+		config.GetEnvVar("DB_PASSWORD"),
+		// config.GetEnvVar("DB_HOST"),
+		// config.GetEnvVar("DB_PORT"),
+		config.GetEnvVar("INSTANCE_UNIX_SOCKET"),
+		config.GetEnvVar("DB_DATABASE"),
+	)
 
 	database, err := gorm.Open(mysql.Open(dbParams), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Info),
