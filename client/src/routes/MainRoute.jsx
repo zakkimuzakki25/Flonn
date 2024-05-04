@@ -12,13 +12,13 @@ import Kampanye from "../pages/aksi/kampanye/Kampanye";
 import Donasi from "../pages/aksi/donasi/Donasi";
 import Protected from "./Protected";
 import Merch from "../pages/merch/Merch";
-import VolunteerDetail from "../pages/info-detail/VolunteerDetail";
 import ZeroWasteDetail from "../pages/info-detail/ZeroWasteDetail";
 import Profile from "../pages/profile/Profile";
 import ProfileEdit from "../pages/profile/ProfileEdit";
 import DonasiDetail from "../pages/aksi/donasi/DonasiDetail";
 import Biodiversitas from "../pages/biodiversitas/Biodiversitas";
 import DonasiPembayaran from "../pages/aksi/donasi/DonasiPembayaran";
+import VolunteerDetail from "../pages/aksi/VolunteerDetail";
 
 function AutoScroll() {
   const { pathname } = useLocation();
@@ -43,7 +43,7 @@ const MainRoute = () => {
         <Route path="/biodiversitas/:id" element={<BiodiversityDetail />} />
 
         <Route path="/aksi" element={<Aksi />} />
-        <Route path="/volunteer" element={<VolunteerDetail />} />
+        <Route path="/volunteer/:id" element={<VolunteerDetail />} />
 
         <Route path="/toko" element={<Merch />} />
 

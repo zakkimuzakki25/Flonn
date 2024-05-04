@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 // import Map from "../../components/map/Map";
 import { Base } from "../../api/API";
-import Navbar from "../../components/layout/Navbar";
-import Footer from "../../components/layout/Footer";
+import Navbar from "../../components/navigation/Navbar";
+import Footer from "../../components/navigation/Footer";
 import KorbanCard from "../../components/card/disaster/KorbanCard";
 import RingkasanCard from "../../components/card/disaster/RingksanCard";
 import LinimasaCard from "../../components/card/disaster/LinimasaCard";

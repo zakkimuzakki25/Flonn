@@ -22,6 +22,8 @@ type dataSeeder interface {
 
 	seedDummyDisaster(sql *gorm.DB) error
 	seedDummyOpenDonation(sql *gorm.DB) error
+	seedDummyOpenVolunteer(sql *gorm.DB) error
+	seedDummyOpenCampaign(sql *gorm.DB) error
 
 	Seed(sql *gorm.DB) error
 }
@@ -80,6 +82,12 @@ func (s *seeder) Seed(sql *gorm.DB) error {
 		return err
 	}
 	if err := s.seedDummyOpenDonation(sql); err != nil {
+		return err
+	}
+	if err := s.seedDummyOpenVolunteer(sql); err != nil {
+		return err
+	}
+	if err := s.seedDummyOpenCampaign(sql); err != nil {
 		return err
 	}
 

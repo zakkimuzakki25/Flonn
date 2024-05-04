@@ -11,11 +11,11 @@ const VolunteerCard = ({judul, subjudul, photo, tanggal, deskripsi, id}) => {
         <p style={{lineHeight: "1.2"}} className="ds">{judul}</p>
         <p style={{lineHeight: "1.2"}} className="bl">{subjudul}</p>
         <p className="bs text-gray">{tanggal}</p>
-        <p className="bs">{deskripsi}</p>
+        <p className="bs max-h-24 overflow-hidden">{deskripsi}</p>
       </div>
       {/* button */}
       <div className="flex pb-6 pr-6">
-        <Link to={`/donasi/${id}`} className="px-4 py-2 text-nowrap bg-viridian text-onyx rounded-2xl w-fit self-end button uppercase">Mulai Beraksi</Link>
+        <Link to={`/volunteer/${id}`} className="px-4 py-2 text-nowrap bg-viridian text-onyx rounded-2xl w-fit self-end button uppercase">Mulai Beraksi</Link>
       </div>
     </div>
   );

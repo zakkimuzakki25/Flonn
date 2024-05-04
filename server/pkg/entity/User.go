@@ -20,8 +20,6 @@ type User struct {
 	NoTelp       string `json:"no_telepon" gorm:"type:VARCHAR(20);default:null"`
 	JenisKelamin string `json:"jenis_kelamin" gorm:"type:VARCHAR(250);default:null"`
 	Points       int    `json:"points" gorm:"type:INT;default:0"`
-	Volunteer    Volunteer
-	Donation     []Donation
 }
 
 // Models

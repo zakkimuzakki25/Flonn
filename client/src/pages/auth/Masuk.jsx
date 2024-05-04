@@ -104,7 +104,7 @@ const Masuk = () => {
           </div>
           {/* button */}
           <div className="flex flex-col gap-3 w-full">
-            <p className="bl text-red-600">{message}</p>
+            <p className="bs text-red-600">{message}</p>
             <PrimerButton2 type={"submit"} name={"MASUK"} />
             <div className="flex items-center gap-2 self-stretch">
               <div className="flex-grow h-0.5 bg-default mx-2"></div>

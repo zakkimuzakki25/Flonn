@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import Navbar from "../../components/layout/Navbar";
-import Footer from "../../components/layout/Footer";
+import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../../components/navigation/Navbar";
+import Footer from "../../components/navigation/Footer";
 import "./Home.css";
 import PrimerButton3 from "../../components/button/PrimerButton3";
 import NextArrow from "../../assets/icon/NextArrow.svg";
@@ -16,6 +16,7 @@ import { DataBannerHome } from "../../data/DataBannerHome";
 const Home = () => {
   const [indexBanner, setIndexBanner] = useState(0);
   const [itemBanner, setItemBanner] = useState(DataBannerHome[indexBanner]);
+  const nav = useNavigate()
 
   const handleNext = () => {
     setIndexBanner((prev) => (prev + 1) % DataBannerHome.length);
@@ -62,7 +63,9 @@ const Home = () => {
                 </p>
               </div>
               <div className="w-80">
-                <PrimerButton3 name={itemBanner.button} />
+                <PrimerButton3 name={itemBanner.button} handle={() => {
+                  nav(itemBanner.path)
+                }}/>
               </div>
             </div>
             <div className="flex flex-row gap-3 pt-16">

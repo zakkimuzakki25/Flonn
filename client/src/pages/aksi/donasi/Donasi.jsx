@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import Navbar from "../../../components/layout/Navbar";
-import Footer from "../../../components/layout/Footer";
+import Navbar from "../../../components/navigation/Navbar";
+import Footer from "../../../components/navigation/Footer";
 import { BaseAPI } from "../../../api/API";
 import DonationCard from "../../../components/card/disaster/DonationCard";
 import "./Donasi.css";

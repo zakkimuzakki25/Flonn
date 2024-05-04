@@ -3,8 +3,8 @@ import { storage } from "../../firebase/Firebase"
 import { getDownloadURL, ref } from "firebase/storage"
 import { Link, useParams } from "react-router-dom"
 import { Base } from "../../api/API"
-import Navbar from "../../components/layout/Navbar"
-import Footer from "../../components/layout/Footer"
+import Navbar from "../../components/navigation/Navbar"
+import Footer from "../../components/navigation/Footer"
 import LoadingPic from "../../components/helper/LoadingPic"
 // Status
 import iconStatus from "../../assets/icon/biodiversity/status/CR.svg"
@@ -56,7 +56,7 @@ const BiodiversityDetail = () => {
       if (!data.photo) return
 
       try {
-        const photoPath = data.photo.split("<>")[0]
+        const photoPath = data.photo
         const imageRef = ref(storage, photoPath)
 
         const url = await getDownloadURL(imageRef)

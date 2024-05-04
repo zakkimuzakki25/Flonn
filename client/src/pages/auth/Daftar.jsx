@@ -141,7 +141,7 @@ const Daftar = () => {
             </div>
               <GoogleButton name="Dengan Google" handler={googleHandle}/>
             </div>
-            <p className="bl text-red-600 self-center">{message}</p>
+            <p className="bs text-red-600 self-center">{message}</p>
           </div>
         </form>
       </div>

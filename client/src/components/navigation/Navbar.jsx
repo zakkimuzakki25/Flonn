@@ -75,8 +75,8 @@ const Navbar = () => {
                   key={index}
                   to={list.path}
                   className={`${
-                    loc.pathname === list.path ? "text-oldGreen cursor-default" : "hover:scale-110 hover:text-black"
-                  } flex ds items-center box-border transition-all duration-150 bg-none `}
+                    loc.pathname.includes(list.path) ? "text-oldGreen cursor-default" : "hover:scale-110 hover:text-black"
+                  } flex ds items-center box-border transition-all duration-150 bg-none`}
                 >
                   <h3 >{list.name}</h3>
                 </Link>
@@ -88,7 +88,7 @@ const Navbar = () => {
                   to="/profile"
                   className={`w-14 h-14 rounded-full overflow-hidden self-center`}
                 >
-                  <img src={photo} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+                  <img src={photo ? photo : "https://i.pinimg.com/originals/09/21/fc/0921fc87aa989330b8d403014bf4f340.jpg"} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
                 </Link>
             ) : (
               <>

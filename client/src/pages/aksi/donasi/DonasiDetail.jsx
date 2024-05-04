@@ -3,8 +3,8 @@ import { storage } from "../../../firebase/Firebase"
 import { getDownloadURL, ref } from "firebase/storage"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { Base } from "../../../api/API"
-import Navbar from "../../../components/layout/Navbar"
-import Footer from "../../../components/layout/Footer"
+import Navbar from "../../../components/navigation/Navbar"
+import Footer from "../../../components/navigation/Footer"
 import LoadingPic from "../../../components/helper/LoadingPic"
 import iconPerson from "../../../assets/icon/Person.svg"
 import iconShare from "../../../assets/icon/Share.svg"
@@ -14,46 +14,54 @@ import PrimerButton from "../../../components/button/PrimerButton"
 const DonasiDetail = () => {
   // eslint-disable-next-line no-unused-vars
   const nav = useNavigate()
-  const [image, setImage] = useState({ url: "https://firebasestorage.googleapis.com/v0/b/flonn-pubek.appspot.com/o/donation%2Fkonservasi%20harimau.jpg?alt=media&token=f2b68098-3fef-40d3-a648-85e9761810db", isLoading: false })
+  const [image, setImage] = useState({ url: "", isLoading: true })
   const { id } = useParams()
-//   const [data, setData] = useState({})
+  const [data, setData] = useState({})
+  const numberFormatter = new Intl.NumberFormat('id-ID');
 
-//   const getData = () => {
-//     Base.get(`/donasi/${id}`)
-//       .then((res) => {
-//         const dp = res.data.data
-//         setData(dp)
-//         console.log(res)
-//       })
-//       .catch((err) => {
-//         console.log(err)
-//       })
-//   }
+  const getData = () => {
+    Base.get(`/donation/${id}`)
+      .then((res) => {
+        const dp = res.data.data
+        setData(dp)
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 
-//   useEffect(() => {
-//     getData()
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, [id])
+  useEffect(() => {
+    getData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id])
 
-//   useEffect(() => {
-//     const fetchImage = async () => {
-//       if (!data.photo) return
+  useEffect(() => {
+    const fetchImage = async () => {
+      if (!data.photo) return
 
-//       try {
-//         const photoPath = "https://firebasestorage.googleapis.com/v0/b/flonn-pubek.appspot.com/o/donation%2Fkonservasi%20harimau.jpg?alt=media&token=f2b68098-3fef-40d3-a648-85e9761810db"
-//         // const photoPath = data.photo.split("<>")[0]
-//         const imageRef = ref(storage, photoPath)
+      try {
+        const photoPath = data.photo.split("<>")[0]
+        const imageRef = ref(storage, photoPath)
 
-//         const url = await getDownloadURL(imageRef)
-//         setImage({ url, isLoading: false })
+        const url = await getDownloadURL(imageRef)
+        setImage({ url, isLoading: false })
 
-//       } catch (error) {
-//         console.error("Error getting download URL:", error)
-//       }
-//     }
+      } catch (error) {
+        console.error("Error getting download URL:", error)
+      }
+    }
 
-//     fetchImage()
-//   }, [data.photo])
+    fetchImage()
+  }, [data.photo])
+
+  const normalize = (value, min, max, newMin, newMax) => {
+    if (min === max) {
+      return newMin;
+    }
+  
+    return ((value - min) * (newMax - newMin)) / (max - min) + newMin;
+  };
 
   return (
     <div className="bg-onyx">
@@ -61,17 +69,17 @@ const DonasiDetail = () => {
 
       <div className="flex flex-col w-full lg:mt-28">
         <div className="h-fit w-full flex flex-row px-40 py-2.5 gap-5">
-          <Link to={'/aksi'} className="bl text-white">Aksi</Link>
+          <Link to={'/aksi'} className="bl text-white hover:text-cambridgeBlue">Aksi</Link>
           <p className="bl text-white">&gt;</p>
-          <p className="bl text-cambridgeBlue">Donasi  korban kebakaran hutan di Ohio</p>
+          <p className="bl text-cambridgeBlue">Donasi {data.title}</p>
         </div>
         {image.isLoading ? (
-          <div className="w-full h-full justify-center items-center flex bg-default">
+          <div className="w-full h-550 justify-center items-center flex bg-default">
             <LoadingPic />
           </div>
         ) : (
           <img
-            src={"https://firebasestorage.googleapis.com/v0/b/flonn-pubek.appspot.com/o/donation%2Fkonservasi%20harimau.jpg?alt=media&token=f2b68098-3fef-40d3-a648-85e9761810db"}
+            src={image.url}
             className="w-full h-550 object-cover"
           />
         )}
@@ -80,28 +88,28 @@ const DonasiDetail = () => {
       <div className="flex flex-col bg-onyx px-40 py-16 gap-7">
         {/* donation recap */}
         <div className="flex flex-col bg-white p-7 rounded-3xl">
-            <p  className="ds">Donasi Korban Kebakaran Hutan di Ohio</p>
+            <p  className="ds">{data.title}</p>
             <div className="flex flex-row gap-7 text-black">
                 {/* goal */}
                 <div className="flex flex-col">
                     <p className="tl">Goal</p>
-                    <p style={{lineHeight: "1.2"}} className="tlb text-oldRose">Rp10.000.000</p>
+                    <p style={{lineHeight: "1.2"}} className="tlb text-oldRose">Rp{numberFormatter.format(data.total)}</p>
                 </div>
                 <div className="flex flex-col">
                     <p className="tl">Terkumpul</p>
-                    <p style={{lineHeight: "1.2"}} className="tlb text-viridian">Rp5.000.000</p>
+                    <p style={{lineHeight: "1.2"}} className="tlb text-viridian">Rp{numberFormatter.format(data.target)}</p>
                 </div>
             </div>
             {/* progress info */}
             <div className="flex flex-col mt-6 gap-4">
                 {/* bar */}
                 <div className="flex h-2.5 w-full rounded-full bg-abu">
-                    <div className="h-2.5 w-6/12 bg-cambridgeBlue rounded-full" />
+                    <div className={`h-2.5 w-${Math.round(normalize(data.total, 0, data.target, 0, 12))}/12 bg-cambridgeBlue rounded-full`} />
                 </div>
                 {/* user count */}
                 <div className="flex flex-row items-center gap-2">
                     <img src={iconPerson} />
-                    <p className="bs text-black">176 Donasi</p>
+                    <p className="bs text-black">{data.total_donors} Donasi</p>
                 </div>
             </div>
             {/* action */}
@@ -126,7 +134,7 @@ const DonasiDetail = () => {
         {/* description */}
         <div className="flex flex-col bg-white p-7 rounded-3xl pb-9">
             <p className="ds">KISAH BANTUAN</p>
-            <p className="bs">Mari bersama-sama membantu saudara-saudara kita yang terdampak oleh bencana kebakaran hutan di Ohio. Kebakaran yang melahap hutan dan mengancam kediaman banyak keluarga memerlukan respons cepat dan bantuan dari kita semua. Partisipasi Sobat Flonn sangat berharga, dan setiap sumbangan akan menjadi bagian dari upaya pemulihan dan bantuan bagi mereka yang membutuhkan. Mari kita tunjukkan kepedulian kita. Klik tombol Donasi dan berikan kontribusi seikhlasnya. Bagikan pula kebaikan ini dengan mengklik Share, karena setiap bantuan, tidak peduli besar atau kecil, sangat berarti. Bersama, kita bisa membuat perbedaan yang signifikan.</p>
+            <p className="bs">{data.description}</p>
         </div>
       </div>
 

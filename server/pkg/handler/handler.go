@@ -76,5 +76,10 @@ func (h *handler) registerRoutes() {
 
 	h.http.GET("/merch", h.getAllMerch)
 
-	api.GET("/od/all", h.getAllOpenDonation)
+	h.http.GET("/donation/all", h.getAllOpenDonation)
+	h.http.GET("/donation/:id", h.getOpenDonationByID)
+	h.http.GET("/volunteer/all", h.getAllOpenVolunteer)
+	h.http.GET("/volunteer/:id", h.getOpenVolunteerByID)
+	h.http.GET("/campaign/all", h.getAllOpenCampaign)
+	h.http.GET("/campaign/:id", h.getOpenCampaignByID)
 }

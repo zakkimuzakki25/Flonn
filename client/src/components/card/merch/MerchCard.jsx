@@ -7,7 +7,7 @@ import LoadingPic from "../../helper/LoadingPic";
 import starIcon from "../../../assets/icon/Star.svg"
 // import './MerchCard.css'
 
-// eslint-disable-next-line react/prop-types
+// eslint-disable-next-line react/prop-types, no-unused-vars
 const MerchCard = ({ title, id, photo, rate, floint, price }) => {
   const [image, setImage] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +29,7 @@ const MerchCard = ({ title, id, photo, rate, floint, price }) => {
 
   return (
     <Link
-      to={`/merch/${id}`}
+      // to={`/merch/${id}`}
       className="donationCard flex flex-col lg:w-64 lg:h-355 bg-white rounded-3xl overflow-hidden cursor-pointer shadow-s-default"
     >
       <div className="flex flex-col bg-white rounded-3xl h-full z-10 shadow-default">

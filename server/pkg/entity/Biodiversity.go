@@ -4,13 +4,18 @@ import "gorm.io/gorm"
 
 type Biodiversity struct {
 	gorm.Model
-	Name            string `json:"name" gorm:"type:VARCHAR(255);NOT NULL"`
-	LatinName       string `json:"latin_name" gorm:"type:VARCHAR(255);NOT NULL"`
-	Description     string `json:"description"`
-	Characteristics string `json:"characteristics"`
-	Behavior        string `json:"behavior"`
-	Photo           string `json:"photo"`
-	Coordinate      []BiodiversityCoordinate
+	Name            string  `json:"name" gorm:"type:VARCHAR(255);NOT NULL"`
+	LatinName       string  `json:"latin_name" gorm:"type:VARCHAR(255);NOT NULL"`
+	Populasi        string  `json:"populasi"`
+	BeratBadan      string  `json:"berat_badan"`
+	UkuranTubuh     string  `json:"ukuran_tubuh"`
+	RentangUsia     string  `json:"rentang_usia"`
+	Description     string  `json:"description"`
+	Characteristics string  `json:"characteristics"`
+	Status          string  `json:"status"`
+	Photo           string  `json:"photo"`
+	Latitude        float64 `json:"latitude"`
+	Longitude       float64 `json:"longitude"`
 	StatusID        int
 	HabitatID       int
 	SpeciesID       int

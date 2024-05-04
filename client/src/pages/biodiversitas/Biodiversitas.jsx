@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
-import Navbar from "../../components/layout/Navbar";
-import Footer from "../../components/layout/Footer";
+import Navbar from "../../components/navigation/Navbar";
+import Footer from "../../components/navigation/Footer";
 import BiodiversityCard from "../../components/card/biodiversity/BiodiversityCard";
 import "./Biodiversitas.css";
 import { Base } from "../../api/API";
