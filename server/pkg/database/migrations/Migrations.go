@@ -23,12 +23,12 @@ func MigrateData(db *gorm.DB) {
 		&entity.Species{},
 		&entity.Biodiversity{},
 		&entity.User{},
-		&entity.Donation{},
-		&entity.OpenDonation{},
 		&entity.Volunteer{},
 		&entity.OpenVolunteer{},
 		&entity.Campaign{},
 		&entity.OpenCampaign{},
+		&entity.Donation{},
+		&entity.OpenDonation{},
 		&entity.BiodiversityCoordinate{},
 	)
 }

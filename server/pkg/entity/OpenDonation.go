@@ -7,10 +7,8 @@ type OpenDonation struct {
 	Title       string  `json:"title"`
 	Photo       string  `json:"photo"`
 	Description string  `json:"description"`
-	Total       float64 `json:"total" gorm:"default:0"`
 	Target      float64 `json:"target"`
-	IsDisaster  bool    `gorm:"default:false"`
-	User        []User  `gorm:"many2many:donations"`
+	IsDisaster  bool    `json:"is_disaster"`
 }
 
 type OpenDonationResponse struct {
@@ -18,8 +16,8 @@ type OpenDonationResponse struct {
 	Title       string  `json:"title"`
 	Photo       string  `json:"photo"`
 	Description string  `json:"description"`
-	Total       float64 `json:"total" gorm:"default:0"`
+	Total       float64 `json:"total"`
 	Target      float64 `json:"target"`
-	IsDisaster  bool    `gorm:"default:false"`
+	IsDisaster  bool    `json:"is_disaster"`
 	TotalDonors int64   `json:"total_donors"`
 }

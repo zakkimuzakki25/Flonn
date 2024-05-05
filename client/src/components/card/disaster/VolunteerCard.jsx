@@ -15,7 +15,7 @@ const VolunteerCard = ({judul, subjudul, photo, tanggal, deskripsi, id}) => {
       </div>
       {/* button */}
       <div className="flex pb-6 pr-6">
-        <Link to={`/volunteer/${id}`} className="px-4 py-2 text-nowrap bg-viridian text-onyx rounded-2xl w-fit self-end button uppercase">Mulai Beraksi</Link>
+        <Link to={`/aksi/volunteer/${id}`} className="px-4 py-2 text-nowrap bg-viridian text-onyx rounded-2xl w-fit self-end button uppercase">Mulai Beraksi</Link>
       </div>
     </div>
   );

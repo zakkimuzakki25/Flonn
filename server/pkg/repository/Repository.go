@@ -14,6 +14,7 @@ type Repository struct {
 	OpenVolunteer OpenVolunteerInterface
 	OpenCampaign  OpenCampaignInterface
 	Merch         MerchInterface
+	Donation      DonationInterface
 }
 
 func Init(db *gorm.DB) *Repository {
@@ -29,5 +30,6 @@ func Init(db *gorm.DB) *Repository {
 		OpenVolunteer: OpenVolunteerRepoInit(db),
 		OpenCampaign:  OpenCampaignRepoInit(db),
 		Merch:         MerchRepoInit(db),
+		Donation:      DonationRepoInit(db),
 	}
 }

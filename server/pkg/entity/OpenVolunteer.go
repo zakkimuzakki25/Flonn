@@ -12,9 +12,9 @@ type OpenVolunteer struct {
 	Subtitle    string    `json:"subtitle"`
 	Photo       string    `json:"photo"`
 	Description string    `json:"description"`
+	Location    string    `json:"location"`
 	StartDate   time.Time `json:"start_date"`
 	EndDate     time.Time `json:"end_date"`
 	Tasks       string    `json:"tasks"`
 	Condition   string    `json:"condition"`
-	User        []User    `gorm:"many2many:volunteers"`
 }

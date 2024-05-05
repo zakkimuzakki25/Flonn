@@ -13,6 +13,7 @@ type OpenDonationInterface interface {
 	Update(openDonation *entity.OpenDonation) error
 	Delete(id int) error
 	CountDonors(openDonationID int) (int64, error)
+	SumDonations(openDonationID int) (float64, error)
 }
 
 type openDonation struct {
@@ -69,4 +70,18 @@ func (d *openDonation) CountDonors(openDonationID int) (int64, error) {
 		return 0, nil
 	}
 	return count, nil
+}
+
+func (d *openDonation) SumDonations(openDonationID int) (float64, error) {
+	var sum float64
+	err := d.db.Model(&entity.Donation{}).
+		Where("open_donation_id = ?", openDonationID).
+		Select("SUM(amount)").
+		Scan(&sum).
+		Error
+
+	if err != nil {
+		return 0, nil
+	}
+	return sum, nil
 }

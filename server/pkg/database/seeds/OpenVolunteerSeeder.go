@@ -10,6 +10,10 @@ import (
 func (s *seeder) seedDummyOpenVolunteer(sql *gorm.DB) error {
 	var objects []entity.OpenVolunteer
 
+	if err := sql.First(&objects).Error; err != gorm.ErrRecordNotFound {
+		return err
+	}
+
 	parseTime := func(str string) time.Time {
 		startDate, _ := time.Parse("2006-01-02", str)
 		return startDate
@@ -19,6 +23,7 @@ func (s *seeder) seedDummyOpenVolunteer(sql *gorm.DB) error {
 		{
 			Title:       "Relawan Konservasi Penyu",
 			Subtitle:    "Penyelamat alam",
+			Location:    "Pantai Kuta, Bali",
 			Photo:       "https://firebasestorage.googleapis.com/v0/b/flonn-pubek.appspot.com/o/volunteer%2FVOLUNTEER%20DETAIL%20KONSERVASI%20PENYU.jpg?alt=media&token=8ac46ebc-ac2c-4558-af62-e677fbea27e2",
 			Description: "FLONN mengajak para Flonteer untuk terjun langsung dalam aksi konservasi penyu di Pantai Kuta, Bali. Bergabung menjadi Flonteer dan mengambil bagian dalam kegiatan mulai dari pemantauan habitat hingga penyelamatan penyu yang terluka. Di sini, setiap tindakan Flonteer berkontribusi pada pelestarian kehidupan laut. Kegiatan edukasi yang dilakukan juga membuka mata masyarakat tentang pentingnya menjaga keberlangsungan spesies ini. Jadi, siapkah Sobat Flonn untuk membuat perbedaan? Gabung sekarang dan bantu FLONN menjaga agar pantai ini tetap menjadi rumah yang aman bagi penyu untuk generasi yang akan datang.",
 			StartDate:   parseTime("2024-06-23"),

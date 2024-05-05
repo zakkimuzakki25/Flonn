@@ -55,14 +55,6 @@ const DonasiDetail = () => {
     fetchImage()
   }, [data.photo])
 
-  const normalize = (value, min, max, newMin, newMax) => {
-    if (min === max) {
-      return newMin;
-    }
-  
-    return ((value - min) * (newMax - newMin)) / (max - min) + newMin;
-  };
-
   return (
     <div className="bg-onyx">
       <Navbar />
@@ -104,7 +96,7 @@ const DonasiDetail = () => {
             <div className="flex flex-col mt-6 gap-4">
                 {/* bar */}
                 <div className="flex h-2.5 w-full rounded-full bg-abu">
-                    <div className={`h-2.5 w-${Math.round(normalize(data.total, 0, data.target, 0, 12))}/12 bg-cambridgeBlue rounded-full`} />
+                    <div style={{width: `${(data.total/data.target)*100}%`}} className={`h-2.5 bg-cambridgeBlue rounded-full`} />
                 </div>
                 {/* user count */}
                 <div className="flex flex-row items-center gap-2">

@@ -47,6 +47,7 @@ export const DataMetodePembayaran = [
     id: 7,
     nama: "Mandiri Virtual Account",
     logo: Mandiri,
+    instructions: "Livin' By Mandiri (Mobile Banking)##Login Livin' by Mandiri:Pilih menu “Bayar”, kemudian ketik DOKU VA Aggregator atau 88899 pada bagian Search.:Atau, setelah ke menu “Bayar”, masuk ke menu “E-Commerce”.:Ketik DOKU Merchant atau 88899 pada bagian Search:Masukkan nomor Virtual Account Mandiri XXXXXXXXXXXXXXXX.:Masukkan nominal pembayaran.:Pilih rekening sumber.:Klik “Lanjut Bayar”, kemudian masukkan PIN dan konfirmasi.:Transaksi selesai dan simpan resi sebagai bukti transaksi.<>ATM Mandiri##Pilih menu “Bayar/Beli”.:Pilih menu “Multipayment”.:Masukkan kode perusahaan Bank Mandiri 89022, lalu tekan “Benar”.:Masukkan nomor Virtual Account XXXXXXXXXXXXXXXXX kemudian tekan “Benar”.:Pilih nomor 1 atau sesuai tagihan yang akan dibayar, lalu tekan “Ya”."
   },
   {
     id: 8,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ArrowDown from "../../assets/icon/map/ArrowDown.svg";
 import { DataMetodePembayaran } from "../../data/DataMetodePembayaran";
 import PrimerButton from "../button/PrimerButton";
@@ -16,6 +16,12 @@ const DropDownMetodePembayaran = ({
   const handleChangeMethod = (e) => {
     
   }
+
+  useEffect(() => {
+    if (selected) {
+      handleChange(selected);
+    }
+  }, [selected]);
 
   return (
     <div className="flex flex-col rounded-3xl px-12 py-10 bg-white">

@@ -26,8 +26,8 @@ import iconBeratBadan from "../../assets/icon/biodiversity/BeratBadan.svg"
 import iconUkuranTubuh from "../../assets/icon/biodiversity/UkuranTubuh.svg"
 import iconRentangUsia from "../../assets/icon/biodiversity/RentangUsia.svg"
 import iconDetail from "../../assets/icon/biodiversity/Detail.svg"
-import fmap from "./fMap.png"
 import TooltipRegular from "../../components/tooltips/TooltipRegular"
+import MapView from "../../components/map/MapView"
 
 const BiodiversityDetail = () => {
   const [image, setImage] = useState({ url: "", isLoading: true })
@@ -98,7 +98,7 @@ const BiodiversityDetail = () => {
           {/* 2 icon */}
           <div className="flex flex-row gap-4 justify-center">
             <TooltipRegular 
-              title={data.status}
+              title={data.status_id}
               text={data.status_description}
               object={<img src={iconStatus} className="cursor-pointer w-12 h-12"/>}
             />
@@ -145,7 +145,7 @@ const BiodiversityDetail = () => {
             <img src={iconPopulasi} />
             <div className="flex flex-col gap-0">
               <p className="bs font-semibold uppercase">populasi</p>
-              <p className="text-sm bs">400 - 500 Ekor</p>
+              <p className="text-sm bs">{data.populasi}</p>
             </div>
           </div>
           {/* berat badan */}
@@ -153,7 +153,7 @@ const BiodiversityDetail = () => {
             <img src={iconBeratBadan} />
             <div className="flex flex-col gap-0">
               <p className="bs font-semibold uppercase">berat badan</p>
-              <p className="text-sm bs">110 – 140 Kilogram</p>
+              <p className="text-sm bs">{data.berat_badan} Kilogram</p>
             </div>
           </div>
           {/* ukuran tubuh */}
@@ -161,7 +161,7 @@ const BiodiversityDetail = () => {
             <img src={iconUkuranTubuh} />
             <div className="flex flex-col gap-0">
               <p className="bs font-semibold uppercase">ukuran tubuh</p>
-              <p className="text-sm bs">2.1 – 2.3 Meters</p>
+              <p className="text-sm bs">{data.ukuran_tubuh} Meters</p>
             </div>
           </div>
           {/* rentang usia */}
@@ -169,7 +169,7 @@ const BiodiversityDetail = () => {
             <img src={iconRentangUsia} />
             <div className="flex flex-col gap-0">
               <p className="bs font-semibold uppercase">rentang usia</p>
-              <p className="text-sm bs">15 - 26 Tahun</p>
+              <p className="text-sm bs">{data.rentang_usia} Tahun</p>
             </div>
           </div>
           {/* detail */}
@@ -177,7 +177,7 @@ const BiodiversityDetail = () => {
             <img src={iconDetail} />
             <div className="flex flex-col gap-0">
               <p className="bs font-semibold uppercase">detail</p>
-              <Link className="text-sm bs w-28">Klik untuk melihat lebih lanjut</Link>
+              <Link className="text-sm bs w-28 hover:text-oldGreen">Klik untuk melihat lebih lanjut</Link>
             </div>
           </div>
         </div>
@@ -202,7 +202,9 @@ const BiodiversityDetail = () => {
               className="ds uppercase"
             >lokasi</p>
           </div>
-          <img src={fmap} />
+          <div className="w-full h-300 flex items-center justify-center">
+            <MapView apikey={import.meta.env.VITE_MAPS_KEY} centerLat={data.latitude} centerLong={data.longitude} zoomLevel={6}/>
+          </div>
         </div>
       </div>
 
@@ -213,15 +215,23 @@ const BiodiversityDetail = () => {
             Karakteristik
           </div>
 
-          <div className="relative -top-5 z-10 bg-white lg:py-12 lg:px-14 rounded-3xl flex flex-row shadow-default justify-between">{data.characteristics}</div>
+          <div className="relative -top-5 z-10 bg-white lg:py-12 lg:px-14 rounded-3xl flex flex-col shadow-default justify-between">{data.characteristics && (
+            data.characteristics.split("<>").map((item, index) => (
+              <p className="bs" key={index}>{item}</p>
+            ))
+          )}</div>
         </div>
 
         <div className="w-full h-fit flex flex-col bg-transparent rounded-3xl">
           <div className="ds text-onyx text-center pt-1 w-96 pb-5 bg-jasmine rounded-t-3xl shadow-default z-10 self-end">
-            Perilaku
+            Status
           </div>
 
-          <div className="relative -top-5 z-10 bg-white lg:py-12 lg:px-14 rounded-3xl flex flex-row shadow-default justify-between">{data.behavior}</div>
+          <div className="relative -top-5 z-10 bg-white lg:py-12 lg:px-14 rounded-3xl flex flex-col shadow-default justify-between">{data.status && (
+            data.status.split("<>").map((item, index) => (
+              <p className="bs" key={index}>{item}</p>
+            ))
+          )}</div>
         </div>
       </div>
 

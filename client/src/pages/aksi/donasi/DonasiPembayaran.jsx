@@ -1,18 +1,25 @@
+/* eslint-disable no-unused-vars */
 import Navbar from "../../../components/navigation/Navbar"
 import Footer from "../../../components/navigation/Footer"
-import { Link, useParams, useSearchParams } from "react-router-dom"
-import { useState } from "react"
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom"
+import { useEffect, useState } from "react"
 import DropDownMetodePembayaran from "../../../components/bar/DropDownMetodePembayaran"
 import Input from "../../../components/bar/Input"
+import PrimerButton from "../../../components/button/PrimerButton"
+import { Base, BaseAPI } from "../../../api/API"
 
 const DonasiPembayaran = () => {
   const [namaLengkap, setNamaLengkap] = useState("");
   const [nomorPonsel, setNomorPonsel] = useState("");
   const [email, setEmail] = useState("");
+  const [metodePembayaran, setMetodePembayaran] = useState("");
   const [isCheck, setIsCheck] = useState(false);
   const [nominal, setNominal] = useState("");
-  const [searchParams] = useSearchParams()
   const { id } = useParams()
+  const [data, setData] = useState({})
+  const token = window.localStorage.getItem('token')
+
+  const nav = useNavigate()
 
   const handleChange = (e) => {
     let val = parseFloat(e.target.value);
@@ -22,6 +29,55 @@ const DonasiPembayaran = () => {
     setNominal(val);
   };
 
+  const submitHandle = (e) => {
+    e.preventDefault();
+
+    if (!nominal || !metodePembayaran) {
+      alert("Isi semua field");
+      return;
+    }
+
+    console.log(id);
+    console.log(nominal);
+    console.log(metodePembayaran.nama);
+
+    BaseAPI.post("/donation/add", {
+      open_donation_id: Number(id),
+      amount: Number(nominal),
+      payment_method: metodePembayaran.nama,
+    }, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => {
+        const id = res.data.data.ID;
+        if (id) {
+          nav(`/pembayaran/${id}`);
+        }
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
+
+  const getData = () => {
+    Base.get(`/donation/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        const dp = res.data.data;
+        setData(dp);
+        console.log("data", res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
   return (
     <div className="bg-onyx">
       <Navbar />
@@ -30,7 +86,7 @@ const DonasiPembayaran = () => {
         <div className="h-fit w-full flex flex-row px-40 py-2.5 gap-5 lg:mt-28">
             <Link to={'/aksi'} className="bl text-white hover:text-cambridgeBlue">Aksi</Link>
             <p className="bl text-white">&gt;</p>
-            <Link to={`/aksi/donasi/${id}`} className="bl text-white hover:text-cambridgeBlue">{searchParams.get('title')}</Link>
+            <Link to={`/aksi/donasi/${id}`} className="bl text-white hover:text-cambridgeBlue">{data.title}</Link>
             <p className="bl text-white">&gt;</p>
             <p className="bl text-cambridgeBlue">Metode Pembayaran</p>
         </div>
@@ -55,6 +111,7 @@ const DonasiPembayaran = () => {
         {/* opsi metode pembayaran */}
         <DropDownMetodePembayaran 
           holder={"PILIH METODE PEMBAYARAN"}
+          handleChange={setMetodePembayaran}
         />
 
         {/* form data */}
@@ -80,11 +137,13 @@ const DonasiPembayaran = () => {
               handleChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="flex flex-row gap-2.5 pt-4">
-              <input type="checkbox" className="self-center" onChange={() => setIsCheck(!isCheck)}
-                checked={isCheck}/>
+          <div className="flex flex-row justify-between mt-5">
+            <div className="flex flex-row gap-2.5 pt-4">
+              <input type="checkbox" className="self-center" onChange={() => setIsCheck(!isCheck)} checked={isCheck}/>
               <p className="bs flex flex-row gap-1">Sembunyikan nama saya (donasi sebagai anonim)</p>
             </div>
+            <div className="w-40"><PrimerButton name="DONASI" handle={submitHandle} /></div>
+          </div>
         </form>
       </div>
 

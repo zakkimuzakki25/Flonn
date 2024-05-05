@@ -10,5 +10,5 @@ type OpenCampaign struct {
 	Description string `json:"description"`
 	Keterangan  string `json:"keterangan"`
 	Steps       string `json:"steps"`
-	User        []User `gorm:"many2many:user_campaigns"`
+	IsPositive  bool   `json:"is_positive"`
 }

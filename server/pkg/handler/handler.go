@@ -78,6 +78,8 @@ func (h *handler) registerRoutes() {
 
 	h.http.GET("/donation/all", h.getAllOpenDonation)
 	h.http.GET("/donation/:id", h.getOpenDonationByID)
+	api.POST("/donation/add", h.addDonation)
+	api.GET("/payment/:id", h.getDonationByID)
 	h.http.GET("/volunteer/all", h.getAllOpenVolunteer)
 	h.http.GET("/volunteer/:id", h.getOpenVolunteerByID)
 	h.http.GET("/campaign/all", h.getAllOpenCampaign)
