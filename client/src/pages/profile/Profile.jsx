@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Footer from "../../components/navigation/Footer"
 import Navbar from "../../components/navigation/Navbar"
 import SettingIcon from "../../assets/icon/SettingIcon.svg"
+import PrimerButton4 from "../../components/button/PrimerButton4"
 
 const Profile = () => {
+    const nav = useNavigate()
+
   return (
     <>
         <Navbar />
@@ -24,8 +27,13 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-                <div className="self-end">
+                <div className="flex flex-col justify-between items-end">
                     <Link to={'/profile/edit'}><img src={SettingIcon} /></Link>
+                    <div className="w-32"><PrimerButton4 name={"Keluar"} handle={() => {
+                        window.localStorage.setItem('token', "")
+                        nav("/masuk")
+                    }
+                    }/></div>
                 </div>
             </div>
 

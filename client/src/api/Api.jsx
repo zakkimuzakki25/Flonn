@@ -5,7 +5,7 @@ const Base = axios.create({
 })
 
 const BaseAPI = axios.create({
-  baseURL: import.meta.env.VITE_SERVER_URL + "api/",
+  baseURL: import.meta.env.VITE_SERVER_URL + "/api/",
 })
 
 export { Base, BaseAPI }

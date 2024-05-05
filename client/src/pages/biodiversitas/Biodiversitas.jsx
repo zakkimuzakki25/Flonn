@@ -31,9 +31,7 @@ const Biodiversitas = () => {
             The more you know, the more you don&apos;t know
           </h1>
           <p className="tl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-            vulputate vehicula fermentum. Proin commodo ultricies mauris, at
-            placerat velit viverra ac.
+            Pelajari lebih banyak mengenai biodiversitas melalui Perpustakaan di Flonn untuk memperluas wawasanmu.
           </p>
         </div>
       </div>

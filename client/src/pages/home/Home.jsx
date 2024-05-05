@@ -171,7 +171,7 @@ const Home = () => {
             Intip koleksi FLONN yang keren dan sayang banget buat dilewatin! Semua item dari pakaian yang nyaman, aksesoris gaul, sampai kerajinan tangan yang autentik, semuanya dibuat dengan cinta untuk alam. Pilih favoritmu dan tunjukkan peduli kamu buat bumi kita. Ayo, wujudkan perubahan dengan gaya yang beda dan bakti yang nyata! 
           </p>
           <Link
-            to={"/merch"}
+            to={"/toko"}
             className="button flex flex-row gap-2 bg-jasmine w-fit rounded-2xl uppercase lg:py-2 lg:px-4 text-onyx self-end"
           >
             INTIP MERCHANDISE SEKARANG
