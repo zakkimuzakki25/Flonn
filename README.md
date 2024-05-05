@@ -9,5 +9,5 @@ Hello, we are from Brawijaya University
 
 Flonn is a web platform that focus on social environment campaign where user can monitor natural disaster impact, biodiversity conservation status, and contribute their resources for the better future.
 
-# Link
+# Our Product
 [https://flonn-pubek.web.app](https://flonn-pubek.web.app)
