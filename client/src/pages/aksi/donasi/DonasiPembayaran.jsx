@@ -55,7 +55,7 @@ const DonasiPembayaran = () => {
         }
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
   };
 
@@ -105,7 +105,7 @@ const DonasiPembayaran = () => {
                     placeholder="0"
                 />
             </div>
-            <p className="bs text-gray">Nominal donasi minimal Rp10.000</p>
+            <p className="bs text-gray">Silahkan donasi seikhlasnya</p>
         </div>
 
         {/* opsi metode pembayaran */}

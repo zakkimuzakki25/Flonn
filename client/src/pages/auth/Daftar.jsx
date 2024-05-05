@@ -9,6 +9,7 @@ import FakeButton from "../../components/button/FakeButton";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase/Firebase";
 import PrimerButton2 from "../../components/button/PrimerButton2";
+import LoadingPic from "../../components/helper/LoadingPic";
 
 const Daftar = () => {
   const nav = useNavigate();
@@ -21,11 +22,14 @@ const Daftar = () => {
   const [message, setMessage] = useState("");
   const [isCheck, setIsCheck] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const provider = new GoogleAuthProvider();
 
   const submitHandle = (e) => {
     e.preventDefault();
 
+    setIsLoading(true);
     Base.post("/user/register", {
       firstname: firstname,
       lastname: lastname,
@@ -39,10 +43,14 @@ const Daftar = () => {
       .catch((err) => {
         console.log(err.response.data);
         setMessage(err.response.data.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
   const googleHandle = () => {
+    setIsLoading(true);
     signInWithPopup(auth, provider)
   .then((result) => {
     // const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -63,10 +71,14 @@ const Daftar = () => {
   }).catch((error) => {
     // Handle Errors here.
     console.log("error", error)
+  })
+  .finally(() => {
+    setIsLoading(false);
   });
   }
 
   const SignUpGoogle = () => {
+    setIsLoading(true);
     Base.post("/user/auth/google", {
       firstname: firstname,
       lastname: lastname,
@@ -81,11 +93,15 @@ const Daftar = () => {
       .catch((err) => {
         console.log(err.response.data);
         setMessage(err.response.data.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
   return (
     <div className="w-screen h-screen overflow-hidden bg-default flex">
+      {isLoading && <div className="fixed w-screen h-screen bg-black bg-opacity-50 z-50"><LoadingPic /></div>}
       {/* left */}
       <div className="lg:w-full flex justify-center items-center">
         <form

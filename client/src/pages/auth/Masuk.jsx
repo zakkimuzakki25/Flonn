@@ -8,6 +8,7 @@ import { Base } from "../../api/API";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase/Firebase";
 import PrimerButton2 from "../../components/button/PrimerButton2";
+import LoadingPic from "../../components/helper/LoadingPic";
 
 const Masuk = () => {
   const nav = useNavigate();
@@ -20,11 +21,14 @@ const Masuk = () => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const provider = new GoogleAuthProvider();
 
   const submitHandle = (e) => {
     e.preventDefault();
 
+    setIsLoading(true);
     Base.post("/user/login", {
       email: email,
       password: password,
@@ -37,10 +41,14 @@ const Masuk = () => {
       .catch((err) => {
         console.log(err.response.data);
         setMessage(err.response.data.message);
-      });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
   };
 
   const googleHandle = () => {
+    setIsLoading(true);
     signInWithPopup(auth, provider)
   .then((result) => {
     // const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -61,10 +69,14 @@ const Masuk = () => {
   }).catch((error) => {
     // Handle Errors here.
     console.log("error", error)
-  });
+  })
+  .finally(() => {
+    setIsLoading(false);
+  })
   }
 
   const SignUpGoogle = () => {
+    setIsLoading(true);
     Base.post("/user/auth/google", {
       firstname: firstname,
       lastname: lastname,
@@ -79,11 +91,15 @@ const Masuk = () => {
       .catch((err) => {
         console.log(err.response.data);
         setMessage(err.response.data.message);
-      });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
   };
 
   return (
     <div className="w-screen h-screen overflow-hidden bg-default flex ">
+      {isLoading && <div className="fixed w-screen h-screen bg-black bg-opacity-50 z-50"><LoadingPic /></div>}
       {/* left */}
       <div className="lg:w-full flex justify-center items-center">
         <form onSubmit={submitHandle} className="bg-white -shadow-x-axis lg:w-100 h-fit flex flex-col lg:gap-4 lg:py-12 lg:px-12 text-default rounded-xl justify-center items-center">

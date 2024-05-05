@@ -34,7 +34,6 @@ const Navbar = () => {
         }
       }, (err) => {
         console.log("error : ", err)
-        window.localStorage.setItem('token', '')
       })
   }
 
