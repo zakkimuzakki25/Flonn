@@ -84,11 +84,11 @@ const DonasiDetail = () => {
             <div className="flex flex-row gap-7 text-black">
                 {/* goal */}
                 <div className="flex flex-col">
-                    <p className="tl">Goal</p>
+                    <p className="tl">Terkumpul</p>
                     <p style={{lineHeight: "1.2"}} className="tlb text-oldRose">Rp{numberFormatter.format(data.total)}</p>
                 </div>
                 <div className="flex flex-col">
-                    <p className="tl">Terkumpul</p>
+                    <p className="tl">Goal</p>
                     <p style={{lineHeight: "1.2"}} className="tlb text-viridian">Rp{numberFormatter.format(data.target)}</p>
                 </div>
             </div>
