@@ -59,11 +59,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className={`${isHidden && `-translate-y-full`} navbar transition-all flex lg:px-40 lg:py-4 w-full h-28 bg-white z-50 shadow-default fixed top-0`}>
+    <div className={`${isHidden && `-translate-y-full`} navbar transition-all flex px-1 py-1 md:px-40 md:py-4 w-full h-10 md:h-28 bg-white z-50 shadow-default fixed top-0`}>
         <div className="flex w-full justify-between">
 
           <Link to={"/"} className="flex items-center hover:scale-105 transition-all">
-            <img src={logo} alt="" className='w-20 h-20' />
+            <img src={logo} alt="" className='w-7 h-7 md:w-20 md:h-20' />
             <div className="ds">FLONN</div>
           </Link>
 
