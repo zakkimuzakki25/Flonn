@@ -73,6 +73,9 @@ export default {
           '100%': { transform: 'scale(0.3)' },
         },
       },
+      fontFamily: {
+        'barlow': ['Barlow', 'sans-serif'],
+      }
     },
   },
   plugins: [],

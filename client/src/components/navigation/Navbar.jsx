@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from "react-router-dom";
 import { DataNavbar } from '../../data/DataNavbar';
 import logo from "../../assets/logo/logo.png"
-import { BaseAPI } from '../../api/API';
+import { BaseAPI } from '../../api/Api';
 import { DefaultPhotoProfile } from '../../data/DefaultData';
 
 const Navbar = () => {
@@ -21,7 +21,6 @@ const Navbar = () => {
   }, [token])
 
   const getDataUser = () => {
-    // console.log(`Bearer ${token}`)
     BaseAPI.get('navbar', {
         headers: { Authorization: `Bearer ${token}` },
       }).then((res) => {
@@ -34,6 +33,7 @@ const Navbar = () => {
         }
       }, (err) => {
         console.log("error : ", err)
+        window.localStorage.setItem('token', '')
       })
   }
 

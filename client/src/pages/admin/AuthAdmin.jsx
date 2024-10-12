@@ -4,7 +4,7 @@ import logo from "../../assets/logo/logo-white.png";
 import Input from "../../components/bar/Input";
 import { useState } from "react";
 import SecondButton from "../../components/button/SecondButton";
-import { Base } from "../../api/API";
+import { Base } from "../../api/Api";
 
 const AuthAdmin = () => {
   const nav = useNavigate();
@@ -22,7 +22,7 @@ const AuthAdmin = () => {
       .then((res) => {
         console.log(res.data);
         window.localStorage.setItem('token-adm', res.data.data.token)
-        nav("/");
+        nav("/b-admin");
       })
       .catch((err) => {
         console.log(err.response.data);
@@ -33,26 +33,24 @@ const AuthAdmin = () => {
     <div className="w-screen h-screen overflow-hidden bg-default flex ">
       {/* left */}
       <div className="lg:w-full flex justify-center items-center">
-        <form onSubmit={submitHandle} className="bg-abu -shadow-x-axis lg:w-455 h-fit flex flex-col lg:gap-10 lg:py-12 lg:px-16 text-default rounded-xl justify-center items-center">
+        <form onSubmit={submitHandle} className="bg-white -shadow-x-axis lg:w-455 h-fit flex flex-col lg:gap-8 lg:py-12 lg:px-16 text-default rounded-xl justify-center items-center">
           <h1 className="dl text-5xl">ADMIN</h1>
-          <div className="flex flex-col gap-3 w-full">
+          <div className="flex flex-col w-full">
             <Input
-              textLabel="Key"
               type="password"
               id="key"
-              holder="Masukkan key"
+              holder="masukkan key"
               handleChange={(e) => setKey(e.target.value)}
             />
             <Input
-              textLabel="Password"
               type="password"
               id="password"
-              holder="Masukkan password"
+              holder="masukkan password"
               handleChange={(e) => setPassword(e.target.value)}
             />
           </div>
           {/* button */}
-          <div className="flex flex-col gap-3 w-full">
+          <div className="flex flex-col gap-3 w-full mt-2">
             <SecondButton type={"submit"} name={"MASUK"}/>
           </div>
         </form>

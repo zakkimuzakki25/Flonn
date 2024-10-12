@@ -15,11 +15,20 @@ type User struct {
 	Password     string `json:"password" gorm:"type:VARCHAR(255);NOT NULL"`
 	Birthdate    string `json:"birthdate" gorm:"default:null"`
 	Domisili     string `json:"domisili" gorm:"type:VARCHAR(50);default:null"`
+	Address      string `json:"address" gorm:"type:VARCHAR(255);default:null"`
 	Photo        string `json:"photo" gorm:"default:null"`
 	Deskripsi    string `json:"deskripsi" gorm:"type:VARCHAR(250);default:null"`
 	NoTelp       string `json:"no_telepon" gorm:"type:VARCHAR(20);default:null"`
 	JenisKelamin string `json:"jenis_kelamin" gorm:"type:VARCHAR(250);default:null"`
 	Points       int    `json:"points" gorm:"type:INT;default:0"`
+}
+
+type UserUpdateProfile struct {
+	Firstname    string `json:"firstname" gorm:"type:VARCHAR(255);NOT NULL"`
+	Lastname     string `json:"lastname" gorm:"type:VARCHAR(255);NOT NULL"`
+	Birthdate    string `json:"birthdate" gorm:"default:null"`
+	Address      string `json:"address" gorm:"type:VARCHAR(255);default:null"`
+	JenisKelamin string `json:"jenis_kelamin" gorm:"type:VARCHAR(250);default:null"`
 }
 
 // Models

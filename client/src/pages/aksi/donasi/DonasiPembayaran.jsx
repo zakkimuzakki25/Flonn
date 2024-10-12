@@ -6,7 +6,8 @@ import { useEffect, useState } from "react"
 import DropDownMetodePembayaran from "../../../components/bar/DropDownMetodePembayaran"
 import Input from "../../../components/bar/Input"
 import PrimerButton from "../../../components/button/PrimerButton"
-import { Base, BaseAPI } from "../../../api/API"
+import { Base, BaseAPI } from "../../../api/Api"
+import FakeButton from "../../../components/button/FakeButton"
 
 const DonasiPembayaran = () => {
   const [namaLengkap, setNamaLengkap] = useState("");
@@ -142,7 +143,13 @@ const DonasiPembayaran = () => {
               <input type="checkbox" className="self-center" onChange={() => setIsCheck(!isCheck)} checked={isCheck}/>
               <p className="bs flex flex-row gap-1">Sembunyikan nama saya (donasi sebagai anonim)</p>
             </div>
-            <div className="w-40"><PrimerButton name="DONASI" handle={submitHandle} /></div>
+            <div className="w-40">
+              { nominal && metodePembayaran && ((email && namaLengkap && nomorPonsel) || isCheck) ? (
+                <PrimerButton name="DONASI" handle={submitHandle} />
+              ) : (
+                <FakeButton name={"DONASI"} />
+              )}
+            </div>
           </div>
         </form>
       </div>

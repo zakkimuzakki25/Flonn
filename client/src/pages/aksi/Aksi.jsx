@@ -1,16 +1,16 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/navigation/Navbar";
 import Footer from "../../components/navigation/Footer";
 import "./Aksi.css";
-import { Base } from "../../api/API";
 import NextArrow from "../../assets/icon/NextArrow.svg";
 import PrevArrow from "../../assets/icon/PrevArrow.svg";
 import PrimerButton3 from "../../components/button/PrimerButton3";
 import DonationCard from "../../components/card/disaster/DonationCard";
 import VolunteerCard from "../../components/card/disaster/VolunteerCard";
-import LoadingPic from "../../components/helper/LoadingPic";
 import { useLocation, useNavigate } from "react-router-dom";
+import { LoadingContext } from "../../context/LoadingContext";
+import { Base } from "../../api/Api";
 
 const Aksi = () => {
   const [dataDonasi, setDataDonasi] = useState([]);
@@ -21,6 +21,8 @@ const Aksi = () => {
   const token = window.localStorage.getItem("token");
 
   const nav = useNavigate();
+
+  const {setIsLoading} = useContext(LoadingContext);
 
   const handleNext = () => {
     setIndexBanner((prev) => (prev + 1) % dataCampaign.length);
@@ -35,6 +37,7 @@ const Aksi = () => {
   }, [indexBanner, dataCampaign]);
 
   const getData = async () => {
+    setIsLoading(true);
     try {
       const res = await Base.get(`/donation/all`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -77,6 +80,7 @@ const Aksi = () => {
     } catch (err) {
       console.error("Error :", err);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -116,7 +120,7 @@ const Aksi = () => {
           {/* content */}
           <div className="flex flex-col w-full">
             <div className="h-96 gap-5 flex flex-col justify-center">
-              {itemBanner ? (
+              {itemBanner && (
                 <>
                   <div className="w-700">
                     <p
@@ -140,8 +144,6 @@ const Aksi = () => {
                     )}
                   </div>
                 </>
-              ) : (
-                <LoadingPic />
               )}
             </div>
             <div className="flex flex-row gap-3 pt-16">
@@ -175,7 +177,7 @@ const Aksi = () => {
         </div>
         {/* list */}
         <div className="flex flex-row gap-5 overflow-auto p-3">
-          {dataDonasi ? (
+          {dataDonasi && (
             dataDonasi.map((item, index) => {
               return (
                 <div key={index} className="lg:mb-10">
@@ -185,14 +187,11 @@ const Aksi = () => {
                     deskripsi={item.description}
                     photo={item.photo}
                     title={item.title}
+                    date={item.date}
                   />
                 </div>
               );
             })
-          ) : (
-            <div className="h-96 w-full justify-center items-center">
-              <LoadingPic />
-            </div>
           )}
         </div>
       </div>

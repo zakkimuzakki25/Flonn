@@ -49,17 +49,28 @@ func (h *handler) Run() {
 
 func (h *handler) registerRoutes() {
 	api := h.http.Group("/api")
-	// admin := h.http.Group("/admin")
+	admin := h.http.Group("/admin")
 
 	api.Use(middleware.JwtMiddleware(h.help))
-	// admin.Use(middleware.JwtMiddlewareAdmin(h.help))
+	admin.Use(middleware.JwtMiddlewareAdmin(h.help))
+
+	admin.GET("/campaign/proof/:id", h.getCampaignProofByID)
+	admin.GET("/ktp/unverified", h.getAllUnverifiedKTP)
+	admin.POST("/ktp/update", h.updateKTPStatus)
+	admin.POST("/campaign/proof/update", h.updateCampaignProofStatus)
+	admin.GET("/test", h.adminAuthTest)
 
 	h.http.POST("/user/register", h.userRegister)
 	h.http.POST("/user/auth/google", h.userAuthWithGoogle)
 	h.http.POST("/user/login", h.userLogin)
 	h.http.POST("/admin/login", h.adminLogin)
 
-	api.GET("/navbar", h.getUserProfile)
+	api.GET("/navbar", h.getUserNavbarProfile)
+	api.GET("/user/profile", h.getUserProfile)
+	api.POST("/user/profile", h.userUpdateProfile)
+	api.POST("/user/photo", h.userUpdatePhotoProfile)
+	api.POST("/user/ktp", h.userKTPUpload)
+	api.GET("/user/ktp-status", h.userGetKTPStatus)
 
 	h.http.GET("/disaster/all", h.getAllDisaster)
 	h.http.GET("/disaster/years", h.getDisasterYears)
@@ -80,8 +91,14 @@ func (h *handler) registerRoutes() {
 	h.http.GET("/donation/:id", h.getOpenDonationByID)
 	api.POST("/donation/add", h.addDonation)
 	api.GET("/payment/:id", h.getDonationByID)
+
 	h.http.GET("/volunteer/all", h.getAllOpenVolunteer)
 	h.http.GET("/volunteer/:id", h.getOpenVolunteerByID)
+	api.POST("/volunteer/join/:id", h.userJoinVolunteer)
+	api.GET("/volunteer/user-status/:id", h.getUserVolunteerStatus)
+
 	h.http.GET("/campaign/all", h.getAllOpenCampaign)
 	h.http.GET("/campaign/:id", h.getOpenCampaignByID)
+	api.GET("/campaign/user-status/:id", h.getUserCampaignStatus)
+	api.POST("/user/campaign/:id", h.userJoinCampaign)
 }

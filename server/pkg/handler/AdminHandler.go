@@ -45,3 +45,7 @@ func (h *handler) adminLogin(ctx *gin.Context) {
 		"token": tokenJwt,
 	})
 }
+
+func (h *handler) adminAuthTest(ctx *gin.Context) {
+	h.help.SuccessResponse(ctx, http.StatusOK, "Admin Authenticated", nil)
+}

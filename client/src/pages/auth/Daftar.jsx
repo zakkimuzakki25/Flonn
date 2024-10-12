@@ -4,7 +4,7 @@ import logo from "../../assets/logo/logo-white.png";
 import Input from "../../components/bar/Input";
 import { useState } from "react";
 import GoogleButton from "../../components/button/GoogleButton";
-import { Base } from "../../api/API";
+import { Base } from "../../api/Api";
 import FakeButton from "../../components/button/FakeButton";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase/Firebase";
@@ -18,7 +18,6 @@ const Daftar = () => {
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [photo, setPhoto] = useState("");
   const [message, setMessage] = useState("");
   const [isCheck, setIsCheck] = useState(false);
 
@@ -52,42 +51,33 @@ const Daftar = () => {
   const googleHandle = () => {
     setIsLoading(true);
     signInWithPopup(auth, provider)
-  .then((result) => {
-    // const credential = GoogleAuthProvider.credentialFromResult(result);
-    // const token = credential.accessToken;
-    const user = result.user;
+      .then((result) => {
+        const user = result.user;
+        const fullNameArray = user.displayName.split(" ");
+        const firstName = fullNameArray[0];
+        const lastName = fullNameArray.length > 1 ? fullNameArray.slice(1).join(" ") : "";
 
-    const fullNameArray = user.displayName.split(" ")
-    const firstName = fullNameArray[0]
-    if (fullNameArray.length > 1) {
-      const lastName = fullNameArray.slice(1).join(" ")
-      setLastname(lastName)
-    }
-    
-    setFirstname(firstName)
-    setPhoto(user.photoURL)
-    setEmail(user.email)
-    SignUpGoogle()
-  }).catch((error) => {
-    // Handle Errors here.
-    console.log("error", error)
-  })
-  .finally(() => {
-    setIsLoading(false);
-  });
-  }
+        SignUpGoogle(firstName, lastName, user.email, user.photoURL);
+      })
+      .catch((error) => {
+        console.log("error", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
-  const SignUpGoogle = () => {
+  const SignUpGoogle = (firstName, lastName, email, photo) => {
     setIsLoading(true);
     Base.post("/user/auth/google", {
-      firstname: firstname,
-      lastname: lastname,
+      firstname: firstName,
+      lastname: lastName,
       email: email,
       photo: photo,
     })
       .then((res) => {
         console.log(res.data);
-        window.localStorage.setItem('token', res.data.data.token)
+        window.localStorage.setItem("token", res.data.data.token);
         nav("/");
       })
       .catch((err) => {
@@ -155,7 +145,7 @@ const Daftar = () => {
               <div className="tl text-default">atau</div>
               <div className="flex-grow h-0.5 bg-default mx-2"></div>
             </div>
-              <GoogleButton name="Dengan Google" handler={googleHandle}/>
+              <GoogleButton handler={googleHandle}/>
             </div>
             <p className="bs text-red-600 self-center">{message}</p>
           </div>

@@ -14,7 +14,6 @@ const PopupSucces = ({heading, body, nameButton, handlerButton, handlerClose}) =
                 />
             </button>
 
-
             <p style={{lineHeight: "1.3"}} className="ds text-center">{heading}</p>
             <img src={iconSucces} className="py-3"/>
             {body && <p className="bs min-h-14">{body}</p>}

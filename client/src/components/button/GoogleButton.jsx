@@ -1,7 +1,7 @@
 import logoGoogle from '../../assets/icon/google.svg';
 
 // eslint-disable-next-line react/prop-types
-const GoogleButton = ({ name, handler, widthType = "full" }) => {
+const GoogleButton = ({ handler, widthType = "full" }) => {
   return (
     <button
       className={`flex justify-center items-center button lg:py-3 lg:gap-3 w-${widthType} bg-white hover:bg-gray-100 rounded-2xl shadow-s-default `}
@@ -10,7 +10,7 @@ const GoogleButton = ({ name, handler, widthType = "full" }) => {
     >
       <img src={logoGoogle} className="w-4 lg:w-6" />
       <div className="flex self-stretch items-center text-default button uppercase">
-        {name}
+      Lanjut dengan Google
       </div>
     </button>
   );

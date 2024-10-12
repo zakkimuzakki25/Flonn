@@ -1,83 +1,394 @@
-import DropDown from "../../components/bar/Dropdown"
-import InputProfile from "../../components/bar/InputProfile"
-import PrimerButton from "../../components/button/PrimerButton"
-import Footer from "../../components/navigation/Footer"
-import Navbar from "../../components/navigation/Navbar"
+import DropDown from "../../components/bar/Dropdown";
+import InputProfile from "../../components/bar/InputProfile";
+import PrimerButton from "../../components/button/PrimerButton";
+import FakeButton from "../../components/button/FakeButton";
+import Footer from "../../components/navigation/Footer";
+import Navbar from "../../components/navigation/Navbar";
+import CameraIcon from "../../assets/icon/Camera.svg";
+import { useContext, useEffect, useState } from "react";
+import { DefaultPhotoProfile } from "../../data/DefaultData";
+import ProfileIcon from "../../assets/icon/Profile.svg";
+import GenderIcon from "../../assets/icon/Gender.svg";
+import CloseIcon from "../../assets/icon/Close.svg";
+import EmailIcon from "../../assets/icon/Email.svg";
+import UploadIcon from "../../assets/icon/Upload.svg";
+import InfoBar from "../../components/bar/InfoBar";
+import { BaseAPI } from "../../api/Api";
+import PrimerButton3 from "../../components/button/PrimerButton3";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { storage } from "../../firebase/Firebase";
+import { v4 } from "uuid";
+import { LoadingContext } from "../../context/LoadingContext";
+import { ConfirmationContext } from "../../context/ConfirmationContext";
 
 const ProfileEdit = () => {
-    return (
-        <>
-            <Navbar />
-    
-            <div className="flex flex-col items-center min-h-screen bg-viridian px-40 pt-40 pb-20 gap-12    ">
-                
-                {/* profile */}
-                <div className="flex flex-row bg-white w-full h-fit rounded-2xl p-12 shadow-default">
-                    {/* photo */}
-                    <div className="flex flex-col gap-6 px-8 items-center">
-                        <div className="h-56 w-56 rounded-full bg-black">
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [gender, setGender] = useState("");
+  const [address, setAddress] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [ktpStatus, setKTPStatus] = useState("");
+  const [ktpLink, setKTPLink] = useState("");
+  const [selectedKTPFile, setSelectedKTPFile] = useState(null);
+  const { setIsLoading } = useContext(LoadingContext);
 
-                        </div>
-                        
-                        <div className="w-36">
-                            <PrimerButton name={"GANTI FOTO"}/>
-                        </div>
-                    </div>
+  const token = window.localStorage.getItem("token");
 
-                    {/* profile info */}
-                    <div className="flex flex-col w-full gap-5">
-                        <InputProfile textLabel={"Nama Pengguna"} holder={"username pengguna"}/>
-                        <InputProfile textLabel={"Email"} type="email" holder={"email pengguna"}/>
-                        <InputProfile textLabel={"Password"} type="password" holder={"Harus merupakan kombinasi dari minimal 8 huruf, angka, dan simbol."}/>
-                        <InputProfile textLabel={"Konfirmasi Password"} type="password" holder={"Harus merupakan kombinasi dari minimal 8 huruf, angka, dan simbol."}/>
-                        <div className="w-64 self-end">
-                            <PrimerButton name={"PERBARUI PASSWORD"}/>
-                        </div>
-                    </div>
-                </div>
+  const {showPopup, hidePopup} = useContext(ConfirmationContext)
 
-                {/* nama */}
-                <div className="flex flex-row bg-white w-full h-fit rounded-2xl py-10 px-28 shadow-default gap-5">
-                    {/* left */}
-                    <div className="flex flex-col gap-5 w-full">
-                        <InputProfile textLabel={"Nama Depan"} holder={"Maritza"}/>
-                        <div className="flex flex-col gap-2">
-                            <p className="blb text-default">Tanggal Lahir</p>
-                            <div className="flex flex-row gap-3 h-fit w-full">
-                                <div className="w-20">
-                                    <DropDown holder={"DD"} optionAll={false}/>
-                                </div>
-                                <div className="w-20">
-                                    <DropDown holder={"MM"} optionAll={false}/>
-                                </div>
-                                <div className="w-40">
-                                    <DropDown holder={"YYYY"} optionAll={false}/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* right */}
-                    <div className="flex flex-col gap-5 w-full">
-                        <InputProfile textLabel={"Nama Belakang"} holder={"Aliyya"}/>
-                        <div className="w-full">
-                            <DropDown textLabel={"Gender"} holder={"Perempuan"} optionAll={false}/>
-                        </div>
-                    </div>
-                </div>
-
-                {/* alamat */}
-                <div className="flex flex-row bg-white w-full h-fit rounded-2xl py-10 px-28 shadow-default gap-5">
-                    <div className="w-full">
-                        <InputProfile textLabel={"Alamat Rumah"} holder={"Wisma Permai, Jl. Jatisari Permai Gg 7 K9, Waru, Sidoarjo "}/>
-                    </div>
-                </div>
-    
-            </div>
-    
-            <Footer />
-        </>
+  const getDataUser = () => {
+    setIsLoading(true);
+    BaseAPI.get("user/profile", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then(
+        (res) => {
+          const data = res.data.data;
+          console.log("data lengkap", data);
+          setFirstName(data.firstname);
+          setLastName(data.lastname);
+          setEmail(data.email);
+          setPhoto(data.photo);
+          setBirthDate(data.birthdate);
+          setGender(data.gender);
+          setAddress(data.address);
+          setKTPStatus(data.ktp_status);
+          setKTPLink(data.ktp_link);
+        },
+        (err) => {
+          console.log("error : ", err);
+        }
       )
-}
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
-export default ProfileEdit
+  const updateProfileHandle = () => {
+    setIsLoading(true);
+    BaseAPI.post(
+      "user/profile",
+      {
+        firstname: firstName,
+        lastname: lastName,
+        email: email,
+        birthdate: birthDate,
+        jenis_kelamin: gender,
+        address: address,
+        photo: photo,
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
+      .then((err) => {
+        console.log("error : ", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+        getDataUser();
+      });
+  };
+
+  const handleFileChange = (e) => {
+    setSelectedKTPFile(e.target.files[0]);
+  };
+
+  const handleProfileChange = async (e) => {
+    if (e.target.files[0]) {
+      setIsLoading(true);
+      try {
+        const imgRef = ref(storage, `user-photo/${email + "-" + v4()}`);
+
+        await uploadBytes(imgRef, e.target.files[0]);
+
+        const link = await getDownloadURL(imgRef);
+
+        BaseAPI.post(
+          "user/photo",
+          {
+            photo: link,
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+          .then(
+            (res) => {
+              console.log("data lengkap", res);
+            },
+            (err) => {
+              console.log("error : ", err);
+            }
+          )
+          .finally(() => {
+            setIsLoading(false);
+            getDataUser();
+          });
+      } catch (error) {
+        console.log("error : ", error);
+      }
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setSelectedKTPFile(e.dataTransfer.files[0]);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleUpload = async () => {
+    try {
+      setIsLoading(true);
+
+      const imgRef = ref(storage, `ktp-user/${email + "-" + v4()}`);
+      await uploadBytes(imgRef, selectedKTPFile);
+
+      const link = await getDownloadURL(imgRef);
+
+      const res = await BaseAPI.post(
+        "user/ktp",
+        { link: link },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      console.log("success : ", res);
+
+      getDataUser();
+    } catch (error) {
+      console.log("error : ", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getDataUser();
+  }, []);
+
+  return (
+    <>
+      <Navbar />
+      <div className="flex flex-col items-center min-h-screen bg-default px-40 pt-40 pb-20 gap-12    ">
+        {/* profile */}
+        <div className="flex flex-row gap-8 bg-white w-full h-fit rounded-2xl p-12 shadow-default">
+          {/* photo */}
+          <div className="h-56 w-56 shrink-0 rounded-full bg-black relative">
+            <img
+              src={photo ? photo : DefaultPhotoProfile}
+              alt="foto profil"
+              className="rounded-full object-cover w-full h-full"
+            />
+
+            <label
+              htmlFor="profile-photo"
+              className="absolute bottom-4 right-4 opacity-95 cursor-pointer"
+            >
+              <img src={CameraIcon} alt="icon kamera" />
+            </label>
+
+            <input
+              type="file"
+              id="profile-photo"
+              accept="image/*"
+              className="hidden"
+              onChange={handleProfileChange}
+            />
+          </div>
+
+          {/* profile info */}
+          <div className="flex flex-col w-full gap-5">
+            <div className="flex flex-row gap-5 w-full">
+              <InputProfile
+                textLabel={"Nama Depan"}
+                holder={"Nama Depan"}
+                icon={ProfileIcon}
+                value={firstName}
+                handleChange={(e) => setFirstName(e.target.value)}
+              />
+              <InputProfile
+                textLabel={"Nama Belakang"}
+                holder={"Nama Belakang"}
+                icon={ProfileIcon}
+                value={lastName}
+                handleChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+            <div className="flex flex-row w-full gap-5">
+              <InputProfile
+                textLabel={"Tanggal Lahir"}
+                holder={"Tanggal Lahir"}
+                type="date"
+                value={birthDate}
+                handleChange={(e) => setBirthDate(e.target.value)}
+              />
+              <dif className="w-full"></dif>
+            </div>
+            <div className="flex flex-row w-full gap-5">
+              <DropDown
+                textLabel={"Jenis Kelamin"}
+                optionAll={false}
+                options={[
+                  { id: 1, name: "Perempuan" },
+                  { id: 2, name: "Laki-laki" },
+                ]}
+                holder={gender ? gender : "Jenis Kelamin"}
+                icon={GenderIcon}
+                handleChange={(e) => setGender(e.target.value.split("#")[1])}
+              />
+              <dif className="w-full"></dif>
+            </div>
+            <InfoBar
+              textLabel={"Email"}
+              type="email"
+              text={email}
+              icon={EmailIcon}
+            />
+            <div className="w-64 self-end mt-2">
+              <PrimerButton name={"PERBARUI"} handle={() => {
+                    showPopup({
+                      title: 'Apakah kamu yakin ingin mengubah informasi akun?',
+                      message: null,
+                      confirmText: 'IYA',
+                      cancelText: 'BATAL',
+                      onConfirm: () => {
+                        updateProfileHandle
+                      },
+                      onCancel: () => {
+                        hidePopup();
+                      },
+                    })
+                  }} />
+            </div>
+          </div>
+        </div>
+
+        {/* alamat */}
+        <div className="flex flex-row bg-white w-full h-fit rounded-2xl py-10 px-28 shadow-default gap-5">
+          <div className="w-full">
+            <InputProfile
+              textLabel={"Alamat"}
+              holder={"Alamat"}
+              value={address}
+              handleChange={(e) => setAddress(e.target.value)}
+            />
+          </div>
+        </div>
+
+        {/* verifikasi ktp */}
+        <div className="flex flex-col gap-5 bg-white w-full h-fit rounded-2xl py-10 px-28 shadow-default">
+          {/* Area Drag & Drop OR status KTP*/}
+          {ktpLink ? (
+            <>
+              <div className="flex flex-col gap-2.5">
+                <h2 className="text-lg font-semibold">Verifikasi KTP</h2>
+                <p className="text-gray-600">
+                  {ktpStatus == "pending"
+                    ? "Sedang dalam verifikasi"
+                    : "Terverifikasi"}
+                </p>
+              </div>
+              <div className="border-2 border-double border-gray-400 p-8 rounded-lg text-center flex flex-col gap-4 items-center">
+                <img src={ktpLink} alt="Foto KTP" className="max-h-96" />
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex flex-col gap-2.5">
+                <h2 className="text-lg font-semibold">Unggah Foto KTP</h2>
+                <p className="text-gray-600">
+                  Yuk, unggah kartu identitas nasional Anda sesuai dengan aturan
+                  yang berlaku. Jangan khawatir, data pribadi Anda akan aman dan
+                  kerahasiaannya tetap terjaga.
+                </p>
+              </div>
+
+              <div
+                className="border-2 border-dashed border-gray-400 p-8 rounded-lg text-center flex flex-col gap-4 items-center"
+                onDrop={handleDrop}
+                onDragOver={handleDragOver}
+              >
+                {selectedKTPFile ? (
+                  <>
+                    <div className="mx-auto max-h-96 h-fit w-fit relative">
+                      <img
+                        src={URL.createObjectURL(selectedKTPFile)}
+                        alt="Upload Preview"
+                        className="h-96 max-h-96 "
+                      />
+                      <button
+                        className="absolute right-4 top-4 opacity-95 w-8 cursor-pointer rounded-full p-1 bg-white"
+                        onClick={() => setSelectedKTPFile(null)}
+                      >
+                        <img src={CloseIcon} alt="icon close" />
+                      </button>
+                    </div>
+                    <input
+                      type="file"
+                      id="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleFileChange}
+                    />
+                    <label
+                      htmlFor="file"
+                      className="bg-yellow-200 text-yellow-700 px-4 py-2 rounded cursor-pointer w-44"
+                    >
+                      Ubah Foto
+                    </label>
+                    <p className="mt-4 text-gray-700">{selectedKTPFile.name}</p>
+                  </>
+                ) : (
+                  <>
+                    <img
+                      src={UploadIcon}
+                      alt="Upload icon"
+                      className="mx-auto"
+                    />
+                    <p className="text-gray-500 tl font-semibold text-xl">
+                      Tarik dan lepas file kamu di sini.
+                    </p>
+
+                    <p className="text-gray-500">Atau</p>
+
+                    <input
+                      type="file"
+                      id="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleFileChange}
+                    />
+                    <label
+                      htmlFor="file"
+                      className="bg-yellow-200 text-yellow-700 px-4 py-2 rounded cursor-pointer w-44"
+                    >
+                      Pilih File
+                    </label>
+                  </>
+                )}
+              </div>
+              <div className="flex justify-end">
+                <div className="w-44">
+                  {selectedKTPFile ? (
+                    <PrimerButton3 name={"Unggah"} handle={handleUpload} />
+                  ) : (
+                    <FakeButton name={"Unggah"} />
+                  )}
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
+      <Footer />
+    </>
+  );
+};
+
+export default ProfileEdit;

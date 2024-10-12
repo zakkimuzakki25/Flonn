@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../../components/navigation/Navbar";
 import Footer from "../../components/navigation/Footer";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Base } from "../../api/API";
+import { Base, BaseAPI } from "../../api/Api";
 import { getDownloadURL, ref } from "firebase/storage";
 import { storage } from "../../firebase/Firebase";
 import LoadingPic from "../../components/helper/LoadingPic";
@@ -11,6 +11,7 @@ import iconDate from "../../assets/icon/linimasa/Date.svg"
 import iconLocation from "../../assets/icon/linimasa/Location.svg"
 import PopupSucces from "../../components/popup/PopupSucces";
 import PopupConfirmation from "../../components/popup/PopupConfirmation";
+import FakeButton from "../../components/button/FakeButton";
 
 const VolunteerDetail = () => {
   // eslint-disable-next-line no-unused-vars
@@ -20,6 +21,10 @@ const VolunteerDetail = () => {
   const [data, setData] = useState({});
   const [isJoin, setIsJoin] = useState(false);
   const [isSucces, setIsSucces] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const token = window.localStorage.getItem('token')
+
+  const [status, setStatus] = useState("tidak terdaftar");
 
   const getData = () => {
     Base.get(`/volunteer/${id}`)
@@ -33,10 +38,25 @@ const VolunteerDetail = () => {
       });
   };
 
+  const getStatus = () => {
+    BaseAPI.get(`/volunteer/user-status/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => {
+        const dp = res.data.data.status;
+        setStatus(dp);
+        console.log("Status", res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     getData();
+    getStatus();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [id, isJoin]);
 
   useEffect(() => {
     const fetchImage = async () => {
@@ -65,14 +85,28 @@ const VolunteerDetail = () => {
     return formattedDate;
   };
 
+  const handleJoin = () => {
+    BaseAPI.post(`/volunteer/join/${id}`, {}, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => {
+        console.log(res);
+        setIsSucces(true)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="bg-onyx">
       <Navbar />
       {isJoin && <PopupConfirmation heading={"Apakah kamu yakin mau BERGABUNG ke program ini?"} nameButton={"ok"} nameButtonNo={"BATAL"} nameButtonYes={"YA, BERGABUNG"} handlerButtonNo={() => setIsJoin(false)} handlerButtonYes={() => {
+        handleJoin()
         setIsJoin(false)
-        setIsSucces(true)
       }} handlerClose={() => setIsJoin(false)}/>}
       {isSucces && <PopupSucces heading={"KAMU TELAH BERHASIL BERGABUNG"} body={"Silakan cek email dalam beberapa menit untuk mendapatkan detail lebih lanjut."} nameButton={"ok"} handlerButton={() => setIsSucces(false)} handlerClose={() => setIsSucces(false)}/>}
+      {isError && <PopupSucces heading={"Error saat bergabung"} body={"coba kembali nanti"} nameButton={"tutup"} handlerButton={() => setIsError(false)} handlerClose={() => setIsError(false)}/>}
 
       <div className="flex flex-col w-full lg:mt-28">
         <div className="h-fit w-full flex flex-row px-40 py-2.5 gap-5">
@@ -109,7 +143,13 @@ const VolunteerDetail = () => {
             </div>
           </div>
           <div className="w-40">
-            <PrimerButton name={"GABUNG SEKARANG"} handle={() => setIsJoin(true)}/>
+            {status === "aktif" || status === "pending" ? (
+              <FakeButton name={status.toUpperCase()}/>
+            ) : (
+              <PrimerButton name={"GABUNG SEKARANG"} handle={
+                token ? () => setIsJoin(true) : () => nav("/masuk")
+              }/>
+            )}
           </div>
         </div>
 

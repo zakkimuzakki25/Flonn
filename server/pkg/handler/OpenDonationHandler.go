@@ -54,6 +54,7 @@ func (h *handler) getOpenDonationByID(ctx *gin.Context) {
 		IsDisaster:  items.IsDisaster,
 		Total:       sumDonations,
 		TotalDonors: totalDonors,
+		Date:        items.Date,
 	}
 
 	h.help.SuccessResponse(ctx, http.StatusOK, "Retrieve successful", respons)

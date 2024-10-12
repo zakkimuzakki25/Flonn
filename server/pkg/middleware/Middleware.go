@@ -36,25 +36,25 @@ func JwtMiddleware(help *helper.Helper) gin.HandlerFunc {
 	}
 }
 
-// func JwtMiddlewareAdmin(help *helper.Helper) gin.HandlerFunc {
-// 	return func(c *gin.Context) {
-// 		authorization := c.GetHeader("Authorization")
-// 		if !strings.HasPrefix(authorization, "Bearer ") {
-// 			ErrorResponse(c, http.StatusUnauthorized, "UnauthorizedJWT1Admin", nil)
-// 			c.Abort()
-// 			return
-// 		}
+func JwtMiddlewareAdmin(help *helper.Helper) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		authorization := c.GetHeader("Authorization")
+		if !strings.HasPrefix(authorization, "Bearer ") {
+			help.ErrorResponse(c, http.StatusUnauthorized, "UnauthorizedJWT1Admin", nil)
+			c.Abort()
+			return
+		}
 
-// 		tokenJwt := authorization[7:]
-// 		claims := entity.AdminClaims{}
-// 		jwtKey := os.Getenv("SECRET_KEY")
+		tokenJwt := authorization[7:]
+		claims := entity.AdminClaims{}
+		jwtKey := os.Getenv("SECRET_KEY")
 
-// 		if err := jwt.DecodeToken(tokenJwt, &claims, jwtKey); err != nil {
-// 			ErrorResponse(c, http.StatusUnauthorized, "Unauthorized2", nil)
-// 			c.Abort()
-// 			return
-// 		}
+		if err := jwt.DecodeToken(tokenJwt, &claims, jwtKey); err != nil {
+			help.ErrorResponse(c, http.StatusUnauthorized, "Unauthorized2", nil)
+			c.Abort()
+			return
+		}
 
-// 		c.Set("admin", claims)
-// 	}
-// }
+		c.Set("admin", claims)
+	}
+}

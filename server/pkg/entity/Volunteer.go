@@ -1,7 +1,10 @@
 package entity
 
+import "gorm.io/gorm"
+
 type Volunteer struct {
-	UserID          int    `gorm:"primaryKey"`
-	OpenVolunteerID int    `gorm:"primaryKey"`
-	Status          string `json:"status" gorm:"default:'dalam proses verifikasi'"`
+	gorm.Model
+	UserID          uint   `gorm:"primaryKey"`
+	OpenVolunteerID uint   `gorm:"primaryKey"`
+	Status          string `json:"status" gorm:"default:'pending'"`
 }

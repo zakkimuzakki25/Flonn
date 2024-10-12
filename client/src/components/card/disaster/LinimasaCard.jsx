@@ -62,7 +62,7 @@ const LinimasaCard = ({ data }) => {
           {isPopup && (
             <PopupDisaster
               photo={popup.photo}
-              title={popup.title}
+              title={popup.disaster_type}
               date={popup.date}
               location={popup.location}
               province={popup.province}

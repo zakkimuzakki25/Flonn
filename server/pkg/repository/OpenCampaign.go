@@ -12,6 +12,7 @@ type OpenCampaignInterface interface {
 	GetAll() ([]*entity.OpenCampaign, error)
 	Update(openCampaign *entity.OpenCampaign) error
 	Delete(id int) error
+	CountParticipants(id int) (int, error)
 }
 
 type openCampaign struct {
@@ -34,6 +35,14 @@ func (d *openCampaign) GetByID(id int) (*entity.OpenCampaign, error) {
 	if err := d.db.First(openCampaign, id).Error; err != nil {
 		return nil, err
 	}
+
+	tasks := []entity.OpenCampaignTask{}
+	if err := d.db.Where("open_campaign_id = ?", id).Find(&tasks).Error; err != nil {
+		return nil, err
+	}
+
+	openCampaign.OpenCampaignTasks = tasks
+
 	return openCampaign, nil
 }
 
@@ -57,4 +66,21 @@ func (d *openCampaign) Delete(id int) error {
 		return err
 	}
 	return nil
+}
+
+func (d *openCampaign) CountParticipants(id int) (int, error) {
+	var count int64
+
+	tasks := []entity.OpenCampaignTask{}
+	if err := d.db.Where("open_campaign_id = ?", id).Find(&tasks).Error; err != nil {
+		return 0, err
+	}
+
+	if err := d.db.Model(&entity.OpenCampaignParticipant{}).
+		Where("open_campaign_task_id IN (?)", d.db.Model(&entity.OpenCampaignTask{}).Select("id").Where("open_campaign_id = ?", id)).
+		Count(&count).Error; err != nil {
+		return 0, err
+	}
+
+	return int(count), nil
 }

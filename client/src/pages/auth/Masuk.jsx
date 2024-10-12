@@ -4,18 +4,15 @@ import logo from "../../assets/logo/logo-white.png";
 import Input from "../../components/bar/Input";
 import { useState } from "react";
 import GoogleButton from "../../components/button/GoogleButton";
-import { Base } from "../../api/API";
+import { Base } from "../../api/Api";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase/Firebase";
 import PrimerButton2 from "../../components/button/PrimerButton2";
 import LoadingPic from "../../components/helper/LoadingPic";
+import FakeButton from "../../components/button/FakeButton";
 
 const Masuk = () => {
   const nav = useNavigate();
-
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [photo, setPhoto] = useState("");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,7 +32,7 @@ const Masuk = () => {
     })
       .then((res) => {
         console.log(res.data);
-        window.localStorage.setItem('token', res.data.data.token)
+        window.localStorage.setItem("token", res.data.data.token);
         nav("/");
       })
       .catch((err) => {
@@ -44,48 +41,39 @@ const Masuk = () => {
       })
       .finally(() => {
         setIsLoading(false);
-      })
+      });
   };
 
   const googleHandle = () => {
     setIsLoading(true);
     signInWithPopup(auth, provider)
-  .then((result) => {
-    // const credential = GoogleAuthProvider.credentialFromResult(result);
-    // const token = credential.accessToken;
-    const user = result.user;
+      .then((result) => {
+        const user = result.user;
+        const fullNameArray = user.displayName.split(" ");
+        const firstName = fullNameArray[0];
+        const lastName = fullNameArray.length > 1 ? fullNameArray.slice(1).join(" ") : "";
 
-    const fullNameArray = user.displayName.split(" ")
-    const firstName = fullNameArray[0]
-    if (fullNameArray.length > 1) {
-      const lastName = fullNameArray.slice(1).join(" ")
-      setLastname(lastName)
-    }
-    
-    setFirstname(firstName)
-    setPhoto(user.photoURL)
-    setEmail(user.email)
-    SignUpGoogle()
-  }).catch((error) => {
-    // Handle Errors here.
-    console.log("error", error)
-  })
-  .finally(() => {
-    setIsLoading(false);
-  })
-  }
+        SignUpGoogle(firstName, lastName, user.email, user.photoURL);
+      })
+      .catch((error) => {
+        console.log("error", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
-  const SignUpGoogle = () => {
+  const SignUpGoogle = (firstName, lastName, email, photo) => {
     setIsLoading(true);
     Base.post("/user/auth/google", {
-      firstname: firstname,
-      lastname: lastname,
+      firstname: firstName,
+      lastname: lastName,
       email: email,
       photo: photo,
     })
       .then((res) => {
         console.log(res.data);
-        window.localStorage.setItem('token', res.data.data.token)
+        window.localStorage.setItem("token", res.data.data.token);
         nav("/");
       })
       .catch((err) => {
@@ -94,15 +82,22 @@ const Masuk = () => {
       })
       .finally(() => {
         setIsLoading(false);
-      })
+      });
   };
 
   return (
     <div className="w-screen h-screen overflow-hidden bg-default flex ">
-      {isLoading && <div className="fixed w-screen h-screen bg-black bg-opacity-50 z-50"><LoadingPic /></div>}
+      {isLoading && (
+        <div className="fixed w-screen h-screen bg-black bg-opacity-50 z-50">
+          <LoadingPic />
+        </div>
+      )}
       {/* left */}
       <div className="lg:w-full flex justify-center items-center">
-        <form onSubmit={submitHandle} className="bg-white -shadow-x-axis lg:w-100 h-fit flex flex-col lg:gap-4 lg:py-12 lg:px-12 text-default rounded-xl justify-center items-center">
+        <form
+          onSubmit={submitHandle}
+          className="bg-white -shadow-x-axis lg:w-100 h-fit flex flex-col lg:gap-4 lg:py-12 lg:px-12 text-default rounded-xl justify-center items-center"
+        >
           <h1 className="dl text-5xl">MASUK</h1>
           <div className="flex flex-col gap-0 w-full">
             <Input
@@ -121,13 +116,17 @@ const Masuk = () => {
           {/* button */}
           <div className="flex flex-col gap-3 w-full">
             <p className="bs text-red-600">{message}</p>
-            <PrimerButton2 type={"submit"} name={"MASUK"} />
+            {email && password ? (
+              <PrimerButton2 type={"submit"} name={"MASUK"} />
+            ) : (
+              <FakeButton name={"MASUK"} />
+            )}
             <div className="flex items-center gap-2 self-stretch">
               <div className="flex-grow h-0.5 bg-default mx-2"></div>
               <div className="tl text-default">atau</div>
               <div className="flex-grow h-0.5 bg-default mx-2"></div>
             </div>
-            <GoogleButton name="Dengan Google" handler={googleHandle}/>
+            <GoogleButton handler={googleHandle} />
           </div>
         </form>
       </div>

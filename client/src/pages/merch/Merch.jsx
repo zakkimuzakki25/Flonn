@@ -3,7 +3,7 @@ import Navbar from "../../components/navigation/Navbar";
 import Footer from "../../components/navigation/Footer";
 import imageMerch from "../../assets/images/background/Merch.jpg";
 import MerchCard from "../../components/card/merch/MerchCard";
-import { Base } from "../../api/API";
+import { Base } from "../../api/Api";
 import DropDownRound from "../../components/bar/DropdownRound";
 import SearchBar from "../../components/bar/SearchBar";
 
@@ -59,9 +59,9 @@ const Merch = () => {
       </div>
 
       {/* main */}
-      <div className="flex flex-col lg:px-40 lg:pb-20">
+      <div className="flex flex-col lg:px-40 lg:py-20">
         {/* filter */}
-        <div className="flex flex-row justify-between py-12">
+        <div className="flex flex-row justify-between pb-12">
           <div className="w-72">
             <SearchBar
               holder={"Search"}

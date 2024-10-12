@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { storage } from "../../../firebase/Firebase"
 import { getDownloadURL, ref } from "firebase/storage"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import { Base } from "../../../api/API"
+import { Base } from "../../../api/Api"
 import Navbar from "../../../components/navigation/Navbar"
 import Footer from "../../../components/navigation/Footer"
 import LoadingPic from "../../../components/helper/LoadingPic"
@@ -84,11 +84,11 @@ const DonasiDetail = () => {
             <div className="flex flex-row gap-7 text-black">
                 {/* goal */}
                 <div className="flex flex-col">
-                    <p className="tl">Goal</p>
+                    <p className="tl">Terkumpul</p>
                     <p style={{lineHeight: "1.2"}} className="tlb text-oldRose">Rp{numberFormatter.format(data.total)}</p>
                 </div>
                 <div className="flex flex-col">
-                    <p className="tl">Terkumpul</p>
+                    <p className="tl">Goal</p>
                     <p style={{lineHeight: "1.2"}} className="tlb text-viridian">Rp{numberFormatter.format(data.target)}</p>
                 </div>
             </div>

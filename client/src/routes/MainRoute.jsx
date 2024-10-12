@@ -20,6 +20,10 @@ import DonasiPembayaran from "../pages/aksi/donasi/DonasiPembayaran";
 import VolunteerDetail from "../pages/aksi/VolunteerDetail";
 import KampanyeDetail from "../pages/aksi/KampanyeDetail";
 import PaymentInstruction from "../pages/payment/PaymentInstruction";
+import AdminProtect from "./AdminProtect";
+import CampaignProof from "../pages/admin/CampaignProof";
+import KTPVerification from "../pages/admin/KTPVerification";
+import CampaignProofList from "../pages/admin/CampaignProofList";
 
 function AutoScroll() {
   const { pathname } = useLocation();
@@ -48,7 +52,6 @@ const MainRoute = () => {
         <Route path="/aksi/kampanye/:id" element={<KampanyeDetail />} />
         <Route path="/aksi/donasi/:id" element={<DonasiDetail />} />
 
-        <Route path="/toko" element={<Merch />} />
 
         {/* auth */}
         <Route element={<Auth />}>
@@ -73,7 +76,18 @@ const MainRoute = () => {
           />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/edit" element={<ProfileEdit />} />
+          <Route path="/toko" element={<Merch />} />
         </Route>
+
+        {/* admin */}
+        <Route element={<AdminProtect />}>
+          <Route path="/b-admin" element={<CampaignProof />} />
+          <Route path="/b-admin/campaign/:id" element={<CampaignProofList />} />
+          <Route path="/b-admin/ktp" element={<KTPVerification />} />
+        </Route>
+
+        {/* 404 */}
+        <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </>
   );

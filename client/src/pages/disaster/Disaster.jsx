@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 // import Map from "../../components/map/Map";
-import { Base } from "../../api/API";
+import { Base } from "../../api/Api";
 import Navbar from "../../components/navigation/Navbar";
 import Footer from "../../components/navigation/Footer";
 import KorbanCard from "../../components/card/disaster/KorbanCard";

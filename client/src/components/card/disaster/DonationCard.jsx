@@ -1,15 +1,16 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getDownloadURL, ref } from "firebase/storage";
 import { storage } from "../../../firebase/Firebase";
 import LoadingPic from "../../helper/LoadingPic";
 import './DonationCard.css'
+import { LoadingContext } from "../../../context/LoadingContext";
 
 // eslint-disable-next-line react/prop-types
-const DonationCard = ({ title, id, photo }) => {
+const DonationCard = ({ title, id, photo, date }) => {
   const [image, setImage] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+  const {isLoading, setIsLoading} = useContext(LoadingContext)
 
   useEffect(() => {
     const getImageURL = async () => {
@@ -25,6 +26,13 @@ const DonationCard = ({ title, id, photo }) => {
 
     getImageURL();
   }, [photo]);
+
+  const formatDate = (date) => {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    const formattedDate = new Date(date).toLocaleDateString("id-ID", options);
+    return formattedDate;
+  };
+
   return (
     <Link
       to={`/aksi/donasi/${id}`}
@@ -47,7 +55,7 @@ const DonationCard = ({ title, id, photo }) => {
           </p>
         </div>
 
-        <p className="bs text-gray self-center py-4">20 Maret 2024</p>
+        <p className="bs text-gray self-center py-4">{formatDate(date)}</p>
       </div>
       <div className="donation-label pr-5 h-full uppercase ds text-onyx items-center flex self-center justify-center">
         Donasi

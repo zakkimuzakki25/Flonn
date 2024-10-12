@@ -5,7 +5,11 @@ const Base = axios.create({
 })
 
 const BaseAPI = axios.create({
-  baseURL: import.meta.env.VITE_SERVER_URL + "/api/",
+  baseURL: import.meta.env.VITE_SERVER_URL + "api/",
 })
 
-export { Base, BaseAPI }
+const BaseAdmin = axios.create({
+  baseURL: import.meta.env.VITE_SERVER_URL + "admin/",
+})
+
+export { Base, BaseAPI, BaseAdmin }
