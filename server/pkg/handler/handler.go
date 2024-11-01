@@ -71,6 +71,7 @@ func (h *handler) registerRoutes() {
 	api.POST("/user/photo", h.userUpdatePhotoProfile)
 	api.POST("/user/ktp", h.userKTPUpload)
 	api.GET("/user/ktp-status", h.userGetKTPStatus)
+	api.GET("/user/floint-detail", h.userGetFlointDetail)
 
 	h.http.GET("/disaster/all", h.getAllDisaster)
 	h.http.GET("/disaster/years", h.getDisasterYears)
@@ -86,6 +87,8 @@ func (h *handler) registerRoutes() {
 	h.http.GET("/status/all", h.getAllStatus)
 
 	h.http.GET("/merch", h.getAllMerch)
+	api.POST("/merch/purchase", h.userPurchaseMerch)
+	api.GET("/merch/purchase", h.userGetAllPurchaseStatus)
 
 	h.http.GET("/donation/all", h.getAllOpenDonation)
 	h.http.GET("/donation/:id", h.getOpenDonationByID)

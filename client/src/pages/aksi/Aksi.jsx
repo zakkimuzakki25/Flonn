@@ -109,9 +109,9 @@ const Aksi = () => {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
-        className="w-full h-fit lg:pt-28"
+        className="w-full h-fit pt-20 sm:pt-28"
       >
-        <div className="w-full h-full lg:px-14 lg:py-24 gap-14 banner-home-2 flex flex-row items-center">
+        <div className="w-full h-full px-0 py-0 sm:px-14 sm:py-24 gap-14 banner-home-2 flex flex-row items-center">
           {/* left button */}
           <button className="h-fit" onClick={handlePrev}>
             <img src={PrevArrow} />
@@ -119,16 +119,16 @@ const Aksi = () => {
 
           {/* content */}
           <div className="flex flex-col w-full">
-            <div className="h-96 gap-5 flex flex-col justify-center">
+            <div className="h-80 sm:h-96 gap-5 flex flex-col justify-center">
               {itemBanner && (
                 <>
-                  <div className="w-700">
-                    <p
+                  <div className="w-full sm:w-700">
+                    <h2
                       style={{ lineHeight: "1.2" }}
-                      className="dl text-white lg:w-455"
+                      className="dl text-white w-full sm:w-455"
                     >
                       {itemBanner && itemBanner.title}
-                    </p>
+                    </h2>
                     <p style={{ lineHeight: "1.3" }} className="bl text-white">
                       {itemBanner && itemBanner.highlight}
                     </p>

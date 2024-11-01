@@ -167,11 +167,13 @@ const ActionCard = ({ id, title, photo, flointReward }) => {
   }, []);
 
   return (
-    <div className="flex flex-col w-80 bg-jasmine rounded-2xl px-7 py-4 gap-3 justify-between">
-      <p className="text-3xl font-semibold text-black w-full text-left">
+    <article className="flex flex-col w-80 bg-jasmine rounded-2xl px-7 py-4 gap-3 justify-between">
+      <header className="text-3xl font-semibold text-black w-full text-left">
         {title}
-      </p>
-      <img src={photo} className="h-40" alt={title} />
+      </header>
+      <figure>
+        <img src={photo} className="h-40" alt={title} />
+      </figure>
       <div className="flex flex-col w-full items-center gap-1">
         {status != "tidak terdaftar" ? (
           <>
@@ -198,9 +200,9 @@ const ActionCard = ({ id, title, photo, flointReward }) => {
           style={{ display: "none" }}
           onChange={handleFileSelect}
         />
-        <p className="text-oldGreen font-bold">+{flointReward} floint</p>
+        <span className="text-oldGreen font-bold">+{flointReward} floint</span>
       </div>
-    </div>
+    </article>
   );
 };
 

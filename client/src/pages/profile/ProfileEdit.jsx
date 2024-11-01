@@ -12,6 +12,8 @@ import GenderIcon from "../../assets/icon/Gender.svg";
 import CloseIcon from "../../assets/icon/Close.svg";
 import EmailIcon from "../../assets/icon/Email.svg";
 import UploadIcon from "../../assets/icon/Upload.svg";
+import TimerIcon from "../../assets/icon/Timer.svg";
+import ChecklistCurlyBorderIcon from "../../assets/icon/ChecklistCurlyBorder.svg";
 import InfoBar from "../../components/bar/InfoBar";
 import { BaseAPI } from "../../api/Api";
 import PrimerButton3 from "../../components/button/PrimerButton3";
@@ -282,32 +284,38 @@ const ProfileEdit = () => {
 
         {/* verifikasi ktp */}
         <div className="flex flex-col gap-5 bg-white w-full h-fit rounded-2xl py-10 px-28 shadow-default">
+              <div className="flex flex-col">
+                <h2 className="text-lg font-semibold">Verifikasi KTP</h2>
+                <p className="text-gray-600">
+                    Yuk, unggah kartu identitas nasional Anda sesuai dengan aturan yang berlaku. Jangan khawatir, data pribadi Anda akan aman dan kerahasiaannya tetap terjaga
+                </p>
+              </div>
           {/* Area Drag & Drop OR status KTP*/}
           {ktpLink ? (
             <>
-              <div className="flex flex-col gap-2.5">
-                <h2 className="text-lg font-semibold">Verifikasi KTP</h2>
-                <p className="text-gray-600">
-                  {ktpStatus == "pending"
-                    ? "Sedang dalam verifikasi"
-                    : "Terverifikasi"}
-                </p>
-              </div>
               <div className="border-2 border-double border-gray-400 p-8 rounded-lg text-center flex flex-col gap-4 items-center">
+                  {/* icone status */}
+                  <div className="flex w-52 h-52 bg-viridian bg-opacity-40 rounded-full justify-center items-center">
+                    <div className="flex w-44 h-44 bg-viridian bg-opacity-40 rounded-full justify-center items-center">
+                      <div className="flex w-36 h-36 bg-viridian bg-opacity-40 rounded-full justify-center items-center">
+                      {ktpStatus == "pending" ? (
+                        <img src={TimerIcon} alt="icon status ktp pending" className="w-14" />
+                      ) : (
+                        <img src={ChecklistCurlyBorderIcon} alt="icon status verified ktp" className="w-14"/>
+                      )}
+                      </div>
+                    </div>
+                  </div>
+                {ktpStatus == "pending" ? (
+                  <p>Saat ini, kami sedang memverifikasi identitas Anda. Proses ini akan memakan waktu maksimal 2x24 jam.</p>
+                ) : (
+                  <p>Saat ini, kami sedang memverifikasi identitas Anda. Proses ini akan memakan waktu maksimal 2x24 jam.</p>
+                )}
                 <img src={ktpLink} alt="Foto KTP" className="max-h-96" />
               </div>
             </>
           ) : (
             <>
-              <div className="flex flex-col gap-2.5">
-                <h2 className="text-lg font-semibold">Unggah Foto KTP</h2>
-                <p className="text-gray-600">
-                  Yuk, unggah kartu identitas nasional Anda sesuai dengan aturan
-                  yang berlaku. Jangan khawatir, data pribadi Anda akan aman dan
-                  kerahasiaannya tetap terjaga.
-                </p>
-              </div>
-
               <div
                 className="border-2 border-dashed border-gray-400 p-8 rounded-lg text-center flex flex-col gap-4 items-center"
                 onDrop={handleDrop}

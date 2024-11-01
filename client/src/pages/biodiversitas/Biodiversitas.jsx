@@ -4,8 +4,8 @@ import Navbar from "../../components/navigation/Navbar";
 import Footer from "../../components/navigation/Footer";
 import BiodiversityCard from "../../components/card/biodiversity/BiodiversityCard";
 import "./Biodiversitas.css";
-import { Base } from "../../api/API";
 import FilterBiodiversity from "../../components/filter/FilterBiodiversity";
+import { Base } from "../../api/Api";
 
 const Biodiversitas = () => {
   const [data, setData] = useState([]);
@@ -25,8 +25,8 @@ const Biodiversitas = () => {
   return (
     <div>
       <Navbar />
-      <div className="banner-bio flex w-full   lg:px-24 lg:pt-64 bg-black justify-center">
-        <div className="text-white lg:w-105 relative lg:-right-60">
+      <div className="banner-bio flex w-full px-5 lg:px-24 pt-28 pb-28 sm:pt-64 bg-black justify-center">
+        <div className="text-white sm:w-105 relative sm:-right-60">
           <h1 style={{ lineHeight: "1.2" }} className="dl uppercase">
             The more you know, the more you don&apos;t know
           </h1>
@@ -41,7 +41,7 @@ const Biodiversitas = () => {
         <FilterBiodiversity handleChange={filterHandle} />
 
         {/* bio list */}
-        <div className="flex flex-wrap lg:gap-7 justify-center relative -top-14">
+        <div className="flex flex-col sm:flex-row flex-nowrap px-5 sm:px-7 sm:flex-wrap gap-5 sm:gap-7 justify-center relative -top-10 sm:-top-14">
           {data.map((bio) => (
             <BiodiversityCard
               id={bio.id}

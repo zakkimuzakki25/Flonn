@@ -206,6 +206,7 @@ func (h *handler) updateCampaignProofStatus(ctx *gin.Context) {
 	var body struct {
 		TaskID int    `json:"task_id"`
 		UserID int    `json:"user_id"`
+		FlointPlus int `json:"floint_plus"`
 		Status string `json:"status"`
 	}
 	if err := h.help.BindBody(ctx, &body); err != nil {
@@ -217,5 +218,19 @@ func (h *handler) updateCampaignProofStatus(ctx *gin.Context) {
 		h.help.ErrorResponse(ctx, http.StatusInternalServerError, err.Error(), nil)
 		return
 	}
+	userDB, err := h.repo.User.GetByID(body.UserID)
+	if err != nil {
+		h.help.ErrorResponse(ctx, http.StatusInternalServerError, err.Error(), nil)
+		return
+	}
+
+	userDB.FlointTotal += body.FlointPlus
+	userDB.Floint += body.FlointPlus
+	err = h.repo.User.Update(userDB)
+	if err != nil {
+		h.help.ErrorResponse(ctx, http.StatusInternalServerError, err.Error(), nil)
+		return
+	}
+
 	h.help.SuccessResponse(ctx, http.StatusOK, "Update successful", nil)
 }

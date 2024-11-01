@@ -1,7 +1,7 @@
 import './FlointProgress.css';
 
 // eslint-disable-next-line react/prop-types
-const FlointProgress = ({ value, max, level, title }) => {
+const FlointProgress = ({ value, max, level, tier }) => {
   const radius = 100;
   const stroke = 17;
   const normalizedRadius = radius - stroke * 2;
@@ -51,10 +51,10 @@ const FlointProgress = ({ value, max, level, title }) => {
         {/* Level di tengah */}
         <text
           x="50%"
-          y="60%"
+          y="57%"
           textAnchor="middle"
           dy=".3em"
-          fontSize="10"
+          fontSize="14"
           fill="#475C59"
         >
           level {level}
@@ -62,13 +62,14 @@ const FlointProgress = ({ value, max, level, title }) => {
         {/* Title di tengah */}
         <text
           x="50%"
-          y="70%"
+          y="67%"
           textAnchor="middle"
           dy=".3em"
-          fontSize="10"
+          fontSize="14"
           fill="#475C59"
+          fontWeight={'bold'}
         >
-          {title}
+          {tier}
         </text>
       </svg>
   );

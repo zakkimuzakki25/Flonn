@@ -21,12 +21,12 @@ const SearchBar = ({
     >
       <div className="flex items-start self-stretch rounded-full border-2 border-onyx overflow-hidden bg-white py-2 px-2 w-full">
         <button
-          className="flex justify-center w-3 sm:w-8 h-full cursor-pointer items-center focus:outline-none border-none hover:border-none"
+          className="flex justify-center w-5 h-5 shrink-0 sm:w-8 cursor-pointer items-center focus:outline-none border-none hover:border-none"
           type="submit"
         >
-          <img src={searchIcon} alt="Search Icon" />
+          <img src={searchIcon} alt="Search button" />
         </button>
-        <div className="w-full px-2 text-xxs md:text-base justify-center bg-transparent border-none">
+        <div className="w-full px-2 text-xs md:text-base justify-center bg-transparent border-none">
           <input
             type="text"
             id="key"

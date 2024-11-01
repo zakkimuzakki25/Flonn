@@ -12,20 +12,15 @@ type Biodiversity struct {
 	RentangUsia     string  `json:"rentang_usia"`
 	Description     string  `json:"description"`
 	Characteristics string  `json:"characteristics"`
+	CharacteristicsPhoto string  `json:"characteristics_photo"`
 	Status          string  `json:"status"`
+	StatusPhotos	string  `json:"status_photos"`
 	Photo           string  `json:"photo"`
 	Latitude        float64 `json:"latitude"`
 	Longitude       float64 `json:"longitude"`
 	StatusID        int
 	HabitatID       int
 	SpeciesID       int
-}
-
-type BiodiversityCoordinate struct {
-	ID             int `json:"id" gorm:"type:INT;NOT NULL;AUTO_INCREMENT;PRIMARY_KEY"`
-	BiodiversityID int
-	Latitude       float64 `json:"latitude"`
-	Longitude      float64 `json:"longitude"`
 }
 
 type FilterBiodiversity struct {
@@ -45,8 +40,10 @@ type BiodiversityResponse struct {
 	RentangUsia        string  `json:"rentang_usia"`
 	Description        string  `json:"description" gorm:"type:VARCHAR(255);default:null"`
 	Characteristics    string  `json:"characteristics" gorm:"type:VARCHAR(255);default:null"`
+	CharacteristicsPhoto string  `json:"characteristics_photo"`
 	Behavior           string  `json:"behavior" gorm:"type:VARCHAR(255);default:null"`
 	Status             string  `json:"status"`
+	StatusPhotos       string  `json:"status_photos"`
 	StatusID           string  `json:"status_id"`
 	StatusDescription  string  `json:"status_description"`
 	Habitat            string  `json:"habitat"`

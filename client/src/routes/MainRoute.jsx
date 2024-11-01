@@ -12,7 +12,6 @@ import Kampanye from "../pages/aksi/kampanye/Kampanye";
 import Protected from "./Protected";
 import Merch from "../pages/merch/Merch";
 import ZeroWasteDetail from "../pages/info-detail/ZeroWasteDetail";
-import Profile from "../pages/profile/Profile";
 import ProfileEdit from "../pages/profile/ProfileEdit";
 import DonasiDetail from "../pages/aksi/donasi/DonasiDetail";
 import Biodiversitas from "../pages/biodiversitas/Biodiversitas";
@@ -24,6 +23,8 @@ import AdminProtect from "./AdminProtect";
 import CampaignProof from "../pages/admin/CampaignProof";
 import KTPVerification from "../pages/admin/KTPVerification";
 import CampaignProofList from "../pages/admin/CampaignProofList";
+import ProfileHistory from "../pages/profile/ProfileHistory";
+import ProfilePurchase from "../pages/profile/ProfilePurchase";
 
 function AutoScroll() {
   const { pathname } = useLocation();
@@ -74,7 +75,8 @@ const MainRoute = () => {
             path="/pembayaran/:id"
             element={<PaymentInstruction />}
           />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<ProfileHistory />} />
+          <Route path="/profile/penukaran" element={<ProfilePurchase />} />
           <Route path="/profile/edit" element={<ProfileEdit />} />
           <Route path="/toko" element={<Merch />} />
         </Route>

@@ -59,12 +59,12 @@ const DonasiDetail = () => {
     <div className="bg-onyx">
       <Navbar />
 
-      <div className="flex flex-col w-full lg:mt-28">
-        <div className="h-fit w-full flex flex-row px-40 py-2.5 gap-5">
+      <section className="flex flex-col w-full lg:mt-28">
+        <nav className="h-fit w-full flex flex-row px-40 py-2.5 gap-5">
           <Link to={'/aksi'} className="bl text-white hover:text-cambridgeBlue">Aksi</Link>
-          <p className="bl text-white">&gt;</p>
-          <p className="bl text-cambridgeBlue">Donasi {data.title}</p>
-        </div>
+          <span className="bl text-white">&gt;</span>
+          <span className="bl text-cambridgeBlue">Donasi {data.title}</span>
+        </nav>
         {image.isLoading ? (
           <div className="w-full h-550 justify-center items-center flex bg-default">
             <LoadingPic />
@@ -75,12 +75,12 @@ const DonasiDetail = () => {
             className="w-full h-550 object-cover"
           />
         )}
-      </div>
+      </section>
 
-      <div className="flex flex-col bg-onyx px-40 py-16 gap-7">
+      <section className="flex flex-col bg-onyx px-40 py-16 gap-7">
         {/* donation recap */}
         <div className="flex flex-col bg-white p-7 rounded-3xl">
-            <p  className="ds">{data.title}</p>
+            <h1  className="ds">{data.title}</h1>
             <div className="flex flex-row gap-7 text-black">
                 {/* goal */}
                 <div className="flex flex-col">
@@ -124,11 +124,11 @@ const DonasiDetail = () => {
         </div>
 
         {/* description */}
-        <div className="flex flex-col bg-white p-7 rounded-3xl pb-9">
-            <p className="ds">KISAH BANTUAN</p>
+        <section className="flex flex-col bg-white p-7 rounded-3xl pb-9">
+            <h2 className="ds">KISAH BANTUAN</h2>
             <p className="bs">{data.description}</p>
-        </div>
-      </div>
+        </section>
+      </section>
 
       <Footer />
     </div>

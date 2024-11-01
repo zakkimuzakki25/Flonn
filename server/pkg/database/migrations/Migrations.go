@@ -9,7 +9,9 @@ import (
 func MigrateData(db *gorm.DB) {
 	db.AutoMigrate(
 		&entity.Status{},
+		&entity.Level{},
 		&entity.Merch{},
+		&entity.MerchPurchase{},
 		&entity.Habitat{},
 		&entity.DisasterType{},
 		&entity.Disaster{},
@@ -31,6 +33,5 @@ func MigrateData(db *gorm.DB) {
 		&entity.OpenCampaignParticipant{},
 		&entity.Donation{},
 		&entity.OpenDonation{},
-		&entity.BiodiversityCoordinate{},
 	)
 }

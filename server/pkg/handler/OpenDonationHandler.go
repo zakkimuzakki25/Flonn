@@ -92,6 +92,8 @@ func (h *handler) addDonation(ctx *gin.Context) {
 		return
 	}
 
+	userID := claims.ID
+
 	var body struct {
 		OpenDonationID int     `json:"open_donation_id"`
 		Amount         float64 `json:"amount"`
@@ -104,7 +106,7 @@ func (h *handler) addDonation(ctx *gin.Context) {
 	}
 
 	var donation entity.Donation
-	donation.UserID = int(claims.ID)
+	donation.UserID = int(userID)
 	donation.Amount = body.Amount
 	donation.PaymentMethod = body.PaymentMethod
 	donation.OpenDonationID = body.OpenDonationID
@@ -115,5 +117,19 @@ func (h *handler) addDonation(ctx *gin.Context) {
 		return
 	}
 
-	h.help.SuccessResponse(ctx, http.StatusOK, "Registration successful", resp)
+	userDB, err := h.repo.User.GetByID(int(userID))
+	if err != nil {
+		h.help.ErrorResponse(ctx, http.StatusInternalServerError, err.Error(), nil)
+		return
+	}
+
+	userDB.FlointTotal += int(body.Amount * 0.0001)
+	userDB.Floint += int(body.Amount * 0.0001)
+
+	if err := h.repo.User.Update(userDB); err != nil {
+		h.help.ErrorResponse(ctx, http.StatusInternalServerError, err.Error(), nil)
+		return
+	}
+
+	h.help.SuccessResponse(ctx, http.StatusOK, "Donation successful", resp)
 }

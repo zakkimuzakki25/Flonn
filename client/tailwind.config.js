@@ -39,6 +39,7 @@ export default {
         50: "50px",
       },
       width: {
+        0.75: '3px',
         75: '75px',
         265: '265px',
         347: '347px',
@@ -49,8 +50,10 @@ export default {
         550: '550px',
         600: '600px',
         700: '700px',
+        1120:'1120px',
       },
       height: {
+        0.75: '3px',
         75: '75px',
         265: '265px',
         347: '347px',
@@ -64,6 +67,7 @@ export default {
       },
       animation: {
         'grow': 'grow 1.75s ease-in-out infinite',
+        'navbar-hide': 'hide 0.3s ease-in-out forwards',
       },
       keyframes: {
         'grow': {
@@ -71,6 +75,10 @@ export default {
           '20%': { transform: 'scale(1)' },
           '40%': { transform: 'scale(0.3)' },
           '100%': { transform: 'scale(0.3)' },
+        },
+        'hide': {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(0)' },
         },
       },
       fontFamily: {

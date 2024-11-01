@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import SearchBar from "../bar/SearchBar";
 import DropDownRound from "../bar/DropdownRound";
-import { Base } from "../../api/API";
+import { Base } from "../../api/Api";
 
+// eslint-disable-next-line react/prop-types
 const FilterBiodiversity = ({ handleChange }) => {
   const [nama, setNama] = useState("");
   const [kingdom, setKingdom] = useState("");
@@ -55,8 +55,8 @@ const FilterBiodiversity = ({ handleChange }) => {
   }, [nama, kingdom, habitat, status]);
 
   return (
-    <div className="lg:px-20 lg:py-16 flex flex-col justify-center self-center items-center bg-white w-fit rounded-50 lg:gap-5 relative -top-28">
-      <div className="search-bio">
+    <div className="px-10 py-8 sm:px-20 sm:py-16 flex flex-col justify-center self-center items-center bg-white w-fit rounded-3xl sm:rounded-50 gap-2.5 sm:gap-5 relative -top-20 sm:-top-28">
+      <div className="sm:w-700 w-48">
         <SearchBar
           holder={"Search"}
           handleSubmit={(searchKey) => {
@@ -65,7 +65,7 @@ const FilterBiodiversity = ({ handleChange }) => {
         />
       </div>
 
-      <div className="flex flex-row lg:gap-5">
+      <div className="flex flex-col sm:flex-row gap-1 sm:gap-5 justify-center items-center">
         <div className="w-44">
           <DropDownRound
             holder={"Kingdom"}
@@ -92,7 +92,7 @@ const FilterBiodiversity = ({ handleChange }) => {
             }}
           />
         </div>
-        <div className="w-64">
+        <div className="w-44 sm:w-64">
           <DropDownRound
             holder={"Status Konservasi"}
             options={statusList}
@@ -108,10 +108,6 @@ const FilterBiodiversity = ({ handleChange }) => {
       </div>
     </div>
   );
-};
-
-FilterBiodiversity.propTypes = {
-  handleChange: PropTypes.func.isRequired,
 };
 
 export default FilterBiodiversity;

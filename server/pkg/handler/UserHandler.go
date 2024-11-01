@@ -175,18 +175,21 @@ func (h *handler) getUserProfile(ctx *gin.Context) {
 	volunteerHistories, _ := h.repo.User.GetVolunteerHistory(userID)
 
 	var resp struct {
-		Photo     string `json:"photo"`
-		Fullname  string `json:"fullname"`
-		Firstname string `json:"firstname"`
-		Lastname  string `json:"lastname"`
-		Birthdate string `json:"birthdate"`
-		Address   string `json:"address"`
-		Email     string `json:"email"`
-		Gender    string `json:"gender"`
-		Floint    int    `json:"floint"`
-		KTPStatus string `json:"ktp_status"`
-		KTPLink   string `json:"ktp_link"`
-		Histories []struct {
+		Photo       string `json:"photo"`
+		Fullname    string `json:"fullname"`
+		Firstname   string `json:"firstname"`
+		Lastname    string `json:"lastname"`
+		Birthdate   string `json:"birthdate"`
+		Address     string `json:"address"`
+		Email       string `json:"email"`
+		Gender      string `json:"gender"`
+		Floint      int    `json:"floint"`
+		FlointTotal int    `json:"floint_total"`
+		Level       int    `json:"level"`
+		Tier        string `json:"tier"`
+		KTPStatus   string `json:"ktp_status"`
+		KTPLink     string `json:"ktp_link"`
+		Histories   []struct {
 			Date        time.Time `json:"date"`
 			Description string    `json:"description"`
 			Status      string    `json:"status"`
@@ -206,8 +209,17 @@ func (h *handler) getUserProfile(ctx *gin.Context) {
 		resp.KTPStatus = ktpDB.Status
 		resp.KTPLink = ktpDB.Link
 	}
-	// not clear
-	resp.Floint = 0
+	resp.Floint = userDB.Floint
+	resp.FlointTotal = userDB.FlointTotal
+	resp.Level = userDB.Level
+
+	levelDB, err := h.repo.Level.GetDetailByLevel(userDB.Level)
+	if err != nil {
+		h.help.ErrorResponse(ctx, http.StatusInternalServerError, "failed to get level detail", nil)
+		return
+	}
+
+	resp.Tier = levelDB.Tier
 
 	for _, donation := range donationHistories {
 		openDonation, err := h.repo.OpenDonation.GetByID(int(donation.OpenDonationID))
@@ -236,7 +248,7 @@ func (h *handler) getUserProfile(ctx *gin.Context) {
 			Date:        donation.CreatedAt,
 			Description: description,
 			Status:      donation.Status,
-			Floint:      0,
+			Floint:      int(donation.Amount * 0.0001),
 		})
 	}
 
@@ -248,10 +260,13 @@ func (h *handler) getUserProfile(ctx *gin.Context) {
 		}
 
 		var description string
+		var floint int
 		if volunteer.Status == "aktif" {
 			description = "Berhasil menjadi volunteer di " + openVolunteer.Title
+			floint = 5
 		} else {
 			description = "Berhasil mendaftar volunteer di " + openVolunteer.Title + " dan masih dalam proses verifikasi."
+			floint = 0
 		}
 
 		resp.Histories = append(resp.Histories, struct {
@@ -263,7 +278,7 @@ func (h *handler) getUserProfile(ctx *gin.Context) {
 			Date:        volunteer.CreatedAt,
 			Description: description,
 			Status:      volunteer.Status,
-			Floint:      0,
+			Floint:      floint,
 		})
 	}
 
@@ -443,4 +458,133 @@ func (h *handler) userGetKTPStatus(ctx *gin.Context) {
 	resp.Link = ktpDB.Link
 
 	h.help.SuccessResponse(ctx, http.StatusOK, "Get KTP status successful", resp)
+}
+
+func (h *handler) userGetFlointDetail(ctx *gin.Context) {
+	user, exist := ctx.Get("user")
+	if !exist {
+		h.help.ErrorResponse(ctx, http.StatusBadRequest, "Unauthorized", nil)
+		return
+	}
+
+	claims, ok := user.(entity.UserClaims)
+	if !ok {
+		h.help.ErrorResponse(ctx, http.StatusBadRequest, "Invalid token", nil)
+		return
+	}
+	userID := claims.ID
+
+	userDB, err := h.repo.User.GetByID(int(userID))
+	if err != nil {
+		h.help.ErrorResponse(ctx, http.StatusBadRequest, err.Error(), nil)
+		return
+	}
+
+	levelDB, err := h.repo.Level.GetDetailByLevel(userDB.Level)
+	if err != nil {
+		h.help.ErrorResponse(ctx, http.StatusInternalServerError, "Failed to get level detail", nil)
+		return
+	}
+
+	if levelDB == nil {
+		h.help.ErrorResponse(ctx, http.StatusInternalServerError, "level detail not found", nil)
+		return
+	}
+
+	levelBefore := userDB.Level - 1
+	if levelBefore < 0 {
+		levelBefore = 0
+	}
+
+	levelDbBefore, err := h.repo.Level.GetDetailByLevel(levelBefore)
+	if err != nil {
+		h.help.ErrorResponse(ctx, http.StatusInternalServerError, "Failed to get level detail", nil)
+		return
+	}
+	maxBefore := 0
+	if userDB.Level > 0 {
+		maxBefore = levelDbBefore.MaxFloint
+	}
+
+	resp := entity.UserFlointDetailResp{
+		Fullname:        userDB.Firstname + " " + userDB.Lastname,
+		Floint:          userDB.Floint,
+		FlointTotal:     userDB.FlointTotal,
+		MaxFloint:       levelDB.MaxFloint,
+		MaxFlointBefore: maxBefore,
+		Level:           userDB.Level,
+		Tier:            levelDB.Tier,
+	}
+
+	h.help.SuccessResponse(ctx, http.StatusOK, "Get floint detail successful", resp)
+}
+
+func (h *handler) userGetAllPurchaseStatus(ctx *gin.Context) {
+	user, exist := ctx.Get("user")
+	if !exist {
+		h.help.ErrorResponse(ctx, http.StatusBadRequest, "Unauthorized", nil)
+		return
+	}
+
+	claims, ok := user.(entity.UserClaims)
+	if !ok {
+		h.help.ErrorResponse(ctx, http.StatusBadRequest, "Invalid token", nil)
+		return
+	}
+	userID := claims.ID
+
+	purchaseDB, err := h.repo.MerchPurchase.GetByUserID(userID)
+	if err != nil {
+		h.help.ErrorResponse(ctx, http.StatusOK, "Records not found", nil)
+	}
+
+	var MerchsResp []struct{
+		MerchPhoto   string    `json:"merch_photo"`
+		MerchName    string    `json:"merch_name"`
+		UserID       uint      `json:"user_id"`
+		AddressLabel string    `json:"address_label"`
+		Address      string    `json:"address"`
+		Name         string    `json:"name"`
+		PhoneNumber  string    `json:"phone_number"`
+		Date         time.Time `json:"date"`
+		Quantity     int       `json:"quantity"`
+		Floint       int       `json:"floint"`
+		Status       string    `json:"status" gorm:"default:'diproses'"`
+	}
+
+	for _, purchase := range purchaseDB {
+		merchDB, err := h.repo.Merch.GetByID(int(purchase.MerchID))
+		if err != nil {
+			h.help.ErrorResponse(ctx, http.StatusInternalServerError, "Failed to get merch", nil)
+			return
+		}
+
+		MerchsResp = append(MerchsResp, struct {
+			MerchPhoto   string    `json:"merch_photo"`
+			MerchName    string    `json:"merch_name"`
+			UserID       uint      `json:"user_id"`
+			AddressLabel string    `json:"address_label"`
+			Address      string    `json:"address"`
+			Name         string    `json:"name"`
+			PhoneNumber  string    `json:"phone_number"`
+			Date         time.Time `json:"date"`
+			Quantity     int       `json:"quantity"`
+			Floint       int       `json:"floint"`
+			Status       string    `json:"status" gorm:"default:'diproses'"`
+		}{
+			MerchPhoto:   merchDB.Photo,
+			MerchName:    merchDB.Title,
+			UserID:       purchase.UserID,
+			AddressLabel: purchase.AddressLabel,
+			Address:      purchase.Address,
+			Name:         purchase.Name,
+			PhoneNumber:  purchase.PhoneNumber,
+			Date:         purchase.Date,
+			Quantity:     purchase.Quantity,
+			Floint:       purchase.Floint,
+			Status:       purchase.Status,
+		})
+	}
+
+	h.help.SuccessResponse(ctx, http.StatusOK, "Get all purchase status successful", MerchsResp)
 }

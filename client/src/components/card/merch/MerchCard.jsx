@@ -5,15 +5,14 @@ import { storage } from "../../../firebase/Firebase";
 import LoadingPic from "../../helper/LoadingPic";
 import { LoadingContext } from "../../../context/LoadingContext";
 import PrimerButton3 from "../../button/PrimerButton3";
-import { ConfirmationContext } from "../../../context/ConfirmationContext";
 import FakeButton from "../../button/FakeButton";
+import PopUpCheckout from "../../popup/PopUpCheckout";
 // import './MerchCard.css'
 
 // eslint-disable-next-line react/prop-types, no-unused-vars
-const MerchCard = ({ title, id, photo, rate, floint, price, userFloint }) => {
+const MerchCard = ({ title, id, photo, floint, userFloint }) => {
+  const [clicked, setClicked] = useState(false);
   const [image, setImage] = useState();
-
-  const {showPopup, hidePopup} = useContext(ConfirmationContext)
 
   const {isLoading, setIsLoading} = useContext(LoadingContext)
 
@@ -33,6 +32,12 @@ const MerchCard = ({ title, id, photo, rate, floint, price, userFloint }) => {
   }, [photo]);
 
   return (
+    <>
+    {clicked && (
+      <PopUpCheckout floint={floint} idProduk={id} title={title} photo={photo} handlerClose={() => {
+        setClicked(false);
+      }} userFloint={userFloint} />
+    )}
     <div
       // to={`/merch/${id}`}
       className="donationCard flex flex-col lg:w-64 lg:h-355 bg-white rounded-3xl overflow-hidden shadow-s-default"
@@ -73,19 +78,8 @@ const MerchCard = ({ title, id, photo, rate, floint, price, userFloint }) => {
             <div className="flexw-56 pt-2.5 self-end">
                 {/* <p className="text-xl">{rate}</p>
                 <img src={starIcon} /> */}
-                {floint < userFloint ? (<PrimerButton3 name="TUKAR" widthType="fit" handle={() => {
-                    showPopup({
-                      title: 'Apakah kamu yakin untuk menukar barang ini?',
-                      message: null,
-                      confirmText: 'IYA',
-                      cancelText: 'BATAL',
-                      onConfirm: () => {
-                        hidePopup();
-                      },
-                      onCancel: () => {
-                        hidePopup();
-                      },
-                    })
+                {floint <= userFloint ? (<PrimerButton3 name="TUKAR" widthType="fit" handle={() => {
+                    setClicked(true)
                   }}/>) : (
                     <FakeButton name={"TUKAR"}/>
                   )}
@@ -94,6 +88,7 @@ const MerchCard = ({ title, id, photo, rate, floint, price, userFloint }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

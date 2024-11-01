@@ -54,17 +54,17 @@ const KampanyeDetail = () => {
     fetchImage();
   }, [data.photo]);
   return (
-    <div className="bg-onyx">
+    <main className="bg-onyx">
       <Navbar />
 
-      <div className="flex flex-col w-full lg:mt-28">
-        <div className="h-fit w-full flex flex-row px-40 py-2.5 gap-5">
+      <section className="flex flex-col w-full lg:mt-28">
+        <nav className="h-fit w-full flex flex-row px-40 py-2.5 gap-5">
           <Link to={"/aksi"} className="bl text-white hover:text-cambridgeBlue">
             Aksi
           </Link>
-          <p className="bl text-white">&gt;</p>
-          <p className="bl text-cambridgeBlue">Volunteer {data.title}</p>
-        </div>
+          <span className="bl text-white">&gt;</span>
+          <span className="bl text-cambridgeBlue">Volunteer {data.title}</span>
+        </nav>
         {image.isLoading ? (
           <div className="w-full h-550 justify-center items-center flex bg-default">
             <LoadingPic />
@@ -87,12 +87,12 @@ const KampanyeDetail = () => {
             </div>
           </div>
         )}
-      </div>
+      </section>
 
       {/* Kenapa Harus Ikut */}
       {data.why_text && (
-        <div className="flex flex-col py-12 px-16 bg-oldGreen items-center text-white">
-          <p className="dl">Kenapa Harus Ikut?</p>
+        <section className="flex flex-col py-12 px-16 bg-oldGreen items-center text-white">
+          <h2 className="dl">Kenapa Harus Ikut?</h2>
           <div className="flex flex-row w-full justify-center rounded-3xl p-6 gap-14">
             {data.why_text &&
               data.why_text.split("#").map((item, index) => (
@@ -101,25 +101,25 @@ const KampanyeDetail = () => {
                   className="flex flex-col gap-2.5 justify-center items-center flex-1"
                 >
                   <img src={item.split(";")[0]} className="h-40" />
-                  <h4 className="text-3xl font-bold text-center text-nowrap">
+                  <h3 className="text-3xl font-bold text-center text-nowrap">
                     {item.split(";")[1]}
-                  </h4>
+                  </h3>
                   <p className="font-medium text-base text-center">
                     {item.split(";")[2]}
                   </p>
                 </div>
               ))}
           </div>
-        </div>
+        </section>
       )}
 
       {/* Steps */}
-      <div className="flex flex-row pt-12 pb-20 px-40 gap-16 bg-onyx text-white">
+      <section className="flex flex-row pt-12 pb-20 px-40 gap-16 bg-onyx text-white">
         {/* left */}
         <div className="flex flex-col w-full pt-10">
-          <p className="dl text-white pb-5">
+          <h2 className="dl text-white pb-5">
             {data.steps && data.steps.split("#")[0]}
-          </p>
+          </h2>
           {data.steps &&
             (() => {
               const stepsArray = data.steps.split("#")[1].split("<>");
@@ -129,18 +129,18 @@ const KampanyeDetail = () => {
                   <div className="flex-col flex justify-center items-center h-full">
                     {/* circle number */}
                     <div className="p-2 border-4 border-oldGreen w-14 h-14 shrink-0 rounded-full justify-center items-center">
-                      <p className="text-center ds -translate-y-2">
+                      <span className="text-center ds -translate-y-2">
                         {index + 1}
-                      </p>
+                      </span>
                     </div>
 
                     {/* vertical line */}
                     <div className={`w-1 flex-1 bg-oldGreen`} />
                   </div>
                   <div className="flex flex-col pb-10 gap-1">
-                    <p className="text-xl font-semibold">
+                    <h3 className="text-xl font-semibold">
                       {item.split(";")[0]}
-                    </p>
+                    </h3>
                     <p className="bs">{item.split(";")[1]}</p>
                   </div>
                 </div>
@@ -162,9 +162,9 @@ const KampanyeDetail = () => {
                   <div className="flex-col flex justify-center items-center h-full">
                     {/* circle number */}
                     <div className="p-2 border-4 border-oldGreen w-14 h-14 shrink-0 rounded-full justify-center items-center">
-                      <p className="text-center ds -translate-y-2">
+                      <span className="text-center ds -translate-y-2">
                         {index + 1 + halfLength}
-                      </p>
+                      </span>
                     </div>
 
                     {/* vertical line */}
@@ -177,30 +177,30 @@ const KampanyeDetail = () => {
                     />
                   </div>
                   <div className="flex flex-col pb-10 gap-1">
-                    <p className="text-xl font-semibold">
+                    <h3 className="text-xl font-semibold">
                       {item.split(";")[0]}
-                    </p>
+                    </h3>
                     <p className="bs">{item.split(";")[1]}</p>
                   </div>
                 </div>
               ));
             })()}
         </div>
-      </div>
+      </section>
 
       {/* Keterangan */}
-      <div
+      <section
         className={`py-7 px-40 bg-oldGreen flex flex-col gap-2.5 text-white`}
       >
         <p className="ds">{data.keterangan && data.keterangan.split("#")[0]}</p>
         <p className="text-xl">
           {data.keterangan && data.keterangan.split("#")[1]}
         </p>
-        <p className="dl">Mulai Sekarang!</p>
-      </div>
+        <h2 className="dl">Mulai Sekarang!</h2>
+      </section>
 
       {/* Tasks */}
-      <div className="py-16 px-40 bg-onyx flex flex-wrap gap-10 justify-center">
+      <section className="py-16 px-40 bg-onyx flex flex-wrap gap-10 justify-center">
         {data.open_campaign_tasks &&
           data.open_campaign_tasks.map((item, index) => (
             <ActionCard
@@ -211,10 +211,10 @@ const KampanyeDetail = () => {
               flointReward={item.floint_reward}
             />
           ))}
-      </div>
+      </section>
 
       {/* bar down */}
-      <div className="py-16 px-40 bg-onyx flex flex-row gap-20">
+      <section className="py-16 px-40 bg-onyx flex flex-row gap-20">
         <div className="flex flex-row bg-viridian text-white gap-8 w-full p-14 rounded-2xl items-center">
           <img src={BusinessPersonIll} className="object-cover w-fit h-64" />
           <div className="flex flex-col px-10">
@@ -226,10 +226,10 @@ const KampanyeDetail = () => {
             </p>
           </div>
         </div>
-      </div>
+      </section>
 
       <Footer />
-    </div>
+    </main>
   );
 };
 

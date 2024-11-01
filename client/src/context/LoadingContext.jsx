@@ -9,7 +9,11 @@ export const LoadingProvider = ({ children }) => {
 
   return (
     <LoadingContext.Provider value={{ isLoading, setIsLoading }}>
-      {isLoading && <LoadingPic />}
+      {isLoading && (
+        <div className="fixed top-0 left-0 z-50">
+          <LoadingPic /> 
+        </div>
+      )}
       {children}
     </LoadingContext.Provider>
   );

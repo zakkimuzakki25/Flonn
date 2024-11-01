@@ -3,13 +3,12 @@ import Navbar from "../../components/navigation/Navbar";
 import Footer from "../../components/navigation/Footer";
 import imageMerch from "../../assets/images/background/Merch.jpg";
 import MerchCard from "../../components/card/merch/MerchCard";
-import { Base } from "../../api/Api";
-import DropDownRound from "../../components/bar/DropdownRound";
-import SearchBar from "../../components/bar/SearchBar";
+import { Base, BaseAPI } from "../../api/Api";
 
 const Merch = () => {
   const [data, setData] = useState([]);
   const token = window.localStorage.getItem("token");
+  const [floint, setFloint] = useState(0)
 
   const getData = async () => {
     try {
@@ -28,8 +27,21 @@ const Merch = () => {
     }
   };
 
+  const getDataFloint = () => {
+    BaseAPI.get('user/floint-detail', {
+        headers: { Authorization: `Bearer ${token}` },
+      }).then((res) => {
+        if (res.data.data) {
+          setFloint(res.data.data.floint)
+        }
+      }, (err) => {
+        console.log("error : ", err)
+      })
+  }
+
   useEffect(() => {
     getData();
+    getDataFloint();
   }, []);
 
   return (
@@ -60,27 +72,6 @@ const Merch = () => {
 
       {/* main */}
       <div className="flex flex-col lg:px-40 lg:py-20">
-        {/* filter */}
-        <div className="flex flex-row justify-between pb-12">
-          <div className="w-72">
-            <SearchBar
-              holder={"Search"}
-            />
-          </div>
-
-          <div className="flex flex-row gap-5">
-            <div className="w-44">
-              <DropDownRound
-                holder={"Kategori"}
-              />
-            </div>
-            <div className="w-44">
-              <DropDownRound
-                holder={"Harga"}
-              />
-            </div>
-          </div>
-        </div>
 
         {/* list merch */}
         <div className="flex flex-wrap justify-between gap-y-10">
@@ -89,6 +80,7 @@ const Merch = () => {
               <div key={index}>
                 <MerchCard
                   floint={item.floint}
+                  userFloint={floint}
                   id={item.ID}
                   price={item.price}
                   rate={item.rate}

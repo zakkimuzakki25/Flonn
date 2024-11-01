@@ -20,8 +20,12 @@ type User struct {
 	Deskripsi    string `json:"deskripsi" gorm:"type:VARCHAR(250);default:null"`
 	NoTelp       string `json:"no_telepon" gorm:"type:VARCHAR(20);default:null"`
 	JenisKelamin string `json:"jenis_kelamin" gorm:"type:VARCHAR(250);default:null"`
-	Points       int    `json:"points" gorm:"type:INT;default:0"`
+	Floint       int    `json:"floint" gorm:"type:INT;default:0"`
+	FlointTotal  int    `json:"floint_total" gorm:"type:INT;default:0"`
+	Level        int    `json:"level" gorm:"type:INT;default:0"`
 }
+
+// Models
 
 type UserUpdateProfile struct {
 	Firstname    string `json:"firstname" gorm:"type:VARCHAR(255);NOT NULL"`
@@ -31,7 +35,15 @@ type UserUpdateProfile struct {
 	JenisKelamin string `json:"jenis_kelamin" gorm:"type:VARCHAR(250);default:null"`
 }
 
-// Models
+type UserFlointDetailResp struct {
+	Fullname        string `json:"fullname"`
+	Floint          int    `json:"floint"`
+	FlointTotal     int    `json:"floint_total"`
+	MaxFloint       int    `json:"max_floint"`
+	MaxFlointBefore int    `json:"max_floint_before"`
+	Level           int    `json:"level"`
+	Tier            string `json:"tier"`
+}
 
 type UserRegister struct {
 	Firstname string `json:"firstname" gorm:"NOT NULL" binding:"required"`

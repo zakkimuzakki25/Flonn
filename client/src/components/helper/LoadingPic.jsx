@@ -1,7 +1,7 @@
 
 const LoadingPic = () => {
   return (
-    <div className="flex w-screen h-screen justify-center items-center bg-black bg-opacity-75 z-50 fixed top-0">
+    <div className="flex w-screen h-screen justify-center items-center bg-black bg-opacity-75 z-50">
         <ul className="flex flex-row lg:gap-3">
             <li style={{
                 animationDelay: '200ms',

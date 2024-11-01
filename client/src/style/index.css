@@ -21,77 +21,77 @@
 @layer base {
 
   .h1 {
-    font-size: 125px;
+    font-size: 80px;
     font-family: "Bebas Neue", sans-serif;
   }
 
   .ds {
-    font-size: 36px;
+    font-size: 28px;
     font-family: "Bebas Neue", sans-serif;
   }
 
   .dl {
-    font-size: 57px;
+    font-size: 42px;
     font-family: "Bebas Neue", sans-serif;
   }
 
   .dmi {
-    font-size: 45px;
+    font-size: 32px;
     font-family: "Barlow", sans-serif;
     font-style: italic;
     font-weight: 500;
   }
 
   .bl {
-    font-size: 22px;
+    font-size: 18px;
     font-family: 'Barlow', sans-serif;
     font-weight: normal;
   }
 
   .blb {
-    font-size: 22px;
+    font-size: 18px;
     font-family: 'Barlow', sans-serif;
     font-weight: 600;
   }
 
   .bs {
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Barlow', sans-serif;
   }
 
   .bsis {
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Barlow', sans-serif;
     font-style: italic;
     font-weight: 500;
   }
 
   .tl {
-    font-size: 22px;
+    font-size: 18px;
     font-family: 'Barlow', sans-serif;
     font-weight: 400;
   }
 
   .tli {
-    font-size: 22px;
+    font-size: 18px;
     font-family: 'Barlow', sans-serif;
     font-style: italic;
     font-weight: 600;
   }
 
   .tlb {
-    font-size: 22px;
+    font-size: 18px;
     font-family: 'Barlow', sans-serif;
     font-weight: bold;
   }
 
   .headm {
-    font-size: 28px;
+    font-size: 24px;
     font-family: "Barlow", sans-serif;
   }
 
   .headl {
-    font-size: 32px;
+    font-size: 26px;
     font-family: "Barlow", sans-serif;
   }
 
@@ -107,5 +107,82 @@
 
   .imghover:hover {
     transform: scale(1.25);
+  }
+
+  @media (min-width: 640px){
+    .h1 {
+      font-size: 125px;
+      font-family: "Bebas Neue", sans-serif;
+    }
+  
+    .ds {
+      font-size: 36px;
+      font-family: "Bebas Neue", sans-serif;
+    }
+  
+    .dl {
+      font-size: 57px;
+      font-family: "Bebas Neue", sans-serif;
+    }
+  
+    .dmi {
+      font-size: 45px;
+      font-family: "Barlow", sans-serif;
+      font-style: italic;
+      font-weight: 500;
+    }
+  
+    .bl {
+      font-size: 22px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: normal;
+    }
+  
+    .blb {
+      font-size: 22px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+    }
+  
+    .bs {
+      font-size: 16px;
+      font-family: 'Barlow', sans-serif;
+    }
+  
+    .bsis {
+      font-size: 16px;
+      font-family: 'Barlow', sans-serif;
+      font-style: italic;
+      font-weight: 500;
+    }
+  
+    .tl {
+      font-size: 22px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+    }
+  
+    .tli {
+      font-size: 22px;
+      font-family: 'Barlow', sans-serif;
+      font-style: italic;
+      font-weight: 600;
+    }
+  
+    .tlb {
+      font-size: 22px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: bold;
+    }
+  
+    .headm {
+      font-size: 28px;
+      font-family: "Barlow", sans-serif;
+    }
+  
+    .headl {
+      font-size: 32px;
+      font-family: "Barlow", sans-serif;
+    }
   }
 }

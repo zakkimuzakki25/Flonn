@@ -1,10 +1,14 @@
 .banner-bio {
-    height: 830px;
     background-image: url("../../assets/images/background/Biodiversitas.jpg");
     background-size: cover;
-    background-position: center -75px;
+    background-position: -10px 0px;
 }
 
-.search-bio {
-    width: 740px;
+@media (min-width: 640px) {
+    .banner-bio {
+        height: 830px;
+        background-image: url("../../assets/images/background/Biodiversitas.jpg");
+        background-size: cover;
+        background-position: center -75px;
+    }
 }

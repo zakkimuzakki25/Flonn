@@ -62,6 +62,14 @@ func (d *user) GetAll() ([]*entity.User, error) {
 }
 
 func (d *user) Update(user *entity.User) error {
+	LevelDB, _ := LevelRepoInit(d.db).GetDetailByLevel(user.Level)
+	if user.FlointTotal >= LevelDB.MaxFloint {
+		user.Level++
+		if user.Level > 5 {
+			user.Level = 5
+		}
+	}
+
 	if err := d.db.Save(user).Error; err != nil {
 		return err
 	}
